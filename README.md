@@ -1,6 +1,6 @@
 # HookTurns
 
-![alt tag](http://i.imgur.com/Z4UgQMA.png)
+![alt tag](http://i.imgur.com/qlNgHfe.png)
 
 An INFO30005 Web Information Technologies project.
 
