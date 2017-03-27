@@ -1,0 +1,28 @@
+.navbar {
+  font-family: 'Lato', sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.jumbotron {
+  background-image: url("../resources/img/96_hero.JPG");
+  background-size: cover;
+  background-position: center;
+}
+
+.jumbotron h1 {
+  font-family: 'Oswald', sans-serif;
+  font-style: italic;
+  color: #FFFFFF;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.jumbotron h3 {
+  font-family: 'Oswald', sans-serif;
+  font-style: italic;
+  color: #FFFFFF;
+  margin-top: 0;
+  margin-bottom: 0;
+}
