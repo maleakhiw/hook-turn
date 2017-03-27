@@ -19,3 +19,16 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.terminus-stops h3 {
+  font-family: 'Oswald', sans-serif;
+  font-style: italic;
+  margin-top: 0;
+  /*color: #FFFFFF;*/
+}
+
+.vertical-center {
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
