@@ -1,0 +1,51 @@
+/** Homepage css style */
+
+body {
+	font-family: "Lato", sans-serif;
+	font-size: 16px;
+}
+/* Changing navigation presentation */
+@media (min-width: 768px) {
+.navbar {
+    border-radius: 0 ;
+}}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.navbar-inverse {
+	background: #A9c722;
+	border-color: transparent;
+	padding:10px 2%;
+}
+.navbar-inverse .navbar-brand {
+	font-family: "ADAM.CG PRO";
+	src:url("resources/fonts/ADAM.CG PRO.otf");
+	color: black;
+	font-size: 32px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color:black;
+	font-size: 18px;
+	line-height:28px;
+}
+
+.navbar-inverse .navbar-toggle {
+	border-color:white;
+	border-width:2px;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+	background: #5e8f2c ;
+}
+
+/* Footer presentation */
+footer {
+	text-align:center;
+	height: 60px;
+	background: #a9c722;
+	line-height:60px;
+	font-weight: bold;
+}
