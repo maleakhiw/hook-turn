@@ -7,6 +7,7 @@
 .jumbotron h1 {
   font-family: 'Oswald', sans-serif;
   font-style: italic;
+  /*font-weight: 300;*/
   color: #FFFFFF;
   margin-top: 0;
   margin-bottom: 0;
@@ -15,6 +16,7 @@
 .jumbotron h3 {
   font-family: 'Oswald', sans-serif;
   font-style: italic;
+  font-weight: 300;
   color: #FFFFFF;
   margin-top: 0;
   margin-bottom: 0;
@@ -23,6 +25,7 @@
 .terminus-stops h3 {
   font-family: 'Oswald', sans-serif;
   font-style: italic;
+  /*font-weight: 300;*/
   margin-top: 0;
   /*color: #FFFFFF;*/
 }
@@ -31,4 +34,16 @@
   height: inherit;
   display: flex;
   align-items: center;
+}
+
+/*.btn {
+  margin-bottom: 12px;
+}
+
+.button-group-centered {
+  text-align: center;
+}*/
+
+body {
+    font-family: 'Lato', sans-serif;
 }

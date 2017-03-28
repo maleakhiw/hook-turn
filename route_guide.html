@@ -11,7 +11,7 @@
 	<!-- Font awesome CDN -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400|Lato" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/route_guide.css" />
 </head>
 <body>
@@ -57,16 +57,53 @@
 	<!-- Terminus stops -->
 	<div class="terminus-stops">
 		<row>
-			<div class="col-xs-3">
+			<div class="col-sm-6">
 				<h3>EAST BRUNSWICK</h3>
 			</div>
-			<div class="col-xs-6"></div>
-			<div class="col-xs-3" style="text-align: right">
+			<div class="col-sm-6 hidden-xs" style="text-align: right">
 				<h3>ST KILDA BEACH</h3>
 			</div>
 		</row>
 	</div>
 
+	<!-- Route map -->
+	<div class="route-map">
+		<row>
+				<div class="col-md-3">
+					<h3>City Road</h3>
+					<p>Stop 126</p>
+				</div>
+				<div class="col-md-3">
+					<h3>South Melbourne</h3>
+					<p>Stop 127</p>
+				</div>
+				<div class="col-md-3">
+					<h3>Albert Park</h3>
+					<p>Stop 128</br>
+					Connections 12</p>
+					<!-- <div class="button-group-centered"> -->
+						<button type="button" class="btn btn-secondary">View Departures</button>
+						<button type="button" class="btn btn-secondary">View Stop Guide</button>
+					<!-- </div> -->
+				</div>
+				<div class="col-md-3">
+					<h3>Melbourne Sports and Aquatic Centre (MSAC)</h3>
+					<p>Stop 129</p>
+				</div>
+		</row>
+	</div>
+
+	<!-- move teminus station to bottom instead of top right -->
+	<div class="terminus-stops">
+		<row>
+			<div class="col-xs-6 hidden-xs">
+				<!-- <h3>EAST BRUNSWICK</h3> -->
+			</div>
+			<div class="col-xs-6 hidden-sm hidden-md hidden-lg hidden-xl">
+				<h3>ST KILDA BEACH</h3>
+			</div>
+		</row>
+	</div>
 
 	<!-- Include Javascript and Jquery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
