@@ -75,6 +75,8 @@
 		</row>
 	</div>
 
+
+	<canvas id="routeLine" height=30% width=1440%></canvas>
 	<!-- Route map -->
 	<div class="route-map">
 		<row>
@@ -83,10 +85,12 @@
 					<p>Stop 126</p>
 				</div>
 				<div class="col-md-3">
+					<!-- <canvas class="route-canvas" height=20%></canvas> -->
 					<h3>South Melbourne</h3>
 					<p>Stop 127</p>
 				</div>
 				<div class="col-md-3">
+					<!-- <canvas class="route-canvas" height=20%></canvas> -->
 					<h3>Albert Park</h3>
 					<p>Stop 128</br>
 					Connections 12</p>
@@ -96,11 +100,48 @@
 					<!-- </div> -->
 				</div>
 				<div class="col-md-3">
+					<!-- <canvas class="route-canvas" height=20%></canvas> -->
 					<h3>Melbourne Sports and Aquatic Centre (MSAC)</h3>
 					<p>Stop 129</p>
 				</div>
 		</row>
 	</div>
+
+	<!-- temporary inline JS to draw on the canvas -->
+	<script type="text/javascript">
+		// var elements = document.getElementsByClassName("route-canvas");
+		// for (var i=0; i<elements.length; i++) {
+		// 	var c = elements[i];
+		// 	var ctx = c.getContext("2d");
+		// 	ctx.fillStyle = "pink";
+		// 	ctx.fillRect(0, 0, c.offsetWidth, c.offsetHeight);
+		// 	ctx.stroke();
+		// }
+		var draw = function() {
+			var c = document.getElementById("routeLine");
+			var ctx = c.getContext("2d");
+
+			ctx.clearRect(0, 0, c.width, c.height);	// clear the rectangle
+
+			ctx.fillStyle = "pink";
+			ctx.fillRect(0, 0.25*c.offsetHeight, document.documentElement.clientWidth, 0.5*c.offsetHeight);
+			ctx.fill();
+
+			ctx.fillStyle = "white";
+			for (var i=1; i<8; i=i+2) {
+				ctx.beginPath();
+				ctx.arc(i*document.documentElement.clientWidth/8, c.offsetHeight/2, 0.4*c.offsetHeight, 0, 2*Math.PI, false);
+				ctx.stroke();
+				ctx.fill();
+			}
+		}
+		draw();
+
+		window.onresize = function(event) {
+			console.log(document.documentElement.clientWidth);
+			draw();
+		}
+	</script>
 
 	<!-- move teminus station to bottom instead of top right -->
 	<div class="terminus-stops">
@@ -114,6 +155,18 @@
 		</row>
 	</div>
 
+	<!-- Around a stop -->
+	<div class="around-stop">
+		<row>
+			<div class="col-xs-12">
+				<div class="jumbotron vertical-center">
+					<div class="container">
+						<h3>AROUND SOUTH MELBOURNE MARKET - STOP 127</h3>
+					</div>
+				</div>
+			</div>
+		</row>
+	</div>
 	<!-- Include Javascript and Jquery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
