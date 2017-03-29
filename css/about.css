@@ -2,7 +2,7 @@
 
 .jumbotron {
 	text-align:center;
-	height: 400px;
+	min-height: 400px;
 	background: url("https://source.unsplash.com/OqtafYT5kTw");
 	background-size:cover;
 	background-position:center;
