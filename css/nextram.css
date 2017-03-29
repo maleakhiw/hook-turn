@@ -91,11 +91,16 @@ h4 {
 .box {
   background: none;
   position: static;
-  height: 300px !important;
+  min-height: 100px;
+  padding-bottom: 20px;
 }
 
 .clear_10px_left {
   margin-left: 10px;
+}
+
+.clear_10px_right {
+  margin-right: 10px;
 }
 
 .clear_5px_top {
@@ -129,6 +134,24 @@ h4 {
   color: #333333;
   font-weight: bold;
   font-size: 40px;
+}
+
+.disruption_font {
+  font-family:  'Lato',sans-serif;
+  color:  #000;
+  font-weight:  bold;
+  font-size: 36px;
+}
+
+.disruption_table {
+  padding-top: 2px;
+  padding-bottom:  2px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  border: 1px solid;
 }
 
 .route_number_table {
@@ -173,6 +196,11 @@ h4 {
   margin-bottom: 0;
 }
 
+.no-top-padding {
+  padding-top: 0;
+  margin-top: 0;
+}
+
 .take-bg {
   background-color: inherit;
 }
@@ -180,6 +208,15 @@ h4 {
 
 p.expected {
   font-size:14px;
+}
+
+p.disruption {
+  font-size: 16px;
+  text-align: justify;
+}
+
+p.justify {
+  text-align: justify;
 }
 
 .well {
