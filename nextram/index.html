@@ -1,190 +1,187 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- Extra CSS style -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
-    <link rel="stylesheet" type="text/css" href="../css/nextram.css" />
-    <!-- Font awesome CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  </head>
-  <body>
-    <!-- Static navbar with Login and SignUp -->
-    <nav class="navbar navbar-inverse navbar-static-top container-fullwidth">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Hook/Turns</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          </ul>
-          </div><!--/.nav-collapse -->
-          </div><!--/.container-fluid -->
-        </nav>
-        <!-- Jumbotron for stop name -->
-        <div class="jumbotron">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-8">
-                <h3>NEXTRAM</h3>
-                <h1>Southern Cross Station Spencer Street</h1>
-                <h2>Stop 1</h2>
-              </div>
-              <div class="col-sm-2">
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /jumbotron -->
-        <div class="container-fluid">
-          <div class="row text-center">
-            <div class="col-sm-12"><h4>Tram Stop Crowding Timeline</h4></div>
-          </div>
-          <div class="row text-center">
-            <div class = "col-xs-1"></div>
-            <div class = "col-xs-10">
-              <div class="progress">
-                <div class="progress-bar progress-bar-decent" style="width: 35%">
-                  <span class="sr-only">35% Complete (success)</span>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <!-- Extra CSS style -->
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../css/nextram.css" />
+        <!-- Font awesome CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    </head>
+    <body>
+        <!-- Static navbar with Login and SignUp -->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">HOOK/TURNS</a>
                 </div>
-                <div class="progress-bar progress-bar-empty" style="width: 20%">
-                  <span class="sr-only">20% Complete (warning)</span>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">How it Works</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Explore</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
                 </div>
-                <div class="progress-bar progress-bar-full" style="width: 10%">
-                  <span class="sr-only">10% Complete (danger)</span>
-                </div>
-                <div class="progress-bar progress-bar-overcrowded" style="width: 5%">
-                  <span class="sr-only">10% Complete (danger)</span>
-                </div>
-                <div class="progress-bar progress-bar-full" style="width: 30%">
-                  <span class="sr-only">10% Complete (danger)</span>
-                </div>
-              </div>
-            </div>
-            <div class = "col-xs-1"></div>
-          </div>
-        </div>
-        <!-- boxes for the individual ETAs -->
-        <div class="row match-my-cols">
-          <div class="col-sm-6 nextram_box full text-center">
-            <div class="box">
-              <span class="route_number_table route_number_96">96</span> To East Brunswick <button class="btn clear_10px_left">Route Guide</button>
-              <h1>3 min</h1>
-              <div class = "row">
-                <p>Expected Crowd Level</p>
-              </div>
-              <div class = "row no-margin">
-                <div class = "col-xs-1"></div>
-                <div class = "col-xs-10">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-full" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="80" style="width: 80%">
-                      Full
+            </nav>
+
+            <!-- Jumbotron for stop name -->
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <h3>NEXTRAM</h3>
+                            <h1>Southern Cross Station Spencer Street</h1>
+                            <h2>Stop 1</h2>
+                        </div>
+                        <div class="col-sm-2">
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class = "col-xs-1"></div>
-              </div>
-              <div class = "row">
-                <p>All trams expected to be full</p>
-              </div>
-              <div class="row">
-                <div class="btn-group" role="group" aria-label="">
-                  <div class="col-sm-12">
-                    <button class="btn clear_5px_top" type="button" data-toggle="collapse" data-target="#moreDetails" aria-expanded="false" data-parent="#reportGroup" aria-controls="moreDetails">More Details</button>
-                    <button class="btn clear_5px_top" type="button" data-toggle="collapse" data-target="#reportCrowd" data-parent="#reportGroup" aria-expanded="false" aria-controls="reportCrowd">Report Crowd</button>
-                    <button class="btn clear_5px_top" type="button" data-toggle="collapse" data-target="#reportDisruption" data-parent="#reportGroup" aria-expanded="false" aria-controls="reportDisruption">Report Disruption</button>
-                  </div>
+            </div>
+            <!-- /jumbotron -->
+
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-sm-12"><h4>Tram Stop Crowding Timeline</h4></div>
                 </div>
-                <div class="row">
-                  <div id="reportGroup">
-                    <div class="accordion-group">
-                    <div class="collapse indent no-margin" id="moreDetails">
-                        <div class="well">
-                          details
+                <div class="row text-center">
+                    <div class = "col-xs-1"></div>
+                    <div class = "col-xs-10">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-decent" style="width: 35%">
+                                <span class="sr-only">35% Complete (success)</span>
+                            </div>
+                            <div class="progress-bar progress-bar-empty" style="width: 20%">
+                                <span class="sr-only">20% Complete (warning)</span>
+                            </div>
+                            <div class="progress-bar progress-bar-full" style="width: 10%">
+                                <span class="sr-only">10% Complete (danger)</span>
+                            </div>
+                            <div class="progress-bar progress-bar-overcrowded" style="width: 5%">
+                                <span class="sr-only">10% Complete (danger)</span>
+                            </div>
+                            <div class="progress-bar progress-bar-full" style="width: 30%">
+                                <span class="sr-only">10% Complete (danger)</span>
+                            </div>
                         </div>
-                      </div>
-                      <div class="collapse indent no-margin" id="reportCrowd">
-                        <div class="well">
-                          crowd
-                        </div>
-                      </div>
-                      <div class="collapse indent no-margin" id="reportDisruption">
-                        <div class="well">
-                          disruption
-                        </div>
-                      </div>
                     </div>
+                    <div class = "col-xs-1"></div>
+                </div> <!-- End of row -->
+
+
+            <!-- boxes for the individual ETAs -->
+            <div class="row match-my-cols">
+                <div class="col-sm-6 nextram_box full text-center">
+                    <div class="box">
+                        <span class="route_number_table route_number_96">96</span> To East Brunswick <button class="btn clear_10px_left">Route Guide</button>
+                        <h1>3 min</h1>
+                        <div class = "row">
+                            <p>Expected Crowd Level</p>
+                        </div>
+                        <div class = "row no-margin">
+                            <div class = "col-xs-1"></div>
+                            <div class = "col-xs-10">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-full" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="80" style="width: 80%">
+                                        Full
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "col-xs-1"></div>
+                        </div>
+                        <div class = "row">
+                            <p>All trams expected to be full</p>
+                        </div>
+                        <div class="row">
+                            <div class="btn-group" role="group" aria-label="">
+                                <div class="col-sm-12">
+                                    <button class="btn clear_5px_top" type="button" data-toggle="collapse" data-target="#moreDetails" aria-expanded="false" data-parent="#reportGroup" aria-controls="moreDetails">More Details</button>
+                                    <button class="btn clear_5px_top" type="button" data-toggle="collapse" data-target="#reportCrowd" data-parent="#reportGroup" aria-expanded="false" aria-controls="reportCrowd">Report Crowd</button>
+                                    <button class="btn clear_5px_top" type="button" data-toggle="collapse" data-target="#reportDisruption" data-parent="#reportGroup" aria-expanded="false" aria-controls="reportDisruption">Report Disruption</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="reportGroup">
+                                    <div class="accordion-group">
+                                        <div class="collapse indent no-margin" id="moreDetails">
+                                            <div class="well">
+                                                details
+                                            </div>
+                                        </div>
+                                        <div class="collapse indent no-margin" id="reportCrowd">
+                                            <div class="well">
+                                                crowd
+                                            </div>
+                                        </div>
+                                        <div class="collapse indent no-margin" id="reportDisruption">
+                                            <div class="well">
+                                                disruption
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 nextram_box decent text-center">
+                    <div class="box">
+                        <span class="route_number_table route_number_96">96</span> To St Kilda Beach
+                        <h1>NOW</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row match-my-cols">
+                <div class="col-sm-6 nextram_box empty text-center">
+                    <div class="box">
+                        <span class="route_number_table route_number_86">86</span> To Waterfront City Docklands
+                        <h1>2 min</h1>
                     </div>
                     
                 </div>
-                
-              </div>
+                <div class="col-sm-6 nextram_box overcrowded text-center">
+                    <div class="box">
+                        <span class="route_number_table route_number_86">86</span> To Bundoora RMIT
+                        <h1>7 min</h1>
+                    </div>
+                    
+                </div>
             </div>
-          </div>
-          <div class="col-sm-6 nextram_box decent text-center">
-            <div class="box">
-              <span class="route_number_table route_number_96">96</span> To St Kilda Beach
-              <h1>NOW</h1>
-            </div>
-          </div>
+            </div> <!-- /container -->
         </div>
-        <div class="row match-my-cols">
-          <div class="col-sm-6 nextram_box empty text-center">
-            <div class="box">
-              <span class="route_number_table route_number_86">86</span> To Waterfront City Docklands
-              <h1>2 min</h1>
-            </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>COPYRIGHT HOOKTURNS 2017</p>
+        </footer>
             
-          </div>
-          <div class="col-sm-6 nextram_box overcrowded text-center">
-            <div class="box">
-              <span class="route_number_table route_number_86">86</span> To Bundoora RMIT
-              <h1>7 min</h1>
-            </div>
-            
-          </div>
-        </div>
-        </div> <!-- /container -->
         <!-- Include Javascript and Jquery -->
         <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <!-- height matching script -->
         <script type='text/Javascript'>
-            var $reportGroup = $('#reportGroup');
-            $reportGroup.on('show.bs.collapse','.collapse', function() {
-                $reportGroup.find('.collapse.in').collapse('hide');
-            });
+        var $reportGroup = $('#reportGroup');
+        $reportGroup.on('show.bs.collapse','.collapse', function() {
+        $reportGroup.find('.collapse.in').collapse('hide');
+        });
         </script>
-
-      </body>
-    </html>
+    </body>
+</html>

@@ -1,9 +1,4 @@
-.navbar {
-  font-family: 'Lato', sans-serif;
-  margin-top: 0;
-  margin-bottom: 0;
-  width: 100%;
-}
+
 
 .jumbotron {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../resources/img/sxs.jpg");
@@ -60,8 +55,6 @@ h4 {
   margin-top: 25px;
 }
 
-
-
 .row {
   font-family: 'Lato',sans-serif;
   margin-bottom: 0px;
@@ -77,6 +70,7 @@ h4 {
   border-top: 1px solid #ddd;
   font-size: 20px;
   word-wrap: break-word;
+
 }
 
 .empty {
