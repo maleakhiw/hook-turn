@@ -217,6 +217,15 @@ hr {
   background-color: inherit;
 }
 
+
+p.expected {
+  font-size:14px;
+}
+
+.well {
+  width:100%;
+}
+
 /* workaround to allow columns to automatically size like one another 
 source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
 */
@@ -239,4 +248,3 @@ source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-col
 .match-my-cols .box a {
   position: relative;
 }
-
