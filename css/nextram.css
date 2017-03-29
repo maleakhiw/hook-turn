@@ -219,6 +219,10 @@ p.justify {
   text-align: justify;
 }
 
+a.onlight {
+  color: blue;
+}
+
 .well {
   width:100%;
 }
@@ -245,3 +249,4 @@ source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-col
 .match-my-cols .box a {
   position: relative;
 }
+
