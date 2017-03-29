@@ -67,3 +67,17 @@
 	padding: 30px;
 	height: 500px;
 }
+
+li.active a  {
+	background: #fdb000 !important;
+	color:black;
+}
+
+.nav>li>a:hover {
+	background:white;
+}
+
+li a {
+	color: black;
+	font-weight:bold;
+}

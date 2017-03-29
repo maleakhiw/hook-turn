@@ -1,20 +1,28 @@
 /* Jumbotron */
-
-.jumbotron h1 {
-	font-size: 32px;
-	text-align:center;
-	margin-top:150px;
-	color: white;
-}
-
 .jumbotron {
+	text-align:center;
 	height: 400px;
 	background:url("../resources/img/home-jumbotron.png");
 	background-size:cover;
 	background-position:center;
+	color:white;
 	text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4), 
 					0 8px 13px rgba(0, 0, 0, 0.1), 
 						0 13px 18px rgba(0, 0,0, 0.1);
+	padding: 0;
+}
+
+.jumbotron h1 {
+	text-transform:uppercase;
+	margin-top: 180px;
+	font-family:"Oswald";
+	font-size: 2.5em;
+	text-align:center;
+}
+
+.jumbotron h2 {
+	font-size:1.5em;
+	font-family:"Lato";
 }
 
 /* Sections*/
@@ -40,10 +48,6 @@ body > div:nth-child(3) > div > div:nth-child(1) > form > div > input {
 	border-color:transparent;
 }
 
-.section button:nth-of-type(2) {
-	margin-left: 3%;
-}
-
 .wrapper {
 	background: #a9c722;
 	padding:60px 0;
@@ -57,6 +61,8 @@ body > div:nth-child(3) > div > div:nth-child(1) > form > div > input {
 
 .section h2 {
 	font-size: 32px;
+	text-transform: uppercase;
+	margin-bottom:30px;
 }
 
 .section p {
