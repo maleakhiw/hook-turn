@@ -1,70 +1,112 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Bootstrap CDN -->
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<!-- Extra CSS style -->
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<!-- Font awesome CDN -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
-<body>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Bootstrap CDN -->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Extra CSS style -->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<!-- Font awesome CDN -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	</head>
+	<body>
+		<!-- Static navbar with Login and SignUp -->
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">HOOK/TURNS</a>
+				</div>
+				
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="#">How it Works</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Explore</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					</ul>
+				</div>
+		</nav>
+				
+		<!-- Jumbotron -->
+		<div class="jumbotron">
+			<div class="container">
+				<h1>A SMARTER, BETTER, CROWDSOURCING COMMUTING EXPERIENCE</h1>
+			</div>
+		</div> <!-- /jumbotron -->
 
-	<div class="container">
-      <!-- Static navbar with Login and SignUp -->
-      <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Hook/turns</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
-            </ul>
-						<ul class="nav navbar-nav navbar-right">
-      				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    				</ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
+		<!-- Section 1 -->
+		<div class="container section">
+			<div class="row">
+				<div class="col-md-6 col-md-push-6">
+					<img src="resources/img/tram2.png" class="img-responsive" />
+				</div>
+				<div class="col-md-6 col-md-pull-6">
+					<h2>NexTram</h2>
+					<p >Plan your journeys around crowded trams with help from 
+					<em>NextTram users</em></p>
+					<h3>Try it out:</h3>
+    				
+    				<form>
+	    				<div class="input-group">
+	      					<input type="text" class="form-control" placeholder="Search for...">
+	      					<span class="input-group-btn">
+	        				<button class="btn btn-default" type="button">Go!</button>
+	      					</span>
+	    				</div><!-- /input-group -->
+					</form>
+				</div>
+			</div>
+		</div>
 
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-			</div> <!-- /jumbotron -->
+		<!-- Section 2 -->
+		<div class="wrapper">
+			<div class="container section">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="resources/img/tram1.png" class="img-responsive" />
+					</div>
+					<div class="col-md-6">
+						<h2>Discover Routes and Destinations</h2>
+						<p>Go somewhere new, or discover new things along your route. Popular destination awaits your journey</p>
+						<button type="button" class="btn btn-default btn-lg">Route Guides</button>
+						<button type="button" class="btn btn-default btn-lg">Search by Category</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    </div> <!-- /container -->
+		<!-- Section 3 -->
+		<div class="container section">
+			<div class="row">
+				<div class="col-md-6 col-md-push-6">
+					<img src="resources/img/home-jumbotron.png" class="img-responsive" />
+				</div>
+				<div class="col-md-6 col-md-pull-6">
+					<h2>Contribute</h2>
+					<p>Help us in our mission to improve the public transport experience.</p>
+					<p>Simply tell us how croweded the tram you are taking is, or add or review places you'd like to see in the guides.</p>
+					<button type="button" class="btn btn-default btn-lg">NexTram</button>
+					<button type="button" class="btn btn-default btn-lg">Route Guide</button>
+				</div>
+			</div>
+		</div>
 
-	<!-- Include Javascript and Jquery -->
-	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
+		<footer>
+			<p>COPYRIGHT HOOKTURNS 2017</p>
+		</footer>
+		<!-- Include Javascript and Jquery -->
+		<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</body>
 </html>
