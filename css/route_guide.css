@@ -59,8 +59,11 @@
   /*color: #FFFFFF;*/
 }
 
+/* dimming BG image: http://stackoverflow.com/questions/26621513/darken-css-background-image */
 .around-stop .jumbotron {
-  background-image: url("../resources/img/96_south_melbourne_market.JPG");
+  /*background-image: url("../resources/img/96_south_melbourne_market.JPG");*/
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../resources/img/96_south_melbourne_market.JPG");
+  background-position: center;
   height: 150px;
 }
 
