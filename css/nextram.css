@@ -1,104 +1,53 @@
+/* Nextram.css */
 
-
+/* Jumbotron */
 .jumbotron {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../resources/img/sxs.jpg");
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 0;
-  text-align: left;
-
+    text-align:left;
+    height: 400px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../resources/img/sxs.jpg");
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4), 
+                    0 8px 13px rgba(0, 0, 0, 0.1), 
+                        0 13px 18px rgba(0, 0,0, 0.1);
+    padding: 0;
 }
 
-.jumbotron h1 {
-  font-family: 'Oswald', sans-serif;
-  font-style: regular;
-  font-size: 50px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  margin-top: 0;
-  margin-bottom: 0;
-
-  text-align: left;
-}
-
-.jumbotron h2 {
-  font-family: 'Oswald', sans-serif;
-  font-style: regular;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  margin-top: 0;
-  margin-bottom: 0;
-
+.jumbotron>.container {
+    font-family: 'Lato', sans-serif;
+    min-height: 100%;
+    min-width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    height: 100%;
 }
 
 .jumbotron h3 {
-  font-family: 'Oswald', sans-serif;
-  font-style: regular;
-  color: #FFFFFF;
-  margin-top: 0;
-  margin-bottom: 0;
+    text-transform:uppercase;
+    margin-top: 12%;
+    font-family:"Oswald", sans-serif;
+    font-size: 1em;
 }
 
-.vertical-center {
-  height: inherit;
-  display: flex;
-  align-items: center;
+.jumbotron h2 {
+    font-size:1.5em;
+    font-family:"Lato";
 }
 
-@media (min-width: 1800px) {
-  .container {
-    width: 1600px;
-  }
+.jumbotron h1 {
+  font-size: 3em;
+  font-family:"Oswald";
+  text-transform: uppercase;
 }
+
+/* Section */
 
 h4 {
   margin-top: 25px;
 }
 
-.row {
-  font-family: 'Lato',sans-serif;
-  margin-bottom: 0px;
-}
-.row .row {
-  margin-top: 0px;
-  margin-bottom: 0;
-}
-
-.nextram_box {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-top: 1px solid #ddd;
-  font-size: 20px;
-  word-wrap: break-word;
-
-}
-
-.empty {
-  background-color: #F0FFF5;
-
-
-}
-
-.decent {
-  background-color: #E3F1E8;
-
-}
-
-.full {
-  background-color: #d89c82;
-
-}
-
-.overcrowded {
-  background-color: #FFE4E4;
-
-}
-
-.disruption {
-  background-color: #F1D628;
-
-}
-
+/* Progress bar */
 .progress-bar-empty {
   background-color: #b8efca;
 }
@@ -119,12 +68,54 @@ h4 {
   background-color: #F1D628;
 }
 
+/* Boxes */
+.nextram_box {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 1px solid #ddd;
+  font-size: 20px;
+  word-wrap: break-word;
+}
 
-/*
-.nextram_box:hover {
-  background-color: rgba(0,0,0,0.1);
+.full {
+  background-color: #d89c82;
+}
 
-}*/
+.box {
+  background: none;
+  position: static;
+  height: 300px !important;
+}
+
+.clear_10px_left {
+  margin-left: 10px;
+}
+
+.clear_5px_top {
+  margin-top:  5px;
+}
+
+.no-margin {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.empty {
+  background-color: #F0FFF5;
+}
+
+.decent {
+  background-color: #E3F1E8;
+}
+
+.overcrowded {
+  background-color: #FFE4E4;
+
+}
+
+.disruption {
+  background-color: #F1D628;
+}
 
 .nextram_box h1 { /*Definition for style on the ETA*/
   font-family: 'Lato',sans-serif;
@@ -132,7 +123,6 @@ h4 {
   font-weight: bold;
   font-size: 40px;
 }
-
 
 .route_number_table {
   padding-top: 2px;
@@ -162,75 +152,13 @@ h4 {
 
 }
 
-
 .route_number_96 {
   border-color: #c6168d;
 
-}
-
-
-p {
-  font-family: 'Lato',sans-serif;
-}
-
-hr {
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.clear_10px_left {
-  margin-left: 10px;
-
-}
-
-.clear_5px_top {
-  margin-top:  5px;
 }
 
 .progress_box {
   width: 80%;
 }
 
-.row.no-pad {
-  margin-right:0;
-  margin-left:0;
-  margin-bottom: 0;
-}
-.row.no-pad > [class*='col-'] {
-  padding-right:0;
-  padding-left:0;
-  padding-bottom: 0;
-}
-
-.no-margin {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.take-bg {
-  background-color: inherit;
-}
-
-/* workaround to allow columns to automatically size like one another 
-source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
-*/
-
-.row.match-my-cols {
-    overflow: hidden; 
-}
-
-.row.match-my-cols [class*="col-"]{
-    margin-bottom: -99980px; /* very hacky but works */
-    padding-bottom: 99999px;
-}
-
-.match-my-cols .box {
-  background: none;
-  position: static;
-}
-.match-my-cols [class*="col-"] {
-}
-.match-my-cols .box a {
-  position: relative;
-}
 
