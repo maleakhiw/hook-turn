@@ -6,23 +6,183 @@
 }
 
 .jumbotron {
-  background-image: url("../resources/img/96_hero.JPG");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../resources/img/sxs.jpg");
   background-size: cover;
   background-position: center;
+  margin-bottom: 0;
+
 }
 
 .jumbotron h1 {
   font-family: 'Oswald', sans-serif;
-  font-style: italic;
+  font-style: regular;
+  text-transform: uppercase;
   color: #FFFFFF;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.jumbotron h3 {
+.jumbotron h2 {
   font-family: 'Oswald', sans-serif;
-  font-style: italic;
+  font-style: regular;
+  text-transform: uppercase;
   color: #FFFFFF;
   margin-top: 0;
   margin-bottom: 0;
+
+}
+
+.jumbotron h3 {
+  font-family: 'Oswald', sans-serif;
+  font-style: regular;
+  color: #FFFFFF;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.vertical-center {
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 1800px) {
+  .container {
+    width: 1600px;
+  }
+}
+
+h4 {
+  margin-top: 25px;
+}
+
+
+
+.row {
+  font-family: 'Lato',sans-serif;
+  margin-bottom: 0px;
+}
+.row .row {
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+
+.nextram_box {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 1px solid #ddd;
+  font-size: 20px;
+  word-wrap: break-word;
+}
+
+.empty {
+  background-color: #F0FFF5;
+
+
+}
+
+.decent {
+  background-color: #E3F1E8;
+
+}
+
+.full {
+  background-color: #d89c82;
+
+}
+
+.overcrowded {
+  background-color: #FFE4E4;
+
+}
+
+.disruption {
+  background-color: #F1D628;
+
+}
+
+.nextram_box:hover {
+  background-color: rgba(0,0,0,0.1);
+
+}
+
+.nextram_box h1 { /*Definition for style on the ETA*/
+  font-family: 'Lato',sans-serif;
+  color: #333333;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+
+.route_number_table {
+  padding-top: 2px;
+  padding-bottom: 4px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius:31px;
+  box-sizing: border-box;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  border: 5px solid;
+  background-color: #000;
+
+}
+
+.route_number_86 {
+  border-color: #ffd503;
+
+}
+
+.route_number_12 {
+  border-color: #8dc63f;
+
+}
+
+
+.route_number_96 {
+  border-color: #c6168d;
+
+}
+
+
+p {
+  font-family: 'Lato',sans-serif;
+}
+
+hr {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.clear_10px_left {
+  margin-left: 10px;
+
+}
+
+
+/* workaround to allow columns to automatically size like one another 
+source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
+*/
+
+.row.match-my-cols {
+    overflow: hidden; 
+}
+
+.row.match-my-cols [class*="col-"]{
+    margin-bottom: -99980px; /* very hacky but works */
+    padding-bottom: 99999px;
+}
+
+.match-my-cols .box {
+  background: none;
+  position: static;
+}
+.match-my-cols [class*="col-"] {
+}
+.match-my-cols .box a {
+  position: relative;
 }
