@@ -17,11 +17,10 @@
 
 .jumbotron>.container {
     font-family: 'Lato', sans-serif;
-    min-height: 100%;
     min-width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     background-size: cover;
-    height: 100%;
+    min-height: 400px;
 }
 
 .jumbotron h1 {
