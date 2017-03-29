@@ -10,16 +10,20 @@
   background-size: cover;
   background-position: center;
   margin-bottom: 0;
+  text-align: left;
 
 }
 
 .jumbotron h1 {
   font-family: 'Oswald', sans-serif;
   font-style: regular;
+  font-size: 50px;
   text-transform: uppercase;
   color: #FFFFFF;
   margin-top: 0;
   margin-bottom: 0;
+
+  text-align: left;
 }
 
 .jumbotron h2 {
@@ -101,10 +105,32 @@ h4 {
 
 }
 
+.progress-bar-empty {
+  background-color: #b8efca;
+}
+
+.progress-bar-decent {
+  background-color: #22c958;
+}
+
+.progress-bar-full {
+  background-color: #9b5030;
+}
+
+.progress-bar-overcrowded {
+  background-color: #f23737;
+}
+
+.progress-bar-disruption {
+  background-color: #F1D628;
+}
+
+
+/*
 .nextram_box:hover {
   background-color: rgba(0,0,0,0.1);
 
-}
+}*/
 
 .nextram_box h1 { /*Definition for style on the ETA*/
   font-family: 'Lato',sans-serif;
@@ -163,6 +189,33 @@ hr {
 
 }
 
+.clear_5px_top {
+  margin-top:  5px;
+}
+
+.progress_box {
+  width: 80%;
+}
+
+.row.no-pad {
+  margin-right:0;
+  margin-left:0;
+  margin-bottom: 0;
+}
+.row.no-pad > [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+  padding-bottom: 0;
+}
+
+.no-margin {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.take-bg {
+  background-color: inherit;
+}
 
 /* workaround to allow columns to automatically size like one another 
 source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
@@ -186,3 +239,4 @@ source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-col
 .match-my-cols .box a {
   position: relative;
 }
+
