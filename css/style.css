@@ -7,6 +7,10 @@ body {
 	font-size: 16px;
 }
 
+h1, h2 {
+	font-family: "Oswald";
+}
+
 /* Navigation presentation */
 
 @media (min-width: 768px) {
