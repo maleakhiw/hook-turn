@@ -81,64 +81,166 @@
 			</div>
 		</div>
 
-
-		<!-- <canvas id="routeLine" height=30% width=1440%></canvas> -->
 		<!-- Route map -->
 		<div class="route-map">
 			<div class="row">
-					<div class="col-md-3 boxes-routemap">
-						<h3>City Road</h3>
-						<p>Stop 126</p>
-					</div>
-					<div class="col-md-3 boxes-routemap">
-						<!-- <canvas class="route-canvas" height=20%></canvas> -->
-						<h3>South Melbourne</h3>
-						<p>Stop 127</p>
-					</div>
-					<div class="col-md-3 boxes-routemap">
-						<!-- <canvas class="route-canvas" height=20%></canvas> -->
-						<h3>Albert Park</h3>
-						<p>Stop 128</br>
-						Connections 12</p>
-						<!-- <div class="button-group-centered"> -->
+				<div class="col-sm-3 boxes-routemap">
+					<row>
+						<div class="col-xs-12 route-line" style="padding:0px;">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</row>
+					<row>
+						<div class="col-xs-2 route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="24px"></canvas>
+						</div>
+						<div class="col-xs-10">
+							<h3>City Road</h3>
+							<p>Stop 126</p>
+						</div>
+					</row>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<row>
+						<div class="col-xs-12">
+							<canvas class="route-canvas route-line" height=20%></canvas>
+						</div>
+					</row>
+					<row>
+						<div class="col-xs-2 route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="24px"></canvas>
+						</div>
+						<div class="col-xs-10">
+							<h3>South Melbourne</h3>
+							<p>Stop 127</p>
+						</div>
+					</row>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<row>
+						<div class="col-xs-12">
+							<canvas class="route-canvas route-line" height=20%></canvas>
+						</div>
+					</row>
+					<row>
+						<div class="col-xs-2 route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="24px"></canvas>
+						</div>
+						<div class="col-xs-10">
+							<h3>Albert Park</h3>
+							<p>Stop 128</br>
+							Connections 12</p>
 							<button type="button" class="btn btn-default">View Departures</button>
 							<button type="button" class="btn btn-default">View Stop Guide</button>
-						<!-- </div> -->
-					</div>
-					<div class="col-md-3 boxes-routemap">
-						<!-- <canvas class="route-canvas" height=20%></canvas> -->
-						<h3>Melbourne Sports and Aquatic Centre (MSAC)</h3>
-						<p>Stop 129</p>
-					</div>
+						</div>
+					</row>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<row>
+						<div class="col-xs-12">
+							<canvas class="route-canvas route-line" height=20%></canvas>
+						</div>
+					</row>
+					<row>
+						<div class="col-xs-2 route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="24px"></canvas>
+						</div>
+						<div class="col-xs-10">
+							<h3>Melbourne Sports and Aquatic Centre (MSAC)</h3>
+							<p>Stop 129</p>
+						</div>
+					</row>
+				</div>
 			</div>
 		</div>
 
 		<!-- temporary inline JS to draw on the canvas -->
 		<script type="text/javascript">
-			// var draw = function() {
-			// 	var c = document.getElementById("routeLine");
-			// 	var ctx = c.getContext("2d");
-			//
-			// 	ctx.clearRect(0, 0, c.width, c.height);	// clear the rectangle
-			//
-			// 	ctx.fillStyle = "pink";
-			// 	ctx.fillRect(0, 0.25*c.offsetHeight, document.documentElement.clientWidth, 0.5*c.offsetHeight);
-			// 	ctx.fill();
-			//
-			// 	ctx.fillStyle = "white";
-			// 	for (var i=1; i<8; i=i+2) {
-			// 		ctx.beginPath();
-			// 		ctx.arc(i*document.documentElement.clientWidth/8, c.offsetHeight/2, 0.4*c.offsetHeight, 0, 2*Math.PI, false);
-			// 		ctx.stroke();
-			// 		ctx.fill();
-			// 	}
-			// }
-			// draw();
-			//
-			// window.onresize = function(event) {
-			// 	console.log(document.documentElement.clientWidth);
-			// 	draw();
-			// }
+			var initialise = function() {
+				var c_array = document.getElementsByClassName("route-canvas");	// array of route lines in each div
+				var parent_array = document.getElementsByClassName("boxes-routemap");
+
+				// c_array should be the same length as parent_array
+				if (c_array.length != parent_array.length) {
+					return;
+				}
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var p = parent_array[i];
+					c.width = p.offsetWidth + 1;	// + 1 to hide unsightly gap
+					c.height = 0.2*p.offsetHeight;
+				}
+
+				var c_array = document.getElementsByClassName("route-canvas-vertical");
+				var parent_array = document.getElementsByClassName("boxes-routemap");
+
+				// c_array should be the same length as parent_array
+				if (c_array.length != parent_array.length) {
+					return;
+				}
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var p = parent_array[i];
+					c.height = p.offsetHeight;
+				}
+			}
+
+			var draw_routes_horizontal = function() {
+				var c_array = document.getElementsByClassName("route-canvas");	// array of route lines in each div
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var ctx = c.getContext("2d");
+
+					ctx.clearRect(0, 0, c.width, c.height);	// clear the rectangle
+
+					// draw the route line
+					ctx.fillStyle = "#c6168d";
+					ctx.fillRect(0, 0.35*c.height, c.width, 0.3*c.height);
+					ctx.fill;
+
+
+				}
+			}
+
+			var draw_routes_vertical = function() {
+				var c_array = document.getElementsByClassName("route-canvas-vertical");	// array of route lines in each div
+				console.log(c_array);
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var ctx = c.getContext("2d");
+
+					ctx.clearRect(0, 0, c.width, c.height);	// clear the rectangle
+
+					// draw the route line
+					ctx.fillStyle = "#c6168d";
+					ctx.fillRect(0, 0, c.width, c.height);
+					ctx.fill;
+
+					// // draw the circle
+					// ctx.fillStyle = "white";
+					// ctx.beginPath();
+					// ctx.arc(c.width/2, c.height/2, 0, 0.25*c.offsetWidth, 2*Math.PI, false);
+					// ctx.stroke();
+					// ctx.fill();
+				}
+			}
+
+			initialise();
+			draw_routes_horizontal();
+			draw_routes_vertical();
+
+			window.onresize = function(event) {
+				initialise();
+				draw_routes_horizontal();
+				draw_routes_vertical();
+			}
 		</script>
 
 		<!-- move teminus station to bottom instead of top right -->

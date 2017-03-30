@@ -32,7 +32,38 @@
 
 .boxes-routemap {
   height: 240px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
+
+.boxes-routemap .col-xs-12 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+/* Route Line */
+
+.route-line {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+@media (min-width: 576px) {
+  .route-line-div-vertical {
+    width: 0px;
+  }
+}
+
+@media (max-width: 575px) {
+  .route-line-div-vertical {
+    width: inherit;
+  }
+  .route-line {  /* hide the horizontal route line */
+    visibility: hidden;
+  }
+}
+
+/* Route Line */
 
 .vertical-center-flexbox {
   height: inherit;
@@ -96,6 +127,8 @@
       height: inherit;
     }
 }
+
+
 
 .boxes-loc p {
   color: #FFFFFF;
