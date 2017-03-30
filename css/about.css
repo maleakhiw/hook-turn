@@ -51,6 +51,7 @@
 @media screen and (max-width:750px) {
 	.thumbnail img {
 		height: auto;
+		width: auto;
 	}
 }
 

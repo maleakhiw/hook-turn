@@ -80,3 +80,9 @@ body > div:nth-child(3) > div > div:nth-child(1) > form > div > input {
 .img-responsive {
 	height: 350px;
 }
+
+@media screen and (max-width: 750px) {
+	.img-responsive {
+		height:auto;
+	}
+}
