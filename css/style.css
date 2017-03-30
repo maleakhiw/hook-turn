@@ -45,7 +45,7 @@ a:hover {
 .navbar-inverse .navbar-brand {
 	font-family: "ADAM.CG PRO";
 	color: black;
-	font-size: 32px;
+	font-size: 2em;
 }
 
 .navbar-inverse .navbar-nav>li>a {
