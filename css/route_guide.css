@@ -30,10 +30,21 @@
   /*color: #FFFFFF;*/
 }
 
-.vertical-center {
+.boxes-routemap {
+  height: 240px;
+}
+
+.vertical-center-flexbox {
   height: inherit;
   display: flex;
   align-items: center;
+}
+
+.center-flexbox {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*.btn {
@@ -62,9 +73,30 @@
 /* dimming BG image: http://stackoverflow.com/questions/26621513/darken-css-background-image */
 .around-stop .jumbotron {
   /*background-image: url("../resources/img/96_south_melbourne_market.JPG");*/
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../resources/img/96_south_melbourne_market.JPG");
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../resources/img/96_south_melbourne_market.JPG");
   background-position: center;
-  height: 150px;
+  height: 200px;
+}
+
+/* height for Top picks/Food boxes */
+.boxes-loc {
+  height: 200px;
+  margin-bottom: 15px;
+}
+
+.button-loc {
+  height: 200px;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+    .button-loc {
+      height: inherit;
+    }
+}
+
+.boxes-loc p {
+  color: #FFFFFF;
 }
 
 body {
