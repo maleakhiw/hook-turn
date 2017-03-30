@@ -25,6 +25,12 @@ a:hover {
 	color:black;
 }
 
+button:hover {
+	background: white !important;
+	color:#4baa49 !important;
+	border-color:silver !important;
+}
+
 /* Navigation presentation */
 
 @media (min-width: 768px) {
