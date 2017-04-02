@@ -33,7 +33,7 @@
 					</button>
 					<a class="navbar-brand" href="index.html">HOOK/TURNS</a>
 				</div>
-				
+
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="how-it-works/how-it-works.html">How it Works</a></li>
@@ -216,7 +216,6 @@
 
 			var draw_routes_vertical = function() {
 				var c_array = document.getElementsByClassName("route-canvas-vertical");	// array of route lines in each div
-				console.log(c_array);
 
 				for (var i=0; i<c_array.length; i++) {
 					var c = c_array[i];
@@ -230,7 +229,6 @@
 					ctx.fill();
 
 					// draw the circle
-					console.log(c.width, c.height, c.offsetwidth);
 					ctx.fillStyle = "#FFFFFF";	// white
 					ctx.beginPath();
 					ctx.arc(c.width/2, c.height/2, 0.25*c.width, 0, 2*Math.PI, 0);
