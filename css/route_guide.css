@@ -2,6 +2,7 @@
   background-image: url("../resources/img/96_hero.JPG");
   background-size: cover;
   background-position: center;
+  margin-bottom: 10px;
 }
 
 .jumbotron h1 {
@@ -26,14 +27,17 @@
   font-family: 'Oswald', sans-serif;
   font-style: italic;
   /*font-weight: 300;*/
-  margin-top: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
   /*color: #FFFFFF;*/
 }
 
+
 .boxes-routemap {
   height: 240px;
-  padding-left: 0px;
-  padding-right: 0px;
+  /*padding-left: 0px;
+  padding-right: 0px;*/
+  /* do not override padding here! Will affect Bootstrap's padding. */
 }
 
 .boxes-routemap .col-xs-12 {
@@ -61,6 +65,32 @@
   justify-content: center;
 }
 
+/* Small devices */
+@media (max-width: 767px) {
+    .button-loc {
+      height: inherit;
+    }
+
+    .route-line {
+      height: 1px;
+      margin: -1px; /* get rid of 1px height, setting height to 0px still leaves 1px */
+    }
+
+    .boxes-routemap {
+      height: auto;
+    }
+
+    .route-line-div-vertical {
+      height: 150px;
+    }
+}
+
+/*@media (min-width: 576px) {
+  .route-line-div-vertical {
+    width: 0px;
+  }
+}*/
+
 /*.btn {
   margin-bottom: 12px;
 }
@@ -84,6 +114,10 @@
   /*color: #FFFFFF;*/
 }
 
+/*.route-canvas {
+  height: 80px;
+}*/
+
 /* dimming BG image: http://stackoverflow.com/questions/26621513/darken-css-background-image */
 .around-stop .jumbotron {
   /*background-image: url("../resources/img/96_south_melbourne_market.JPG");*/
@@ -104,26 +138,7 @@
   height: 200px;
 }
 
-/* Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 767px) {
-    .button-loc {
-      height: inherit;
-    }
 
-    .route-canvas {
-      height: 0px;
-    }
-
-    .boxes-routemap {
-      height: auto;
-    }
-}
-
-/*@media (min-width: 576px) {
-  .route-line-div-vertical {
-    width: 0px;
-  }
-}*/
 
 
 
