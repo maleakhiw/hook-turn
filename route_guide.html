@@ -86,15 +86,15 @@
 			<div class="row">
 				<div class="col-sm-3 boxes-routemap">
 					<row>
-						<div class="col-xs-12 route-line" style="padding:0px;">
-							<canvas class="route-canvas" height=20%></canvas>
+						<div class="col-xs-12" style="padding:0px;">
+							<canvas class="route-canvas route-line" height=20%></canvas>
 						</div>
 					</row>
 					<row>
-						<div class="col-xs-2 route-line-div-vertical">
-							<canvas class="route-canvas-vertical" width="24px"></canvas>
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
 						</div>
-						<div class="col-xs-10">
+						<div class="col-xs-10 col-md-12">
 							<h3>City Road</h3>
 							<p>Stop 126</p>
 						</div>
@@ -108,10 +108,10 @@
 						</div>
 					</row>
 					<row>
-						<div class="col-xs-2 route-line-div-vertical">
-							<canvas class="route-canvas-vertical" width="24px"></canvas>
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
 						</div>
-						<div class="col-xs-10">
+						<div class="col-xs-10 col-md-12">
 							<h3>South Melbourne</h3>
 							<p>Stop 127</p>
 						</div>
@@ -125,10 +125,10 @@
 						</div>
 					</row>
 					<row>
-						<div class="col-xs-2 route-line-div-vertical">
-							<canvas class="route-canvas-vertical" width="24px"></canvas>
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
 						</div>
-						<div class="col-xs-10">
+						<div class="col-xs-10 col-md-12">
 							<h3>Albert Park</h3>
 							<p>Stop 128</br>
 							Connections 12</p>
@@ -145,10 +145,10 @@
 						</div>
 					</row>
 					<row>
-						<div class="col-xs-2 route-line-div-vertical">
-							<canvas class="route-canvas-vertical" width="24px"></canvas>
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
 						</div>
-						<div class="col-xs-10">
+						<div class="col-xs-10 col-md-12">
 							<h3>Melbourne Sports and Aquatic Centre (MSAC)</h3>
 							<p>Stop 129</p>
 						</div>
@@ -175,18 +175,18 @@
 					c.height = 0.2*p.offsetHeight;
 				}
 
-				var c_array = document.getElementsByClassName("route-canvas-vertical");
+				var c_array = document.getElementsByClassName("route-canvas-vertical");	// array of canvases
 				var parent_array = document.getElementsByClassName("boxes-routemap");
 
 				// c_array should be the same length as parent_array
 				if (c_array.length != parent_array.length) {
+					Console.error('Missing <canvas> in route map box(es).');
 					return;
 				}
 
 				for (var i=0; i<c_array.length; i++) {
 					var c = c_array[i];
 					var p = parent_array[i];
-					c.height = p.offsetHeight;
 				}
 			}
 
@@ -203,7 +203,6 @@
 					ctx.fillStyle = "#c6168d";
 					ctx.fillRect(0, 0.35*c.height, c.width, 0.3*c.height);
 					ctx.fill;
-
 
 				}
 			}
@@ -223,23 +222,23 @@
 					ctx.fillRect(0, 0, c.width, c.height);
 					ctx.fill;
 
-					// // draw the circle
-					// ctx.fillStyle = "white";
-					// ctx.beginPath();
-					// ctx.arc(c.width/2, c.height/2, 0, 0.25*c.offsetWidth, 2*Math.PI, false);
-					// ctx.stroke();
-					// ctx.fill();
+					// draw the circle
+					ctx.fillStyle = "white";
+					ctx.beginPath();
+					ctx.arc(c.width/2, c.height/2, 0, 0.25*c.offsetWidth, 2*Math.PI, false);
+					ctx.stroke();
+					ctx.fill();
 				}
 			}
 
 			initialise();
 			draw_routes_horizontal();
-			draw_routes_vertical();
+			// draw_routes_vertical();
 
 			window.onresize = function(event) {
 				initialise();
 				draw_routes_horizontal();
-				draw_routes_vertical();
+				// draw_routes_vertical();
 			}
 		</script>
 

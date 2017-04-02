@@ -48,23 +48,6 @@
   padding-right: 0px;
 }
 
-@media (min-width: 576px) {
-  .route-line-div-vertical {
-    width: 0px;
-  }
-}
-
-@media (max-width: 575px) {
-  .route-line-div-vertical {
-    width: inherit;
-  }
-  .route-line {  /* hide the horizontal route line */
-    visibility: hidden;
-  }
-}
-
-/* Route Line */
-
 .vertical-center-flexbox {
   height: inherit;
   display: flex;
@@ -122,11 +105,25 @@
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575px) {
+@media (max-width: 767px) {
     .button-loc {
       height: inherit;
     }
+
+    .route-canvas {
+      height: 0px;
+    }
+
+    .boxes-routemap {
+      height: auto;
+    }
 }
+
+/*@media (min-width: 576px) {
+  .route-line-div-vertical {
+    width: 0px;
+  }
+}*/
 
 
 
