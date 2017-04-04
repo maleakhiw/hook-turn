@@ -132,7 +132,7 @@
 .boxes-loc {
   height: 200px;
   margin-bottom: 15px;
-  background-size: auto;
+  background-repeat: no-repeat;
 }
 
 .button-loc {
