@@ -130,7 +130,8 @@
 .boxes-loc {
   height: 200px;
   margin-bottom: 15px;
-  background-repeat: no-repeat;   /* TODO */
+  background-size: cover !important;
+  /*background-repeat: no-repeat; */
 }
 
 .button-loc {
