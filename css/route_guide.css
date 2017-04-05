@@ -132,16 +132,12 @@
 .boxes-loc {
   height: 200px;
   margin-bottom: 15px;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;   /* TODO */
 }
 
 .button-loc {
   height: 200px;
 }
-
-
-
-
 
 .boxes-loc p {
   color: #FFFFFF;

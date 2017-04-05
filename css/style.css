@@ -32,11 +32,13 @@ button:hover {
 }
 
 /* Navigation presentation */
+.navbar-brand {height: 28px; padding-top:18px !important; padding-bottom:0px !important;}
 
 @media (min-width: 768px) {
 .navbar {
     border-radius: 0 ;
-}}
+}
+}
 
 .navbar {
 	margin-bottom: 0;
@@ -54,15 +56,16 @@ button:hover {
 	font-size: 2em;
 }
 
-.navbar-inverse .navbar-nav>li>a {
-	color:black;
-	font-size: 16px;
-	line-height:28px;
+.navbar-inverse .navbar-nav > li > a {
+	color: black;
+	/*font-size: 16px;
+	line-height: 28px;*/
 }
 
+
 .navbar-inverse .navbar-toggle {
-	border-color:white;
-	border-width:2px;
+	border-color: white;
+	border-width: 2px;
 }
 
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
@@ -84,4 +87,3 @@ footer {
 footer p {
 	margin-bottom: 0;
 }
-
