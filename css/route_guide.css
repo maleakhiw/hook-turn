@@ -67,22 +67,20 @@
 
 /* Small devices */
 @media (max-width: 767px) {
-    .button-loc {
-      height: inherit;
-    }
+  .boxes-routemap {
+    height: auto;
+  }
 
-    .route-line {
-      height: 1px;
-      margin: -1px; /* get rid of 1px height, setting height to 0px still leaves 1px */
-    }
+  .route-line {
+    height: 1px;
+    margin: -1px; /* get rid of 1px height, setting height to 0px still leaves 1px */
+  }
 
-    .boxes-routemap {
-      height: auto;
-    }
 
-    .route-line-div-vertical {
-      height: 150px;
-    }
+
+  .route-line-div-vertical {
+    height: 150px;
+  }
 }
 
 /*@media (min-width: 576px) {
@@ -139,8 +137,20 @@
   height: 200px;
 }
 
+@media (max-width: 767px) {
+  .button-loc {
+    height: inherit;
+  }
+}
+
 .boxes-loc p {
   color: #FFFFFF;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 body {
