@@ -4,6 +4,8 @@ The task for this week was to take our static prototype, and add things like wor
 
 With that said, there were a lot of rough patches in our code that we decided to iron out. We'll go over some of those in this post.
 
+
+
 <!-- ## Navbar positioning
 ### Hook/Turns logo not vertically centered
 With last week's version of the prototype -->
@@ -27,7 +29,9 @@ With that, we found that setting `@media` breakpoints that match Bootstrap's and
 Since the `<div>` for the `More`
 
 ##### `<canvas>` and DPI scaling
-On high DPI displays (like a Retina display on a MacBook/iPhone or basically any phone nowadays), you can see jagged edges around the circles on the route line. After some digging, it appears that the width and height properties of the `<canvas>` is actually different from the actual
+On high DPI displays (like a Retina display on a MacBook/iPhone or basically any phone nowadays), you can see jagged edges around the circles on the route line. After some digging, it appears that the width and height properties of the `<canvas>` is actually different from the actual size (in actual device pixels) of the `<canvas>` on screen. This results in a blurry drawing in high-DPI displays.
+
+<!-- insert image here -->
 
 https://www.html5rocks.com/en/tutorials/canvas/hidpi/
 
@@ -36,4 +40,68 @@ Tiling images:
 
 ## NextTram
 ### Accordions -> <div> with CSS for fade-in/out + JS for handling button clicks
-On second thought, lift from About page, w/o buttons
+Our initial design used several Bootstrap accordions for the details and reporting functionality for the upcoming trams display. With accordions, we found that the user can inadvertently have several of them open at the same time, which adds clutter, and the opening/closing animation was rather jerky.
+
+With that, we then decided to move to `nav-tabs` and `tab-content` as with our About page.
+
+```HTML
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a data-toggle="tab" href="#item1">Item 1, active</a>
+  </li>
+  <li>
+    <a data-toggle="tab" href="#item2">Item 2</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div id="item1" class="tab-pane fade in active"></div>
+  <div id="item2" class="tab-pane fade"></div>
+```
+
+This worked well, but we thought that `nav-tabs` that span the entire width of the `<div>` did not fit the theme, so we moved to `nav-pills`.
+
+```HTML
+<ul class="nav nav-pills center-pills">
+  <li class="active"><a data-toggle="tab" class="pill-tabs" href="#moreDetails1">Details</a></li>
+  <li><a data-toggle="tab" class="pill-tabs" href="#reportCrowd1">Report Crowd</a></li>
+  <li><a data-toggle="tab" class="pill-tabs" href="#reportDisruption1">Report Disruption</a></li>
+</ul>
+```
+
+The last problem we had to face here was the fact that the tabs (and nav-pills) took too much precious vertical space, so we took everything and put it inside an accordion (as before). The flipping arrow styles were taken from the *How it works* page.
+
+```HTML
+<div class="panel-group" id="accordion1">
+  <div class="panel panel-default">
+    <!-- the rest of the stuff goes here -->
+  </div>
+</div>
+```
+
+And now we have a fully-working interactive *NexTram* page!
+
+## About
+### Images being squished/aspect ratio not maintained
+Apparently we forgot to just use the `width` property instead of `max-width` - this caused our images in the `About Us` page to be squished as in last week's demo.
+
+**Before**
+```CSS
+.thumbnail img {
+	height: 252px;
+	width: auto;
+}
+```
+**After**
+```CSS
+.thumbnail img {
+	max-height: 252px;
+	width: auto;
+}
+```
+
+
+## All pages
+### Navbar
+- Log In and Sign Up buttons now display a modal when clicked
+-
