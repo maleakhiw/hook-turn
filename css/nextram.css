@@ -285,3 +285,16 @@ source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-col
     transform: rotate(90deg);
     color: #454444;
 }
+
+/* end from How It Works */
+
+.center-pills {
+    display: flex;
+    justify-content: center;
+}
+
+.pill-tabs {
+  margin: 15px 5px 15px 5px;
+  font-size: 12pt;
+
+}
