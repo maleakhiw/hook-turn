@@ -33,3 +33,7 @@ https://www.html5rocks.com/en/tutorials/canvas/hidpi/
 
 ##### Tiling images, maintaining aspect ratio
 Tiling images:
+
+## NextTram
+### Accordions -> <div> with CSS for fade-in/out + JS for handling button clicks
+On second thought, lift from About page, w/o buttons
