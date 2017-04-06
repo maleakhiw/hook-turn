@@ -4,9 +4,9 @@ The task for this week was to take our static prototype, and add things like wor
 
 With that said, there were a lot of rough patches in our code that we decided to iron out. We'll go over some of those in this post.
 
-## Navbar positioning
+<!-- ## Navbar positioning
 ### Hook/Turns logo not vertically centered
-With last week's version of the
+With last week's version of the prototype -->
 
 ## Route Guide
 ### Stopping pattern map
@@ -28,6 +28,8 @@ Since the `<div>` for the `More`
 
 ##### `<canvas>` and DPI scaling
 On high DPI displays (like a Retina display on a MacBook/iPhone or basically any phone nowadays), you can see jagged edges around the circles on the route line. After some digging, it appears that the width and height properties of the `<canvas>` is actually different from the actual
+
+https://www.html5rocks.com/en/tutorials/canvas/hidpi/
 
 ##### Tiling images, maintaining aspect ratio
 Tiling images:

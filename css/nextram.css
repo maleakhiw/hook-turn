@@ -8,8 +8,8 @@
     background-size:cover;
     background-position:center;
     color:white;
-    text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4), 
-                    0 8px 13px rgba(0, 0, 0, 0.1), 
+    text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4),
+                    0 8px 13px rgba(0, 0, 0, 0.1),
                         0 13px 18px rgba(0, 0,0, 0.1);
     padding: 0;
 }
@@ -227,16 +227,16 @@ a.onlight {
   width:100%;
 }
 
-/* workaround to allow columns to automatically size like one another 
+/* workaround to allow columns to automatically size like one another
 source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
 */
 
 .row.match-my-cols {
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .row.match-my-cols [class*="col-"]{
-    margin-bottom: -99999px; 
+    margin-bottom: -99999px;
     padding-bottom: 99999px;
 }
 
@@ -250,3 +250,11 @@ source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-col
   position: relative;
 }
 
+/* added by @krusli below */
+.padding-15px {
+  padding: 15px;
+}
+
+.btn-group {
+  margin-bottom: 15px;
+}
