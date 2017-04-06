@@ -36,18 +36,6 @@ body > div:nth-child(3) > div > div:nth-child(1) > form > div > input {
 	height:auto;
 }
 
-.section button, body > div:nth-child(3) > div > div:nth-child(1) > form > div > span > button {
-	color: white;
-	background:#4baa49;
-	border-color:transparent;
-}
-
-.section button:hover {
-	color: white;
-	background:#4baa49;
-	border-color:transparent;
-}
-
 .wrapper {
 	background: #a9c722;
 	padding:60px 0;
