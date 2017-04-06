@@ -7,8 +7,8 @@
 	background-size:cover;
 	background-position:center;
 	color:white;
-	text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4), 
-					0 8px 13px rgba(0, 0, 0, 0.1), 
+	text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4),
+					0 8px 13px rgba(0, 0, 0, 0.1),
 						0 13px 18px rgba(0, 0,0, 0.1);
 	padding: 0;
 }
@@ -43,18 +43,6 @@
 	margin-bottom: 40px;
 }
 
-.thumbnail img {
-	height:252px;
-	width:100%;
-}
-
-@media screen and (max-width:750px) {
-	.thumbnail img {
-		height: auto;
-		width: auto;
-	}
-}
-
 /* Our stories */
 .wrapper h1 {
 	margin-top:100px;
@@ -80,4 +68,18 @@ li.active a  {
 li a {
 	color: black;
 	font-weight:bold;
+}
+
+/* added by @krusli */
+
+.thumbnail img {
+	max-height:252px;
+	width:auto;
+}
+
+@media screen and (max-width:750px) {
+	.thumbnail img {
+		height: auto;
+		width: auto;
+	}
 }
