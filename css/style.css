@@ -25,12 +25,6 @@ a:hover {
 	color:black;
 }
 
-button:hover {
-	background: white !important;
-	color:#4baa49 !important;
-	border-color:silver !important;
-}
-
 /* Navigation presentation */
 .navbar-brand {height: 28px; padding-top:18px !important; padding-bottom:0px !important;}
 
