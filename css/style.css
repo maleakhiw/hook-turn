@@ -42,6 +42,7 @@ button:hover {
 
 .navbar {
 	margin-bottom: 0;
+	font-family: Lato !important;
 }
 
 .navbar-inverse {
@@ -54,12 +55,11 @@ button:hover {
 	font-family: "ADAM.CG PRO";
 	color: black;
 	font-size: 2em;
+	line-height: 10px;
 }
 
 .navbar-inverse .navbar-nav > li > a {
 	color: black;
-	/*font-size: 16px;
-	line-height: 28px;*/
 }
 
 
