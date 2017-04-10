@@ -1,4 +1,8 @@
 
+.collapsing {
+    transition: height 0.6s;
+}
+
 /** General css style */
 
 /* General */
