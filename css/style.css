@@ -1,3 +1,9 @@
+#dank_footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
 
 .collapsing {
     transition: height 0.6s;
