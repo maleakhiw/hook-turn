@@ -1,5 +1,5 @@
 /** Main file that will be run on the server
- * Author: HookTurns 
+ * Author: HookTurns
  * Date: 21/04/2017
  * Version: 1.0
  */
@@ -19,7 +19,7 @@ app.get("/", function(req, res) {
 	res.render("index", {pageId: "home"});
 });
 
-// About 
+// About
 app.get("/about", function(req, res) {
 	res.render("index", {pageId: "about"});
 });
@@ -50,6 +50,6 @@ app.get("*", function(req, res) {
 });
 
  /*********************************LISTEN*************************************/
- app.listen(80, "localhost", function() {
+ app.listen(80, function(req, res) {
  	console.log("HookTurns server has started...")
  });
