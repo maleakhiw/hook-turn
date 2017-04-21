@@ -1,0 +1,305 @@
+	<!-- Jumbotron -->
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3">
+					<h3>ROUTE GUIDE</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3">
+					<h1>96</h1>
+				</div>
+				<div class="col-sm-7">
+					<h3>EAST BRUNSWICK - ST KILDA BEACH</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+
+		<!-- Terminus stops -->
+		<div class="terminus-stops">
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>EAST BRUNSWICK</h3>
+				</div>
+				<div class="col-sm-6 hidden-xs" style="text-align: right">
+					<h3>ST KILDA BEACH</h3>
+				</div>
+			</div>
+		</div>
+
+		<!-- Route map -->
+		<div class="route-map">
+			<div class="row">
+				<div class="col-sm-3 boxes-routemap">
+					<div class="row">
+						<div class="col-xs-12 hidden-xs route-line">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
+						</div>
+						<div class="col-xs-10 col-md-12 stop-details">
+							<h3>City Road</h3>
+							<p>Stop 126</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<div class="row">
+						<div class="col-xs-12 hidden-xs route-line">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
+						</div>
+						<div class="col-xs-10 col-md-12 stop-details">
+							<h3>South Melbourne</h3>
+							<p>Stop 127</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<div class="row">
+						<div class="col-xs-12 hidden-xs route-line">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
+						</div>
+						<div class="col-xs-10 col-md-12 stop-details">
+							<h3>Albert Park</h3>
+							<p>Stop 128</br>
+							Connections 12</p>
+							<button type="button" class="btn btn-default">View Departures</button>
+							<button type="button" class="btn btn-default">View Stop Guide</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<div class="row">
+						<div class="col-xs-12 hidden-xs route-line">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
+						</div>
+						<div class="col-xs-10 col-md-12 stop-details">
+							<h3>Melbourne Sports and Aquatic Centre (MSAC)</h3>
+							<p>Stop 129</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- temporary inline JS to draw on the canvas -->
+		<script type="text/javascript">
+			var initialise = function() {
+				var c_array = document.getElementsByClassName("route-canvas");	// array of route lines in each div
+				var parent_array = document.getElementsByClassName("boxes-routemap");
+
+				if (c_array.length != parent_array.length) {
+					Console.error('Missing <canvas> in route map box(es).');
+					return;
+				}
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var p = parent_array[i];
+					c.width = p.offsetWidth;
+					c.height = 30;
+				}
+
+				var c_array = document.getElementsByClassName("route-canvas-vertical");	// array of canvases
+				var parent_array = document.getElementsByClassName("boxes-routemap");
+
+				// c_array should be the same length as parent_array
+				if (c_array.length != parent_array.length) {
+					Console.error('Missing <canvas> in route map box(es).');
+					return;
+				}
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var p = parent_array[i];
+				}
+			}
+
+			var draw_routes_horizontal = function() {
+				var c_array = document.getElementsByClassName("route-canvas");	// array of route lines in each div
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var ctx = c.getContext("2d");
+
+					ctx.clearRect(0, 0, c.width, c.height);	// clear the rectangle
+
+					// draw the route line
+					ctx.fillStyle = "#c6168d";
+					ctx.fillRect(0, 0.2*c.height, c.width, 0.6*c.height);
+					ctx.fill();
+
+					// draw the circle
+					ctx.fillStyle = "#FFFFFF";	// white
+					ctx.beginPath();
+					ctx.arc(c.width/2, c.height/2, 0.45*c.height, 0, 2*Math.PI, 0);
+					ctx.stroke();
+					ctx.fill();
+				}
+			}
+
+			var draw_routes_vertical = function() {
+				var c_array = document.getElementsByClassName("route-canvas-vertical");	// array of route lines in each div
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var ctx = c.getContext("2d");
+
+					ctx.clearRect(0, 0, c.width, c.height);	// clear the rectangle
+
+					// draw the route line
+					ctx.fillStyle = "#c6168d";
+					ctx.fillRect(0.35*c.width, 0, c.width*0.3, c.height);
+					ctx.fill();
+
+					// draw the circle
+					ctx.fillStyle = "#FFFFFF";	// white
+					ctx.beginPath();
+					ctx.arc(c.width/2, c.height/2, 0.25*c.width, 0, 2*Math.PI, 0);
+					ctx.stroke();
+					ctx.fill();
+				}
+			}
+
+			initialise();
+			draw_routes_horizontal();
+			draw_routes_vertical();
+
+			window.onresize = function(event) {
+				initialise();
+				draw_routes_horizontal();
+				draw_routes_vertical();
+			}
+		</script>
+
+		<!-- move teminus station to bottom instead of top right -->
+		<div class="terminus-stops">
+			<div class="row">
+				<div class="col-xs-6 hidden-xs">
+					<!-- <h3>EAST BRUNSWICK</h3> -->
+				</div>
+				<div class="col-xs-6 hidden-sm hidden-md hidden-lg hidden-xl">
+					<h3>ST KILDA BEACH</h3>
+				</div>
+			</div>
+		</div>
+
+		<!-- Around a stop -->
+		<div class="around-stop">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="jumbotron vertical-center-flexbox">
+						<div class="container">
+							<h3>AROUND SOUTH MELBOURNE MARKET - STOP 127</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-7">
+				<div class="row">
+					<div class="col-xs-12">
+						<h4>Top picks</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 col-xs-6">
+						<div class="boxes-loc center-flexbox"
+						style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(img/south_melbourne_market.jpg);">
+							<p>South Melbourne Market</p>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-6">
+						<div class="boxes-loc center-flexbox"
+						style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(img/town_hall.jpg);">
+							<p>South Melbourne - Town Hall</p>
+						</div>
+					</div>
+					<div class="col-sm-2 center-flexbox button-loc">
+						<button type="button" class="btn btn-default">More</button>
+					</div>
+				</div>
+
+				</br>	<!-- for padding -->
+
+				<div class="row">
+					<div class="col-xs-12">
+						<h4>Food</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 col-xs-6">
+						<div class="boxes-loc center-flexbox"
+						style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(img/left_handed_chef.jpg);">
+							<p>Left Handed Chef</p>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-6">
+						<div class="boxes-loc center-flexbox"
+						style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(img/st_ali.jpg);">
+							<p>St Ali</p>
+						</div>
+					</div>
+					<div class="col-sm-2 center-flexbox button-loc">
+						<button type="button" class="btn btn-default">More</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<div id="map"></div>
+			</div>
+		</div>
+
+		<!-- inline JS for Google Maps, TODO move to separate .JS file -->
+		<script type="text/javascript">
+		function initMap() {
+        // var uluru = {lat: -25.363, lng: 131.044};
+				var southMelbourne = {lat: -37.8331993, lng: 144.9553748};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: southMelbourne
+        });
+        var marker = new google.maps.Marker({
+          position: southMelbourne,
+          map: map
+        });
+      }
+    </script>
+
+		<!-- Yes, the API key has to be embedded in HTML. The usage can be restricted to specific domains though. -->
+		<!-- See http://stackoverflow.com/questions/1364858/what-steps-should-i-take-to-protect-my-google-maps-api-key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Zp2gR2b1xhyoXCa3lYiB-V0ZUkjjNmA&callback=initMap"
+    async defer></script>
+
+
+	</div>

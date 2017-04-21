@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HookTurns</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Bootstrap CDN -->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Extra CSS style -->
+		<% if (pageId === "home") { %>
+		<link rel="stylesheet" type="text/css" href="css/home.css" />
+		<% } else if (pageId === "about") { %>
+		<link rel="stylesheet" type="text/css" href="css/about.css" />
+		<% } else if (pageId === "search") { %>
+		<link rel="stylesheet" type="text/css" href="css/search.css" />
+		<% } else if (pageId === "route_guide") { %>
+		<link rel="stylesheet" type="text/css" href="css/route_guide.css" />
+		<% } else if (pageId === "nextram") { %>
+		<link rel="stylesheet" type="text/css" href="css/nextram.css" />
+		<% } else if (pageId === "404") { %>
+		<link rel="stylesheet" type="text/css" href="css/404.css" />
+		<% } else if (pageId === "hiw") { %>
+		<link rel="stylesheet" type="text/css" href="css/how-it-works.css" />
+		<% } %>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<!-- Font awesome CDN -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Oswald:400,500,700" rel="stylesheet">
+	</head>
+	<body>

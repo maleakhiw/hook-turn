@@ -1,0 +1,27 @@
+<!-- Header -->
+<% include partials/templates/header.ejs %>
+<% if (pageId != "404") { %>
+<% include partials/templates/nav.ejs %>
+<% } %>
+
+<!-- Section -->
+<% if (pageId === "home") { %>
+<% include partials/contents/home.ejs %>
+<% } else if (pageId === "about") { %>
+<% include partials/contents/about.ejs %>
+<% } else if (pageId === "search") { %>
+<% include partials/contents/search.ejs %>
+<% } else if (pageId === "route_guide") { %>
+<% include partials/contents/route_guide.ejs %>
+<% } else if (pageId === "nextram") { %>
+<% include partials/contents/nextram.ejs %>
+<% } else if (pageId === "hiw") { %>
+<% include partials/contents/how-it-works.ejs %>
+<% } else if (pageId === "404") { %>
+<% include partials/contents/404.ejs %>
+<% } %>
+
+<!-- Footer -->
+<% if (pageId != "404") { %>
+<% include partials/templates/footer.ejs %>
+<% } %>
