@@ -1,15 +1,19 @@
 {
-  "name": "info30005_server",
+  "name": "hookturns",
   "version": "0.0.0",
-  "description": "",
+  "description": "Web application for info30005, 'Making Melbourne a better place to live'",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "HookTurns",
   "license": "BSD-2-Clause",
   "dependencies": {
     "ejs": "~2.5.6",
-    "express": "~4.15.2"
+    "express": "~4.15.2",
+    "requests": "~0.1.7",
+    "mongoose": "~4.9.5",
+    "body-parser": "~1.17.1"
   }
 }
