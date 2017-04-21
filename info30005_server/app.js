@@ -1,5 +1,5 @@
 /** Main file that will be run on the server
- * Author: HookTurns (Maleakhi, Kenneth, Fadhil, Ricky)
+ * Author: HookTurns 
  * Date: 21/04/2017
  * Version: 1.0
  */
