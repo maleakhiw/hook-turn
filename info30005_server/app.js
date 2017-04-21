@@ -50,6 +50,6 @@ app.get("*", function(req, res) {
 });
 
  /*********************************LISTEN*************************************/
- app.listen(3000, "localhost", function() {
+ app.listen(80, "localhost", function() {
  	console.log("HookTurns server has started...")
  });
