@@ -7,9 +7,18 @@
 /**********************************SETUP**************************************/
 var express = require("express");
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
+// Database setup
+require('./models/db.js');
+
+// Routes setup
+var routes = require('./routes/routes.js');
+app.use('/',routes);
+
+// View setup
 app.set("view engine", "ejs");
-
 // Serve static files
 app.use(express.static("assets"));
 
@@ -49,7 +58,7 @@ app.get("*", function(req, res) {
 	res.render("index", {pageId: "404"});
 });
 
- /*********************************LISTEN*************************************/
- app.listen(80, function(req, res) {
- 	console.log("HookTurns server has started...")
- });
+/**********************************LISTEN*************************************/
+app.listen(80, function(req, res) {
+  console.log("HookTurns server has started...")
+});
