@@ -35,10 +35,45 @@ app.get("/", function(req, res) {
   
   var callback = function(error, response, body) {
   	console.log(body);
+  	// do some pre-processing here first
+
+  	// connect to DB, pull from DB first
+
+  	// make the final response JSON
+  	/*
+  	{
+  		stopID: 06021,
+  		[{
+			crowdLevel: 0.7, // between 0 and 1, percentage
+			disruptions: [{title, description}, ...],	// not indicative of actual data types later, just suggestion
+			crowdSourcedDisruptions: [string1, string2, ...],
+			routeGuide: null or String,	// null for routes other than 96, url calling for route guide. Must handle ?route=96 later on express.
+  		},
+  		...]
+  	}
+  	*/
+
   	res.send(body);
   }
+});
 
-  ptv.stops(-37.8278185, 144.9666907, callback);
+ptv.stops(-37.8278185, 144.9666907, callback);
+
+app.post("/report", function(req, res)) {
+	/* expected JSON:
+	{
+		type: "crowd" or "disruption",
+		value: // 1, 2, 3, 4: empty, decent, full, overcrowded for crowding
+			   // description (string) for disruption
+	}
+	*/
+
+	// put this inside the database. Do calculations here.
+	// Better to do this in separate functions outside the app.post body. 
+	// Possibly put these fns in another PTV.js file and import it using "require" later.
+
+	// send an updated response JSON, or just the new crowdLevel to the user (for crowding)
+	// for disruption: either send back the same string (inefficient for long strings) or just an OK.
 })
 
 app.listen(3000, function(req, res) {
