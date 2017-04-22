@@ -14,7 +14,7 @@ class PTV {
     this.key = key;
   }
 
-  stops(lat, long) {
+  stops(lat, long, callback) {
   	var url = this.url;
   	var add = '/v3/stops/location/' + lat + ',' + long + '?devid=' + this.dev_id;
   	// var hash = hmacsha1(this.key, add);
@@ -24,18 +24,21 @@ class PTV {
 
  	console.log(url);
 
-  	request(url, function(err, resp, body) {
-  		// console.log(err);
-  		// console.log(resp);
-  		console.log(body);
-  	})
+ 	var result;
+  	request(url, callback);
+  	return result
   }
 }
 
 app.get("/", function(req, res) {
   var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
-  ptv.stops(-37.8278185, 144.9666907);
-  res.send('Hello world');
+  
+  var callback = function(error, response, body) {
+  	console.log(body);
+  	res.send(body);
+  }
+
+  ptv.stops(-37.8278185, 144.9666907, callback);
 })
 
 app.listen(3000, function(req, res) {
