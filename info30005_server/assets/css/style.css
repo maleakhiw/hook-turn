@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+.logo {
+	padding-top: 10px;
+	padding-bottom: 11px;
+}
+
+
 
 .collapsing {
     transition: height 0.6s;
