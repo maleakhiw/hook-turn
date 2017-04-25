@@ -36,7 +36,7 @@ app.get("/departures", function(req, res) {
       var toSend = {
         status: "success",
         stopID: stopID,
-        departures: JSON.parse(body),
+        departures: JSON.parse(body).departures,
         crowdSourcedDisruptions: [],
         routeGuide: null
       }
