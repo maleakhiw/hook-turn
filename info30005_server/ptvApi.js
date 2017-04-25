@@ -1,7 +1,7 @@
 var request = require('request');
 var crypto = require('crypto');
 
-var PTV = class PTV {
+module.exports = class PTV {
   constructor(dev_id, key) {
   	this.url = 'http://timetableapi.ptv.vic.gov.au';
     this.dev_id = dev_id;
@@ -28,8 +28,6 @@ var PTV = class PTV {
     request(url, callback);
   }
 }
-
-module.exports.PTV = PTV;
 
 /*
 Model schema

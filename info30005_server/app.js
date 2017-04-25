@@ -23,7 +23,7 @@ app.set("view engine", "ejs");
 app.use(express.static("assets"));
 
 // PTV
-var PTV = require('./ptvApi.js').PTV;
+var PTV = require('./ptvApi.js');
 var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 
 /*********************************** PTV ROUTES ************************************/
