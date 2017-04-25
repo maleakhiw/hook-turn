@@ -16,14 +16,14 @@ module.exports = class PTV {
   stops(lat, long, callback) {
     // URI
   	var add = '/v3/stops/location/' + lat + ',' + long + '?devid=' + this.dev_id;
-    var url = this.urlBuilder(url);
+    var url = this.urlBuilder(add);
   	request(url, callback);
   }
 
   departures(stopID, callback) {
     var add = '/v3/departures/route_type/1/stop/' + stopID;
     add += '?max_results=3&include_cancelled=false&expand=all&devid=' + this.dev_id;
-    var url = this.urlBuilder(url);
+    var url = this.urlBuilder(add);
     console.log(url);
     request(url, callback);
   }
