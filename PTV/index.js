@@ -15,19 +15,18 @@ class PTV {
   }
 
   stops(lat, long, callback) {
-  	var url = this.url;
-  	var add = '/v3/stops/location/' + lat + ',' + long + '?devid=' + this.dev_id;
-  	// var hash = hmacsha1(this.key, add);
-  	var signature = crypto.createHmac('sha1', this.key).update(add).digest('hex');
-  	url += add;
-    url += '&signature=' + signature;
+  	var url = this.url;  // base url for PTV API
+  	var add = '/v3/stops/location/' + lat + ',' + long + '?devid=' + this.dev_id;  // build the URI
 
- 	console.log(url);
 
- 	var result;
+  	var signature = crypto.createHmac('sha1', this.key).update(add).digest('hex'); // get a HMAC-SHA1 signature for the URI
+  	url += add;  // add URI to end of URL
+    url += '&signature=' + signature; // add the signature to the end of the URL
+
+ 	  console.log(url);
   	request(url, callback);
-  	return result
   }
+
 }
 
 app.get("/", function(req, res) {
@@ -42,6 +41,7 @@ app.get("/", function(req, res) {
   	// make the final response JSON
   	/*
   	{
+      status: "success",
   		stopID: 06021,
   		[{
 			crowdLevel: 0.7, // between 0 and 1, percentage
@@ -52,14 +52,28 @@ app.get("/", function(req, res) {
   		...]
   	}
   	*/
+    console.log(response.headers);
 
-  	res.send(body);
+    if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
+    if (body) res.send(body);
   }
 
-  ptv.stops(-37.8278185, 144.9666907, callback);
+  // console.log(req);
+  if (req.query.latitude != null && req.query.longitude != null) {  // check if params set in GET request
+    ptv.stops(req.query.latitude, req.query.longitude, callback);
+  }
+  else {
+    res.send(
+      {
+        status: "error"
+      }
+    );
+  }
+
+  // ptv.stops(-37.8278185, 144.9666907, callback);
 });
 
-app.post("/report", function(req, res)) {
+app.post("/report", function(req, res) {
 	/* expected JSON:
 	{
 		type: "crowd" or "disruption",
@@ -74,7 +88,7 @@ app.post("/report", function(req, res)) {
 
 	// send an updated response JSON, or just the new crowdLevel to the user (for crowding)
 	// for disruption: either send back the same string (inefficient for long strings) or just an OK.
-})
+});
 
 app.listen(3000, function(req, res) {
   console.log("App started");
