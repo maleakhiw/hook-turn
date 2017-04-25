@@ -26,6 +26,10 @@ class PTV {
   	request(url, callback);
   }
 
+  departures(stopID, callback){
+    
+  }
+
 }
 
 app.get("/", function(req, res) {
@@ -77,6 +81,8 @@ app.post("/report", function(req, res) {
 	{
 		type: "crowd" or "disruption",
 		value: // 1, 2, 3, 4: empty, decent, full, overcrowded for crowding
+    // timeReported: time
+    // expiryTime: time
 			   // description (string) for disruption
 	}
 	*/
