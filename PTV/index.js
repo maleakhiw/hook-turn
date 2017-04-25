@@ -27,8 +27,8 @@ class PTV {
   	request(url, callback);
   }
 
-  departures(stopID, callback){
-    /* 
+  departures(stopID, callback) {
+    /*
     Model schema
     {
       "departures": [
@@ -64,7 +64,7 @@ class PTV {
     */
     var url = this.url;
     var add = '/v3/departures/route_type/1/stop/' + stopID;
-    var add += '?max_results=3&include_cancelled=false&expand=all&devid=' + this.dev_id;
+    add += '?max_results=3&include_cancelled=false&expand=all&devid=' + this.dev_id;
 
     var signature = crypto.createHmac('sha1', this.key).update(add).digest('hex');
     url += add;  // add URI to end of URL
@@ -77,8 +77,9 @@ class PTV {
 
 }
 
+var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
+
 app.get("/", function(req, res) {
-  var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 
   var callback = function(error, response, body) {
   	console.log(body);
@@ -120,6 +121,15 @@ app.get("/", function(req, res) {
 
   // ptv.stops(-37.8278185, 144.9666907, callback);
 });
+
+app.get("/departures", function(req, res) {
+  var callback = function(error, response, body) {
+    console.log(body);
+    if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
+    if (body) res.send(body);
+  }
+  ptv.departures(2504, callback);
+})
 
 app.post("/report", function(req, res) {
 	/* expected JSON:
