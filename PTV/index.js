@@ -32,7 +32,7 @@ class PTV {
 
 app.get("/", function(req, res) {
   var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
-  
+
   var callback = function(error, response, body) {
   	console.log(body);
   	// do some pre-processing here first
@@ -55,9 +55,9 @@ app.get("/", function(req, res) {
 
   	res.send(body);
   }
-});
 
-ptv.stops(-37.8278185, 144.9666907, callback);
+  ptv.stops(-37.8278185, 144.9666907, callback);
+});
 
 app.post("/report", function(req, res)) {
 	/* expected JSON:
@@ -69,7 +69,7 @@ app.post("/report", function(req, res)) {
 	*/
 
 	// put this inside the database. Do calculations here.
-	// Better to do this in separate functions outside the app.post body. 
+	// Better to do this in separate functions outside the app.post body.
 	// Possibly put these fns in another PTV.js file and import it using "require" later.
 
 	// send an updated response JSON, or just the new crowdLevel to the user (for crowding)
