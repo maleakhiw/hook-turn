@@ -26,7 +26,33 @@ app.use(express.static("assets"));
 var PTV = require('./ptvApi.js').PTV;
 var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 
-/*********************************** PTV ************************************/
+/*********************************** PTV ROUTES ************************************/
+// GET request. params - stopid: int
+app.get("/departures", function(req, res) {
+
+  var callback = function(error, response, body) {
+    if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
+    if (body) {
+      var toSend = {
+        status: "success",
+        stopID: stopID,
+        departures: JSON.parse(body),
+        crowdSourcedDisruptions: [],
+        routeGuide: null
+      }
+
+      res.json(toSend);
+    }
+  }
+
+  if (!req.query.stopid) {  // if stopID is not given by user
+    res.json({status: 'error'});
+  }
+  else {
+    var stopID = req.query.stopid;
+    ptv.departures(stopID, callback); // sample stopID: 2504
+  }
+})
 
 
 
