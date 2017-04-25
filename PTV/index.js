@@ -6,7 +6,6 @@ var request = require('request');
 //http://stackoverflow.com/questions/7480158/how-do-i-use-node-js-crypto-to-create-a-hmac-sha1-hash
 var crypto = require('crypto');
 
-
 class PTV {
   constructor(dev_id, key) {
   	this.url = 'http://timetableapi.ptv.vic.gov.au';
