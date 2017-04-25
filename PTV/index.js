@@ -83,24 +83,6 @@ app.get("/", function(req, res) {
 
   var callback = function(error, response, body) {
   	console.log(body);
-  	// do some pre-processing here first
-
-  	// connect to DB, pull from DB first
-
-  	// make the final response JSON
-  	/*
-  	{
-      status: "success",
-  		stopID: 06021,
-  		[{
-			crowdLevel: 0.7, // between 0 and 1, percentage
-			disruptions: [{title, description}, ...],	// not indicative of actual data types later, just suggestion
-			crowdSourcedDisruptions: [string1, string2, ...],
-			routeGuide: null or String,	// null for routes other than 96, url calling for route guide. Must handle ?route=96 later on express.
-  		},
-  		...]
-  	}
-  	*/
     console.log(response.headers);
 
     if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
@@ -122,13 +104,32 @@ app.get("/", function(req, res) {
   // ptv.stops(-37.8278185, 144.9666907, callback);
 });
 
+
+// GET request. params - stopid: int
 app.get("/departures", function(req, res) {
+
   var callback = function(error, response, body) {
-    console.log(body);
     if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
-    if (body) res.send(body);
+    if (body) {
+      var toSend = {
+        status: "success",
+        stopID: stopID,
+        departures: JSON.parse(body),
+        crowdSourcedDisruptions: [],
+        routeGuide: null
+      }
+
+      res.json(toSend);
+    }
   }
-  ptv.departures(2504, callback);
+
+  if (!req.query.stopid) {  // if stopID is not given by user
+    res.json({status: 'error'});
+  }
+  else {
+    var stopID = req.query.stopid;
+    ptv.departures(stopID, callback); // sample stopID: 2504
+  }
 })
 
 app.post("/report", function(req, res) {
