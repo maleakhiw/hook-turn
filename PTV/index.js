@@ -14,6 +14,7 @@ class PTV {
   }
 
   stops(lat, long, callback) {
+
   	var url = this.url;  // base url for PTV API
   	var add = '/v3/stops/location/' + lat + ',' + long + '?devid=' + this.dev_id;  // build the URI
 
@@ -27,7 +28,51 @@ class PTV {
   }
 
   departures(stopID, callback){
-    
+    /* 
+    Model schema
+    {
+      "departures": [
+        {
+          "stop_id": 0,
+          "route_id": 0,
+          "run_id": 0,
+          "direction_id": 0,
+          "disruption_ids": [
+            0
+          ],
+          "scheduled_departure_utc": "2017-04-25T04:49:31.729Z",
+          "estimated_departure_utc": "2017-04-25T04:49:31.729Z",
+          "at_platform": true,
+          "platform_number": "string",
+          "flags": "string"
+        }
+      ],
+      "stops": {},
+      "routes": {},
+      "runs": {},
+      "directions": {},
+      "disruptions": {},
+      "status": {
+        "version": "string",
+        "health": 0
+      }
+    }
+
+    sample request url: http://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2504?max_results=3&include_cancelled=false&expand=all&devid=1000824&signature=24188F2D300CC228C16D2AE7133E520554678227
+
+
+    */
+    var url = this.url;
+    var add = '/v3/departures/route_type/1/stop/' + stopID;
+    var add += '?max_results=3&include_cancelled=false&expand=all&devid=' + this.dev_id;
+
+    var signature = crypto.createHmac('sha1', this.key).update(add).digest('hex');
+    url += add;  // add URI to end of URL
+    url += '&signature=' + signature; // add the signature to the end of the URL
+
+    console.log(url);
+    request(url, callback);
+
   }
 
 }
