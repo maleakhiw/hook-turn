@@ -8,15 +8,15 @@ var router = express.Router();
 var controller = require('../controllers/controller.js');
 
 // Create new cafe
-router.post('/api',controller.createData);
+router.post('/reportdisruption',controller.createDisruption);
 
 // Find all cafes
-router.get('/api',controller.findAllData);
+router.get('/reportdisruption',controller.findAllDisruption);
 
 // Find one cafe by id
-router.get('/api/:id',controller.findOneData);
+router.get('/reportdisruption/:id',controller.findOneDisruption);
 
 // Delete one cafe by id
-router.delete('/api/:id',controller.deleteOneData);
+router.delete('/reportdisruption/:id',controller.deleteOneDisruption);
 
 module.exports = router;

@@ -2,56 +2,60 @@
  * Created by Eduardo Velloso on 10/04/2017.
  */
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var Disruption = mongoose.model('Disruption');
 
-var createData = function(req,res){
-    var user = new User({
-        "username":req.body.username,
-        "data":req.body.data
+var createDisruption = function(req,res){
+    var disruption = new Disruption({
+      "status": req.body.status,
+      "runID": req.body.runID,
+      "stopID": req.body.stopID,
+      "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions,
+      "time_reported": new Date,
+      "time_expiry": new Date
     });
 
-    user.save(function(err,newUser){
+    disruption.save(function(err,newDisruption){
         if(!err){
-            res.send(newUser);
+            res.send(newDisruption);
         }else{
             res.sendStatus(400);
         }
     });
 };
 
-var findAllData = function(req,res){
-    User.find(function(err,users){
+var findAllDisruption = function(req,res){
+    Disruption.find(function(err,disruptions){
         if(!err){
-            res.send(users);
+            res.send(disruptions);
         }else{
             res.sendStatus(404);
         }
     });
 };
 
-var findOneData = function(req,res){
-    var userInx = req.params.id;
-    User.findById(userInx,function(err,user){
+var findOneDisruption = function(req,res){
+    var disruptionInx = req.params.id;
+    Disruption.findById(disruptionInx,function(err,disruption){
         if(!err){
-            res.send(user);
+            res.send(disruption);
         }else{
             res.sendStatus(404);
         }
     });
 };
 
-var deleteOneData = function(req,res){
-    var userInx = req.params.id;
-    User.findByIdAndRemove(userInx,function(err,user){
+var deleteOneDisruption = function(req,res){
+    var disruptionInx = req.params.id;
+    Disruption.findByIdAndRemove(disruptionInx,function(err,disruption){
         if(!err){
-            res.send(user);
+            res.send(disruption);
         }else{
             res.sendStatus(404);
         }
     });
 };
 
-module.exports.createData = createData;
-module.exports.findAllData = findAllData;
-module.exports.findOneData = findOneData;
-module.exports.deleteOneData = deleteOneData;
+module.exports.createDisruption = createDisruption;
+module.exports.findAllDisruption = findAllDisruption;
+module.exports.findOneDisruption = findOneDisruption;
+module.exports.deleteOneDisruption = deleteOneDisruption;
