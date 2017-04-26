@@ -10,8 +10,8 @@ var createDisruption = function(req,res){
       "runID": req.body.runID,
       "stopID": req.body.stopID,
       "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions,
-      "time_reported": new Date,
-      "time_expiry": new Date
+      "time_reported": new Date(),
+      "time_expiry": new Date()
     });
 
     disruption.save(function(err,newDisruption){
@@ -44,6 +44,25 @@ var findOneDisruption = function(req,res){
     });
 };
 
+var findOneAndUpdateDisruption = function(req,res){
+    var disruptionInx = req.params.id;
+    Disruption.findByIdAndUpdate(disruptionInx,
+      {$push:
+        {
+          "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
+        }
+      },
+      {safe: true, upsert: true},
+      function(err,disruption){
+        if(!err){
+            ////////////
+            res.send(disruption);
+        }else{
+            res.sendStatus(404);
+        }
+    });
+};
+
 var deleteOneDisruption = function(req,res){
     var disruptionInx = req.params.id;
     Disruption.findByIdAndRemove(disruptionInx,function(err,disruption){
@@ -58,4 +77,5 @@ var deleteOneDisruption = function(req,res){
 module.exports.createDisruption = createDisruption;
 module.exports.findAllDisruption = findAllDisruption;
 module.exports.findOneDisruption = findOneDisruption;
+module.exports.findOneAndUpdateDisruption = findOneAndUpdateDisruption;
 module.exports.deleteOneDisruption = deleteOneDisruption;
