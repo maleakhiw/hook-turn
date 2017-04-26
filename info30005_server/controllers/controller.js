@@ -9,9 +9,7 @@ var createDisruption = function(req,res){
       "status": req.body.status,
       "runID": req.body.runID,
       "stopID": req.body.stopID,
-      "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions,
-      "time_reported": new Date(),
-      "time_expiry": new Date()
+      "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
     });
 
     disruption.save(function(err,newDisruption){
@@ -47,7 +45,8 @@ var findOneDisruption = function(req,res){
 var findOneAndUpdateDisruption = function(req,res){
     var disruptionInx = req.params.id;
     Disruption.findByIdAndUpdate(disruptionInx,
-      {$push:
+      {
+        $push:
         {
           "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
         }
