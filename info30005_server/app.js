@@ -42,13 +42,13 @@ app.get("/departures", cors(), function(req, res) {
 
 
             if (body) {
-                var toSend = {
-                    status: "success",
-                    stopID: stopID,
-                    departures: JSON.parse(body).departures,
-                    crowdSourcedDisruptions: [],
-                    routeGuide: null
-                };
+              var toSend = {
+                status: "success",
+                stopID: stopID,
+                ptvData: JSON.parse(body),
+                crowdSourcedDisruptions: [],
+                routeGuide: null
+              }
 
                 res.json(toSend);
             }
