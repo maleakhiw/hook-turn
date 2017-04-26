@@ -8,59 +8,67 @@
 var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Database setup
 require('./models/db.js');
 
 // Routes setup
-var routes = require('./routes/routes.js');
-app.use('/',routes);
+// var routes = require('./routes/routes.js');
+// app.use('/',routes);
 
 // View setup
 app.set("view engine", "ejs");
 // Serve static files
 app.use(express.static("assets"));
 
-// PTV
+// PTV API request setup
 var PTV = require('./ptvApi.js');
 var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 
-/*********************************** PTV ROUTES ************************************/
+/***********************************PTV ROUTES********************************/
+
 // GET request. params - stopid: int
 app.get("/departures", function(req, res) {
 
-  var callback = function(error, response, body) {
-    if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
-    if (body) {
-      var toSend = {
-        status: "success",
-        stopID: stopID,
-        departures: JSON.parse(body).departures,
-        crowdSourcedDisruptions: [],
-        routeGuide: null
-      }
+    var callback = function(error, response, body) {
+        // Check status and error reporting before processing JSON
+        if (!error && response.statusCode == 200) {
+            // Check validity (only process JSON files, does not want website request)
+            if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
 
-      res.json(toSend);
+
+            if (body) {
+                var toSend = {
+                    status: "success",
+                    stopID: stopID,
+                    departures: JSON.parse(body).departures,
+                    crowdSourcedDisruptions: [],
+                    routeGuide: null
+                };
+
+                res.json(toSend);
+            }
+        }
     }
-  }
 
-  if (!req.query.stopid) {  // if stopID is not given by user
-    res.json({status: 'error'});
-  }
-  else {
-    var stopID = req.query.stopid;
-    ptv.departures(stopID, callback); // sample stopID: 2504
-  }
-})
+    // Give an error if user does not put stopId as query parameter
+    if (!req.query.stopid) {  
+       res.json({status: 'error'});
+    }
+    else {
+       var stopID = req.query.stopid;
+       ptv.departures(stopID, callback); // sample stopID: 2504
+    }
+});
 
 /*********************************H/T ROUTES**********************************/
 
 /******************************SUPPORTING JSONS*******************************/
 // NexTram Picture Assets
-app.get("/"){
+// app.get("/"){
   
-}
+// }
 
 
 
@@ -101,6 +109,6 @@ app.get("*", function(req, res) {
 });
 
 /**********************************LISTEN*************************************/
-app.listen(80, function(req, res) {
+app.listen(3000, "localhost", function(req, res) {
   console.log("HookTurns server has started...")
 });
