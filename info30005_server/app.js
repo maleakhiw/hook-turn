@@ -8,6 +8,7 @@
 var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
+var cors = require('cors');
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Database setup
@@ -31,7 +32,7 @@ var tramData = require("./assets/json/tramstops.json");
 /***********************************PTV ROUTES********************************/
 
 // GET request. params - stopid: int
-app.get("/departures", function(req, res) {
+app.get("/departures", cors(), function(req, res) {
 
     var callback = function(error, response, body) {
         // Check status and error reporting before processing JSON
