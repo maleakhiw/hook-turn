@@ -58,9 +58,9 @@ app.get("/departures", function(req, res) {
 
 /******************************SUPPORTING JSONS*******************************/
 // NexTram Picture Assets
-app.get("/"){
-
-}
+// app.get("/"){
+//
+// }
 
 
 
