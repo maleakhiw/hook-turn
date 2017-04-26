@@ -275,9 +275,9 @@
                         </div>
 
                         <div class="row">
-                          <div class="col-xs-10 col-xs-offset-1">
-                            <button class="btn btn-success btn-lg clear_5px_top" type="button">Empty</button> <button class="btn btn-success btn-lg clear_5px_top" type="button">Decent</button> <button class="btn btn-warning btn-lg clear_5px_top" type="button">Full</button> <button class="btn btn-danger btn-lg clear_5px_top" type="button">Overcrowded</button>
-                          </div>
+                          <form method="POST" action="/nextram" class="col-xs-10 col-xs-offset-1">
+                            <button class="btn btn-success btn-lg clear_5px_top" type="submit" name="crowdedness" value="0">Empty</button> <button name="crowdedness" value="1" class="btn btn-success btn-lg clear_5px_top" type="submit">Decent</button> <button name="crowdedness" value="2" class="btn btn-warning btn-lg clear_5px_top" type="button">Full</button> <button class="btn btn-danger btn-lg clear_5px_top" name="crowdedness" value="2" type="submit">Overcrowded</button>
+                          </form>
                         </div>
                       </div>
                     </div>

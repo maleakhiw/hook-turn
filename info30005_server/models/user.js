@@ -6,6 +6,7 @@ var userSchema = new Schema({
   data: String
 });
 
+
 var User = mongoose.model('User', userSchema);
 
 // make this available to our users in our Node applications

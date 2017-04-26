@@ -26,6 +26,8 @@ app.use(express.static("assets"));
 var PTV = require('./ptvApi.js');
 var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 
+var tramData = require("./assets/json/tramstops.json");
+
 /***********************************PTV ROUTES********************************/
 
 // GET request. params - stopid: int
@@ -95,7 +97,22 @@ app.get("/search", function(req, res) {
 
 // Nextram
 app.get("/nextram", function(req, res) {
-	res.render("index", {pageId: "nextram"});
+    // Process query
+    if (req.query.search) {
+        var stop_name = req.query.search;
+        var stop_id;
+        // Find appropriate stop id
+        for (var i = 0; i < tramData["stops"].length; i++) {
+            if (tramData["stops"][i]["stop_name"] === stop_name) {
+                stop_id = tramData["stops"][i]["stop_id"];
+                break;
+            }
+        }
+        res.redirect("/nextram?stop_id=" + stop_id);
+    }
+    else {
+	   res.render("index", {pageId: "nextram"});
+    }
 });
 
 // Route Guide
@@ -106,6 +123,15 @@ app.get("/route-guide", function(req, res) {
 // 404 Page Not Found
 app.get("*", function(req, res) {
 	res.render("index", {pageId: "404"});
+});
+
+/*********************************POST****************************************/
+
+// Information gather from nextram page
+app.post("/nextram", function(req, res)) {
+    var crowdedness = req.body.crowdedness;
+
+    
 });
 
 /**********************************LISTEN*************************************/
