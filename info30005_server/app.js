@@ -36,7 +36,7 @@ app.get("/departures", function(req, res) {
       var toSend = {
         status: "success",
         stopID: stopID,
-        departures: JSON.parse(body).departures,
+        ptvData: JSON.parse(body),
         crowdSourcedDisruptions: [],
         routeGuide: null
       }
@@ -59,7 +59,7 @@ app.get("/departures", function(req, res) {
 /******************************SUPPORTING JSONS*******************************/
 // NexTram Picture Assets
 app.get("/"){
-  
+
 }
 
 
