@@ -56,6 +56,10 @@ app.get("/departures", function(req, res) {
 
 /*********************************H/T ROUTES**********************************/
 
+app.get("/reportdisruption", function(req, res) {
+
+})
+
 /******************************SUPPORTING JSONS*******************************/
 // NexTram Picture Assets
 // app.get("/"){
