@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport"><!-- Bootstrap CDN -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Extra CSS style -->
+  <link href="../css/style.css" rel="stylesheet" type="text/css">
+  <link href="../css/nextram.css" rel="stylesheet" type="text/css"><!-- Font awesome CDN -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Oswald" rel="stylesheet">
+</head>
+<body>
+    <!-- Static navbar with Login and SignUp -->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html">HOOK/TURNS</a>
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="search.html">NexTram</a></li>
+                        <li><a href="../how-it-works/how-it-works.html">How it Works</a></li>
+                        <li><a href="../about/about.html">About</a></li>
+                        <li><a href="../route_guide.html">Explore</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
+        </nav>
+
+        <!-- Modal for Login -->
+        <div class="modal fade" id="Login" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <form role="form">
+                            <!-- Username -->
+                            <div class="form-group">
+                                <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+                                <input type="text" class="form-control" id="username" placeholder="Enter email/username">
+                            </div>
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                                <input type="text" class="form-control" id="password" placeholder="Enter password">
+                            </div>
+                            <!-- Others -->
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="" checked>Remember me</label>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Login</button>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <p>Not a member? <a href="#" data-toggle="modal" data-target="#Signup" data-dismiss="modal">Sign Up</a></p>
+                        <p><a href="#">Forgot Password?</a></p>
+                    </div>
+                </div> <!-- End of modal content -->
+            </div> <!-- End of modal dialog -->
+        </div> <!-- End of modal -->
+
+        <!-- Modal for Signup -->
+        <div class="modal fade" id="Signup" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><span class="glyphicon glyphicon-user"></span> Sign Up</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <form role="form">
+                            <!-- Email address -->
+                            <div class="form-group">
+                                <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email address">
+                            </div>
+                            <!-- Username -->
+                            <div class="form-group">
+                                <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                            </div>
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                                <input type="text" class="form-control" id="password" placeholder="Enter password">
+                            </div>
+                            <!-- Others -->
+                            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <p>Already a member? <a href="#" data-toggle="modal" data-target="#Login" data-dismiss="modal"> Login</a></p>
+                    </div>
+                </div> <!-- End of modal content -->
+            </div> <!-- End of modal dialog -->
+        </div> <!-- End of modal -->
+
+  <!-- Jumbotron for stopname -->
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <h3>NEXTRAM</h3>
+          <h1>Southern Cross Station Spencer Street</h1>
+          <h2>Stop 1</h2>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </div><!-- /jumbotron -->
+  <!-- Section -->
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-sm-12">
+        <h4>Tram Stop Crowding Timeline</h4>
+      </div>
+    </div><!-- Overcrowded bar -->
+    <div class="row text-center">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="progress">
+          <div class="progress-bar progress-bar-decent" style="width: 35%">
+            Decent
+          </div>
+          <div class="progress-bar progress-bar-empty" style="width: 20%">
+            Empty
+          </div>
+          <div class="progress-bar progress-bar-full" style="width: 10%">
+            Full
+          </div>
+          <div class="progress-bar progress-bar-overcrowded" style="width: 10%">
+            Overcrowded
+          </div>
+          <div class="progress-bar progress-bar-full" style="width: 25%">
+            Full
+          </div>
+        </div>
+      </div>
+    </div><!-- End of row -->
+    <!-- Boxes for the individual ETAs -->
+    <div class="row match-my-cols">
+      <!-- begin nextram block -->
+      <div class="col-sm-6 nextram_box full text-center">
+        <div class="box padding-15px">
+          <!-- start summary -->
+          <span class="route_number_table route_number_96">96</span>To East Brunswick <button class="btn clear_10px_left">Route Guide</button>
+          <h1>3 min</h1>
+
+          <div class="row">
+            <p class="expected">Expected Crowd Level</p>
+          </div><!-- crowding bar -->
+
+          <div class="row no-margin">
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="progress">
+                <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-overcrowded" role="progressbar" style="width: 90%">
+                  Overcrowded
+                </div>
+              </div>
+            </div>
+          </div><!-- crowding advisory -->
+
+          <div class="row">
+            <p>All trams expected to be full</p>
+          </div><!-- /summary -->
+
+          <div class="row">
+            <div class="panel-group" id="accordion1">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a class="accordion-toggle collapsed"
+                    data-toggle="collapse" data-parent="#accordion1" href="#collapse1">
+                    More details and reporting</a>
+                  </h4>
+                </div>
+
+                <div id="collapse1" class="panel-collapse collapse">
+                  <ul class="nav nav-pills center-pills">
+                    <li class="active"><a data-toggle="tab" class="pill-tabs" href="#moreDetails1">Details</a></li>
+                    <li><a data-toggle="tab" class="pill-tabs" href="#reportCrowd1">Report Crowd</a></li>
+                    <li><a data-toggle="tab" class="pill-tabs" href="#reportDisruption1">Report Disruption</a></li>
+                  </ul>
+
+                  <div class="tab-content">
+                    <div class="tab-pane fade in active" id="moreDetails1">
+                        <div class="well">
+                          <div class="row">
+                            <div aria-label="" class="btn-group" role="group">
+                              <div class="col-sm-12">
+                                <button class="btn" type="button">Stopping Pattern</button> <button class="btn" type="button">Route Guide</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <h3>Next Departures</h3>
+                          </div><!-- one bunch of departure board -->
+                          <h1>5 min</h1>
+                          <div class="row">
+                            <p class="expected">Expected Crowd Level</p>
+                          </div>
+                          <div class="row no-margin">
+                            <div class="col-xs-10 col-xs-offset-1">
+                              <div class="progress">
+                                <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-full" role="progressbar" style="width: 60%">
+                                  Full
+                                </div>
+                              </div>
+                            </div>
+                          </div><!-- end bunch -->
+                          <!-- one bunch of departure board -->
+                          <h1>8 min</h1>
+                          <div class="row">
+                            <p class="expected">Expected Crowd Level</p>
+                          </div>
+                          <div class="row no-margin">
+                            <div class="col-xs-10 col-xs-offset-1">
+                              <div class="progress">
+                                <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-overcrowded" role="progressbar" style="width: 90%">
+                                  Overcrowded
+                                </div>
+                              </div>
+                            </div>
+                          </div><!-- end bunch -->
+                        </div>
+                      </div>
+
+                    <div class="tab-pane fade in" id="reportCrowd1">
+                      <div class="well">
+                        <div class="row">
+                          <h5>Please rate the tram crowdedness</h5>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                            <button class="btn btn-success btn-lg clear_5px_top" type="button">Empty</button> <button class="btn btn-success btn-lg clear_5px_top" type="button">Decent</button> <button class="btn btn-warning btn-lg clear_5px_top" type="button">Full</button> <button class="btn btn-danger btn-lg clear_5px_top" type="button">Overcrowded</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade in" id="reportDisruption1">
+                      <div class="well">
+                        <div class="row">
+                          <h5>Please describe the disruption</h5>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                            <div class="input-group">
+                              <textarea class="form-control" id="disruption" placeholder="Enter here" rows="2"></textarea> <span class="input-group-addon btn btn-primary">Submit</span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- close collapsibles -->
+        </div>
+      </div><!-- End of col -->
+
+      <div class="col-sm-6 nextram_box disruption text-center">
+        <div class="box padding-15px">
+          <span class="glyphicon glyphicon-warning-sign clear_10px_right"></span><span class="route_number_table route_number_96">96</span> To St Kilda Beach
+          <h1>NOW</h1>
+          <div class="row">
+            <p class="expected">Expected Crowd Level</p>
+          </div><!-- crowding bar -->
+          <div class="row no-margin">
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="progress">
+                <div aria-valuemax="40" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-decent" role="progressbar" style="width: 40%">
+                  Decent
+                </div>
+              </div>
+            </div>
+          </div><!-- crowding advisory -->
+          <div class="row">
+            <p>All trams expected to be decently occupied Increase in patronage is expected at 4 PM</p>
+          </div><!-- service disruption -->
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <h2 class="disruption_font"><span class="glyphicon glyphicon-warning-sign clear_10px_right"></span>Service Disruption</h2><span class="disruption_table">OFFICIAL</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+              <p>Due to a disruptive passenger, Route 96 trams to St Kilda Beach are diverting via Clarendon St along Route 12.</p>
+            </div>
+          </div><!-- / service disruption -->
+          <!-- service disruption -->
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <h2 class="disruption_font"><span class="glyphicon glyphicon-info-sign clear_10px_right"></span>Information</h2><span class="disruption_table">CROWDSOURCED</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+              <p>User <a class="onlight" href="#">nightietime</a> reported: Somebody threw up all over E.6021 and I am sad.</p>
+            </div>
+          </div><!-- / service disruption -->
+
+          <div class="row">
+            <div class="panel-group" id="accordion2">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a class="accordion-toggle collapsed"
+                    data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+                    More details and reporting</a>
+                  </h4>
+                </div>
+
+                <div id="collapse2" class="panel-collapse collapse">
+                  <ul class="nav nav-pills center-pills">
+                    <li class="active"><a data-toggle="tab" class="pill-tabs" href="#moreDetails2">Details</a></li>
+                    <li><a data-toggle="tab" class="pill-tabs" href="#reportCrowd2">Report Crowd</a></li>
+                    <li><a data-toggle="tab" class="pill-tabs" href="#reportDisruption2">Report Disruption</a></li>
+                  </ul>
+
+                  <div class="tab-content">
+                    <div class="tab-pane fade in active" id="moreDetails2">
+                        <div class="well">
+                          <div class="row">
+                            <div aria-label="" class="btn-group" role="group">
+                              <div class="col-sm-12">
+                                <button class="btn" type="button">Stopping Pattern</button> <button class="btn" type="button">Route Guide</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <h3>Next Departures</h3>
+                          </div><!-- one bunch of departure board -->
+                          <h1>5 min</h1>
+                          <div class="row">
+                            <p class="expected">Expected Crowd Level</p>
+                          </div>
+                          <div class="row no-margin">
+                            <div class="col-xs-10 col-xs-offset-1">
+                              <div class="progress">
+                                <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-full" role="progressbar" style="width: 60%">
+                                  Full
+                                </div>
+                              </div>
+                            </div>
+                          </div><!-- end bunch -->
+                          <!-- one bunch of departure board -->
+                          <h1>8 min</h1>
+                          <div class="row">
+                            <p class="expected">Expected Crowd Level</p>
+                          </div>
+                          <div class="row no-margin">
+                            <div class="col-xs-10 col-xs-offset-1">
+                              <div class="progress">
+                                <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-overcrowded" role="progressbar" style="width: 90%">
+                                  Overcrowded
+                                </div>
+                              </div>
+                            </div>
+                          </div><!-- end bunch -->
+                        </div>
+                      </div>
+
+                    <div class="tab-pane fade in" id="reportCrowd2">
+                      <div class="well">
+                        <div class="row">
+                          <h5>Please rate the tram crowdedness</h5>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                            <button class="btn btn-success btn-lg clear_5px_top" type="button">Empty</button> <button class="btn btn-success btn-lg clear_5px_top" type="button">Decent</button> <button class="btn btn-warning btn-lg clear_5px_top" type="button">Full</button> <button class="btn btn-danger btn-lg clear_5px_top" type="button">Overcrowded</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade in" id="reportDisruption2">
+                      <div class="well">
+                        <div class="row">
+                          <h5>Please describe the disruption</h5>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                            <div class="input-group">
+                              <textarea class="form-control" id="disruption" placeholder="Enter here" rows="2"></textarea> <span class="input-group-addon btn btn-primary">Submit</span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- close box -->
+      </div><!-- close column -->
+
+    </div><!-- End of row -->
+
+    <div class="row match-my-cols">
+      <div class="col-sm-6 nextram_box empty text-center">
+        <div class="box padding-15px">
+          <span class="route_number_table route_number_86">86</span> To Waterfront City Docklands
+          <h1>2 min</h1>
+          <div class="row">
+            <p class="expected">Expected Crowd Level</p>
+          </div><!-- crowding bar -->
+          <div class="row no-margin">
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="progress">
+                <div aria-valuemax="40" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-decent" role="progressbar" style="width: 40%">
+                  Decent
+                </div>
+              </div>
+            </div>
+          </div><!-- crowding advisory -->
+          <div class="row">
+            <p>All trams expected to be decently occupied</p>
+          </div>
+          <div class="row">
+
+
+            <div class="panel-group" id="accordion3">
+              <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"><a class="accordion-toggle collapsed"
+        data-toggle="collapse" data-parent="#accordion3" href="#collapse3">
+        More details and reporting</a>
+      </h4>
+    </div>
+
+    <div id="collapse3" class="panel-collapse collapse">
+      <ul class="nav nav-pills center-pills">
+        <li class="active"><a data-toggle="tab" class="pill-tabs" href="#moreDetails3">Details</a></li>
+        <li><a data-toggle="tab" class="pill-tabs" href="#reportCrowd3">Report Crowd</a></li>
+        <li><a data-toggle="tab" class="pill-tabs" href="#reportDisruption3">Report Disruption</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="moreDetails3">
+            <div class="well">
+              <div class="row">
+                <div aria-label="" class="btn-group" role="group">
+                  <div class="col-sm-12">
+                    <button class="btn" type="button">Stopping Pattern</button> <button class="btn" type="button">Route Guide</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <h3>Next Departures</h3>
+              </div><!-- one bunch of departure board -->
+              <h1>5 min</h1>
+              <div class="row">
+                <p class="expected">Expected Crowd Level</p>
+              </div>
+              <div class="row no-margin">
+                <div class="col-xs-10 col-xs-offset-1">
+                  <div class="progress">
+                    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-full" role="progressbar" style="width: 60%">
+                      Full
+                    </div>
+                  </div>
+                </div>
+              </div><!-- end bunch -->
+              <!-- one bunch of departure board -->
+              <h1>8 min</h1>
+              <div class="row">
+                <p class="expected">Expected Crowd Level</p>
+              </div>
+              <div class="row no-margin">
+                <div class="col-xs-10 col-xs-offset-1">
+                  <div class="progress">
+                    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-overcrowded" role="progressbar" style="width: 90%">
+                      Overcrowded
+                    </div>
+                  </div>
+                </div>
+              </div><!-- end bunch -->
+            </div>
+          </div>
+
+        <div class="tab-pane fade in" id="reportCrowd3">
+          <div class="well">
+            <div class="row">
+              <h5>Please rate the tram crowdedness</h5>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-10 col-xs-offset-1">
+                <button class="btn btn-success btn-lg clear_5px_top" type="button">Empty</button> <button class="btn btn-success btn-lg clear_5px_top" type="button">Decent</button> <button class="btn btn-warning btn-lg clear_5px_top" type="button">Full</button> <button class="btn btn-danger btn-lg clear_5px_top" type="button">Overcrowded</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade in" id="reportDisruption3">
+          <div class="well">
+            <div class="row">
+              <h5>Please describe the disruption</h5>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-10 col-xs-offset-1">
+                <div class="input-group">
+                  <textarea class="form-control" id="disruption" placeholder="Enter here" rows="2"></textarea> <span class="input-group-addon btn btn-primary">Submit</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+            </div>
+
+          </div>
+        </div><!-- close collapsibles -->
+      </div>
+
+      <div class="col-sm-6 nextram_box overcrowded text-center">
+        <div class="box padding-15px">
+          <span class="route_number_table route_number_86">86</span> To Bundoora RMIT
+          <h1>7 min</h1>
+          <div class="row">
+            <p class="expected">Expected Crowd Level</p>
+          </div><!-- crowding bar -->
+          <div class="row no-margin">
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="progress">
+                <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-overcrowded" role="progressbar" style="width: 90%">
+                  Overcrowded
+                </div>
+              </div>
+            </div>
+          </div><!-- crowding advisory -->
+          <div class="row">
+            <p>Overcrowding expected to ease in a few trams.</p>
+          </div>
+          <div class="row">
+
+
+            <div class="panel-group" id="accordion4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"><a class="accordion-toggle collapsed"
+        data-toggle="collapse" data-parent="#accordion4" href="#collapse4">
+        More details and reporting</a>
+      </h4>
+    </div>
+
+    <div id="collapse4" class="panel-collapse collapse">
+      <ul class="nav nav-pills center-pills">
+        <li class="active"><a data-toggle="tab" class="pill-tabs" href="#moreDetails4">Details</a></li>
+        <li><a data-toggle="tab" class="pill-tabs" href="#reportCrowd4">Report Crowd</a></li>
+        <li><a data-toggle="tab" class="pill-tabs" href="#reportDisruption4">Report Disruption</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="moreDetails4">
+            <div class="well">
+              <div class="row">
+                <div aria-label="" class="btn-group" role="group">
+                  <div class="col-sm-12">
+                    <button class="btn" type="button">Stopping Pattern</button> <button class="btn" type="button">Route Guide</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <h3>Next Departures</h3>
+              </div><!-- one bunch of departure board -->
+              <h1>5 min</h1>
+              <div class="row">
+                <p class="expected">Expected Crowd Level</p>
+              </div>
+              <div class="row no-margin">
+                <div class="col-xs-10 col-xs-offset-1">
+                  <div class="progress">
+                    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-full" role="progressbar" style="width: 60%">
+                      Full
+                    </div>
+                  </div>
+                </div>
+              </div><!-- end bunch -->
+              <!-- one bunch of departure board -->
+              <h1>8 min</h1>
+              <div class="row">
+                <p class="expected">Expected Crowd Level</p>
+              </div>
+              <div class="row no-margin">
+                <div class="col-xs-10 col-xs-offset-1">
+                  <div class="progress">
+                    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="progress-bar progress-bar-overcrowded" role="progressbar" style="width: 90%">
+                      Overcrowded
+                    </div>
+                  </div>
+                </div>
+              </div><!-- end bunch -->
+            </div>
+          </div>
+
+        <div class="tab-pane fade in" id="reportCrowd4">
+          <div class="well">
+            <div class="row">
+              <h5>Please rate the tram crowdedness</h5>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-10 col-xs-offset-1">
+                <button class="btn btn-success btn-lg clear_5px_top" type="button">Empty</button> <button class="btn btn-success btn-lg clear_5px_top" type="button">Decent</button> <button class="btn btn-warning btn-lg clear_5px_top" type="button">Full</button> <button class="btn btn-danger btn-lg clear_5px_top" type="button">Overcrowded</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade in" id="reportDisruption4">
+          <div class="well">
+            <div class="row">
+              <h5>Please describe the disruption</h5>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-10 col-xs-offset-1">
+                <div class="input-group">
+                  <textarea class="form-control" id="disruption" placeholder="Enter here" rows="2"></textarea> <span class="input-group-addon btn btn-primary">Submit</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+          </div><!-- end accordion -->
+        </div><!-- close collapsibles -->
+      </div><!-- end box-->
+    </div><!-- end column -->
+  </div><!-- end of row -->
+  <!-- End of container -->
+  <!-- Footer -->
+  <footer>
+    <p>COPYRIGHT HOOKTURNS 2017</p>
+  </footer><!-- Include Javascript and Jquery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.js">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+  </script> <!-- height matching script -->
+
+
+</body>
+</html>
