@@ -1,6 +1,8 @@
 // Create database
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/tram_db',function(err){
+
+mongoose.connect('mongodb://localhost/myappdatabase',function(err){
+
     if(!err){
         console.log('Connected to mongo');
     }else{
@@ -9,3 +11,4 @@ mongoose.connect('mongodb://localhost/tram_db',function(err){
 });
 
 require('./user.js');
+require('./disruption.js');

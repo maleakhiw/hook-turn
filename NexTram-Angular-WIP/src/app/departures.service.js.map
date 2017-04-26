@@ -1,0 +1,1 @@
+{"version":3,"file":"departures.service.js","sourceRoot":"","sources":["departures.service.ts"],"names":[],"mappings":";;;;;;;AAAA,sCAA2C;AAG3C,qDAAmD;AAGnD,IAAa,iBAAiB;IAA9B;IAKA,CAAC;IAJC,6CAAiB,GAAjB;QACE,+BAA+B;QAC/B,MAAM,CAAC,OAAO,CAAC,OAAO,CAAC,gCAAc,CAAC,CAAC;IACzC,CAAC;IACH,wBAAC;AAAD,CAAC,AALD,IAKC;AALY,iBAAiB;IAD7B,iBAAU,EAAE;GACA,iBAAiB,CAK7B;AALY,8CAAiB"}

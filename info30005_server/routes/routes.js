@@ -7,16 +7,15 @@ var router = express.Router();
 
 var controller = require('../controllers/controller.js');
 
-// Create new cafe
-router.post('/api',controller.createData);
-
-// Find all cafes
-router.get('/api',controller.findAllData);
-
-// Find one cafe by id
-router.get('/api/:id',controller.findOneData);
-
-// Delete one cafe by id
-router.delete('/api/:id',controller.deleteOneData);
+// Create new disruption
+router.post('/reportdisruption',controller.createDisruption);
+// Find all disruptions
+router.get('/reportdisruption',controller.findAllDisruption);
+// Find one disruption by id
+router.get('/reportdisruption/:id',controller.findOneDisruption);
+// Find one disruption and update by id
+router.post('/reportdisruption/:id',controller.findOneAndUpdateDisruption);
+// Delete one disruption by id
+router.delete('/reportdisruption/:id',controller.deleteOneDisruption);
 
 module.exports = router;
