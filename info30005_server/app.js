@@ -55,7 +55,7 @@ app.get("/departures", function(req, res) {
     }
 
     // Give an error if user does not put stopId as query parameter
-    if (!req.query.stopid) {  
+    if (!req.query.stopid) {
        res.json({status: 'error'});
     }
     else {
@@ -132,10 +132,10 @@ app.get("*", function(req, res) {
 /*********************************POST****************************************/
 
 // Information gather from nextram page
-app.post("/nextram", function(req, res)) {
+app.post("/nextram", function(req, res) {
     var crowdedness = req.body.crowdedness;
 
-    
+
 });
 
 /**********************************LISTEN*************************************/
