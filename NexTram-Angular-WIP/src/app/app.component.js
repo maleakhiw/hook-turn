@@ -21,6 +21,7 @@ var AppComponent = (function () {
         this.getDeparturesData();
     };
     AppComponent.prototype.updateDeparturesData = function (departuresData) {
+        console.log(departuresData);
         this.departuresData = departuresData;
         for (var key in departuresData.ptvData.stops) {
             this.stopData = departuresData.ptvData.stops[key];

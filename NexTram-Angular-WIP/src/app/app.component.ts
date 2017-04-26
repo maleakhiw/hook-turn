@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { GongService } from './gong.service';
 import { DeparturesService } from './departures.service'
-import { DeparturesData } from './departures';
+import { DeparturesData, Stop } from './departures';
 
 @Component({
   selector: 'my-app',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   departuresData: DeparturesData;
   stopData: Stop;
   stopName: string;
-  stopNo: number;
+  stopNo: string;
   routes: any[];
   directions: any[];
   // name = "hello";
@@ -24,7 +24,8 @@ export class AppComponent implements OnInit {
     this.getDeparturesData();
   }
 
-  updateDeparturesData(departuresData): void {
+  updateDeparturesData(departuresData: any): void {
+    console.log(departuresData);
     this.departuresData = departuresData;
     for (var key in departuresData.ptvData.stops) { // assume only 1 stop
       this.stopData = departuresData.ptvData.stops[key];

@@ -6,7 +6,7 @@ import { AppComponent }  from './app.component';
 import { NavbarComponent } from './navbar.component';
 
 @NgModule({
-  imports:      [ BrowserModule ],
+  imports:      [ BrowserModule, HttpModule ],
   declarations: [ AppComponent, NavbarComponent ],
   bootstrap:    [ AppComponent ],
 })
