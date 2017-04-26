@@ -139,6 +139,6 @@ app.post("/nextram", function(req, res) {
 });
 
 /**********************************LISTEN*************************************/
-app.listen(3000, "localhost", function(req, res) {
+app.listen(80, function(req, res) {
   console.log("HookTurns server has started...")
 });
