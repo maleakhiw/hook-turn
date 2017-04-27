@@ -24,6 +24,7 @@ export class DeparturesData {
     status: string;
     stopID: string;
     ptvData: any;
+    groupedDepts: any;
     crowdSourcedDisruptions: any[];
     routeGuide?: any;
 }

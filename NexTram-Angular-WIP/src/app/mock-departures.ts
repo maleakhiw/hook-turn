@@ -7,35 +7,23 @@ export const DEPARTURESDATA: DeparturesData = {
       {
         "stop_id": 2489,
         "route_id": 3343,
-        "run_id": 6187,
+        "run_id": 6129,
         "direction_id": 9,
         "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:18:00Z",
-        "estimated_departure_utc": "2017-04-26T06:18:48Z",
+        "scheduled_departure_utc": "2017-04-27T00:13:00Z",
+        "estimated_departure_utc": "2017-04-27T00:17:58Z",
         "at_platform": false,
         "platform_number": null,
-        "flags": ""
+        "flags": "TH"
       },
       {
         "stop_id": 2489,
         "route_id": 2903,
-        "run_id": 14070,
-        "direction_id": 20,
-        "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:17:00Z",
-        "estimated_departure_utc": "2017-04-26T06:19:00Z",
-        "at_platform": false,
-        "platform_number": null,
-        "flags": ""
-      },
-      {
-        "stop_id": 2489,
-        "route_id": 2903,
-        "run_id": 14465,
+        "run_id": 14417,
         "direction_id": 9,
         "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:31:00Z",
-        "estimated_departure_utc": "2017-04-26T06:19:30Z",
+        "scheduled_departure_utc": "2017-04-27T00:21:00Z",
+        "estimated_departure_utc": "2017-04-27T00:18:54Z",
         "at_platform": false,
         "platform_number": null,
         "flags": ""
@@ -43,11 +31,11 @@ export const DEPARTURESDATA: DeparturesData = {
       {
         "stop_id": 2489,
         "route_id": 3343,
-        "run_id": 5728,
+        "run_id": 5691,
         "direction_id": 8,
         "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:23:00Z",
-        "estimated_departure_utc": "2017-04-26T06:23:00Z",
+        "scheduled_departure_utc": "2017-04-27T00:19:00Z",
+        "estimated_departure_utc": "2017-04-27T00:22:18Z",
         "at_platform": false,
         "platform_number": null,
         "flags": ""
@@ -55,10 +43,70 @@ export const DEPARTURESDATA: DeparturesData = {
       {
         "stop_id": 2489,
         "route_id": 3343,
-        "run_id": 6188,
+        "run_id": 6132,
         "direction_id": 9,
         "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:24:00Z",
+        "scheduled_departure_utc": "2017-04-27T00:24:00Z",
+        "estimated_departure_utc": null,
+        "at_platform": false,
+        "platform_number": null,
+        "flags": "TH"
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14031,
+        "direction_id": 20,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:17:00Z",
+        "estimated_departure_utc": "2017-04-27T00:25:12Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14032,
+        "direction_id": 20,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:26:00Z",
+        "estimated_departure_utc": "2017-04-27T00:27:54Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14418,
+        "direction_id": 9,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:31:00Z",
+        "estimated_departure_utc": "2017-04-27T00:28:12Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 3343,
+        "run_id": 5692,
+        "direction_id": 8,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:29:00Z",
+        "estimated_departure_utc": "2017-04-27T00:29:00Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 3343,
+        "run_id": 6133,
+        "direction_id": 9,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:34:00Z",
         "estimated_departure_utc": null,
         "at_platform": false,
         "platform_number": null,
@@ -67,34 +115,22 @@ export const DEPARTURESDATA: DeparturesData = {
       {
         "stop_id": 2489,
         "route_id": 2903,
-        "run_id": 14464,
-        "direction_id": 9,
+        "run_id": 14033,
+        "direction_id": 20,
         "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:21:00Z",
-        "estimated_departure_utc": "2017-04-26T06:25:54Z",
+        "scheduled_departure_utc": "2017-04-27T00:36:00Z",
+        "estimated_departure_utc": "2017-04-27T00:37:12Z",
         "at_platform": false,
         "platform_number": null,
-        "flags": "MO-TU-WE-FR"
+        "flags": ""
       },
       {
         "stop_id": 2489,
-        "route_id": 3343,
-        "run_id": 5729,
-        "direction_id": 8,
-        "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:29:00Z",
-        "estimated_departure_utc": "2017-04-26T06:29:00Z",
-        "at_platform": false,
-        "platform_number": null,
-        "flags": "MO-TU-WE-FR"
-      },
-      {
-        "stop_id": 2489,
-        "route_id": 3343,
-        "run_id": 6189,
+        "route_id": 2903,
+        "run_id": 14420,
         "direction_id": 9,
         "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:29:00Z",
+        "scheduled_departure_utc": "2017-04-27T00:41:00Z",
         "estimated_departure_utc": null,
         "at_platform": false,
         "platform_number": null,
@@ -102,48 +138,12 @@ export const DEPARTURESDATA: DeparturesData = {
       },
       {
         "stop_id": 2489,
-        "route_id": 2903,
-        "run_id": 14071,
-        "direction_id": 20,
-        "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:27:00Z",
-        "estimated_departure_utc": "2017-04-26T06:29:30Z",
-        "at_platform": false,
-        "platform_number": null,
-        "flags": ""
-      },
-      {
-        "stop_id": 2489,
         "route_id": 3343,
-        "run_id": 5731,
+        "run_id": 5693,
         "direction_id": 8,
         "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:36:00Z",
-        "estimated_departure_utc": "2017-04-26T06:36:48Z",
-        "at_platform": false,
-        "platform_number": null,
-        "flags": ""
-      },
-      {
-        "stop_id": 2489,
-        "route_id": 2903,
-        "run_id": 14466,
-        "direction_id": 9,
-        "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:37:00Z",
-        "estimated_departure_utc": null,
-        "at_platform": false,
-        "platform_number": null,
-        "flags": "MO-TU-WE-FR"
-      },
-      {
-        "stop_id": 2489,
-        "route_id": 2903,
-        "run_id": 14072,
-        "direction_id": 20,
-        "disruption_ids": [],
-        "scheduled_departure_utc": "2017-04-26T06:37:00Z",
-        "estimated_departure_utc": "2017-04-26T06:37:00Z",
+        "scheduled_departure_utc": "2017-04-27T00:39:00Z",
+        "estimated_departure_utc": "2017-04-27T00:42:00Z",
         "at_platform": false,
         "platform_number": null,
         "flags": ""
@@ -174,96 +174,96 @@ export const DEPARTURESDATA: DeparturesData = {
       }
     },
     "runs": {
-      "5728": {
-        "run_id": 5728,
+      "5691": {
+        "run_id": 5691,
         "route_id": 3343,
         "route_type": 1,
         "final_stop_id": 2511,
         "destination_name": "West Preston/Gilbert Rd #47",
         "status": "scheduled"
       },
-      "5729": {
-        "run_id": 5729,
+      "5692": {
+        "run_id": 5692,
         "route_id": 3343,
         "route_type": 1,
         "final_stop_id": 2511,
         "destination_name": "West Preston/Gilbert Rd #47",
         "status": "scheduled"
       },
-      "5731": {
-        "run_id": 5731,
+      "5693": {
+        "run_id": 5693,
         "route_id": 3343,
         "route_type": 1,
         "final_stop_id": 2511,
         "destination_name": "West Preston/Gilbert Rd #47",
         "status": "scheduled"
       },
-      "6187": {
-        "run_id": 6187,
+      "6129": {
+        "run_id": 6129,
         "route_id": 3343,
         "route_type": 1,
         "final_stop_id": 2890,
         "destination_name": "D18-Bourke St/Collins St",
         "status": "scheduled"
       },
-      "6188": {
-        "run_id": 6188,
+      "6132": {
+        "run_id": 6132,
         "route_id": 3343,
         "route_type": 1,
         "final_stop_id": 2890,
         "destination_name": "D18-Bourke St/Collins St",
         "status": "scheduled"
       },
-      "6189": {
-        "run_id": 6189,
+      "6133": {
+        "run_id": 6133,
         "route_id": 3343,
         "route_type": 1,
         "final_stop_id": 2890,
         "destination_name": "D18-Bourke St/Collins St",
         "status": "scheduled"
       },
-      "14070": {
-        "run_id": 14070,
+      "14031": {
+        "run_id": 14031,
         "route_id": 2903,
         "route_type": 1,
         "final_stop_id": 2830,
         "destination_name": "Balwyn Rd/Doncaster Rd #51",
         "status": "scheduled"
       },
-      "14071": {
-        "run_id": 14071,
+      "14032": {
+        "run_id": 14032,
         "route_id": 2903,
         "route_type": 1,
         "final_stop_id": 2830,
         "destination_name": "Balwyn Rd/Doncaster Rd #51",
         "status": "scheduled"
       },
-      "14072": {
-        "run_id": 14072,
+      "14033": {
+        "run_id": 14033,
         "route_id": 2903,
         "route_type": 1,
         "final_stop_id": 2830,
         "destination_name": "Balwyn Rd/Doncaster Rd #51",
         "status": "scheduled"
       },
-      "14464": {
-        "run_id": 14464,
+      "14417": {
+        "run_id": 14417,
         "route_id": 2903,
         "route_type": 1,
         "final_stop_id": 2890,
         "destination_name": "D18-Bourke St/Collins St",
         "status": "scheduled"
       },
-      "14465": {
-        "run_id": 14465,
+      "14418": {
+        "run_id": 14418,
         "route_id": 2903,
         "route_type": 1,
         "final_stop_id": 2890,
         "destination_name": "D18-Bourke St/Collins St",
         "status": "scheduled"
       },
-      "14466": {
-        "run_id": 14466,
+      "14420": {
+        "run_id": 14420,
         "route_id": 2903,
         "route_type": 1,
         "final_stop_id": 2890,
@@ -296,6 +296,160 @@ export const DEPARTURESDATA: DeparturesData = {
       "version": "3.0",
       "health": 1
     }
+  },
+  "groupedDepts": {
+    "3343-9": [
+      {
+        "stop_id": 2489,
+        "route_id": 3343,
+        "run_id": 6129,
+        "direction_id": 9,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:13:00Z",
+        "estimated_departure_utc": "2017-04-27T00:17:58Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": "TH"
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 3343,
+        "run_id": 6132,
+        "direction_id": 9,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:24:00Z",
+        "estimated_departure_utc": null,
+        "at_platform": false,
+        "platform_number": null,
+        "flags": "TH"
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 3343,
+        "run_id": 6133,
+        "direction_id": 9,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:34:00Z",
+        "estimated_departure_utc": null,
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      }
+    ],
+    "2903-9": [
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14417,
+        "direction_id": 9,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:21:00Z",
+        "estimated_departure_utc": "2017-04-27T00:18:54Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14418,
+        "direction_id": 9,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:31:00Z",
+        "estimated_departure_utc": "2017-04-27T00:28:12Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14420,
+        "direction_id": 9,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:41:00Z",
+        "estimated_departure_utc": null,
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      }
+    ],
+    "3343-8": [
+      {
+        "stop_id": 2489,
+        "route_id": 3343,
+        "run_id": 5691,
+        "direction_id": 8,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:19:00Z",
+        "estimated_departure_utc": "2017-04-27T00:22:18Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 3343,
+        "run_id": 5692,
+        "direction_id": 8,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:29:00Z",
+        "estimated_departure_utc": "2017-04-27T00:29:00Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 3343,
+        "run_id": 5693,
+        "direction_id": 8,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:39:00Z",
+        "estimated_departure_utc": "2017-04-27T00:42:00Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      }
+    ],
+    "2903-20": [
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14031,
+        "direction_id": 20,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:17:00Z",
+        "estimated_departure_utc": "2017-04-27T00:25:12Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14032,
+        "direction_id": 20,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:26:00Z",
+        "estimated_departure_utc": "2017-04-27T00:27:54Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      },
+      {
+        "stop_id": 2489,
+        "route_id": 2903,
+        "run_id": 14033,
+        "direction_id": 20,
+        "disruption_ids": [],
+        "scheduled_departure_utc": "2017-04-27T00:36:00Z",
+        "estimated_departure_utc": "2017-04-27T00:37:12Z",
+        "at_platform": false,
+        "platform_number": null,
+        "flags": ""
+      }
+    ]
   },
   "crowdSourcedDisruptions": [],
   "routeGuide": null

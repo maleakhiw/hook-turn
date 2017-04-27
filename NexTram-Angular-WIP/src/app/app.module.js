@@ -10,6 +10,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var navbar_component_1 = require("./navbar.component");
+var keys_pipe_1 = require("./keys.pipe");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -18,7 +19,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
-        declarations: [app_component_1.AppComponent, navbar_component_1.NavbarComponent],
+        declarations: [app_component_1.AppComponent, navbar_component_1.NavbarComponent, keys_pipe_1.KeysPipe],
         bootstrap: [app_component_1.AppComponent],
     })
 ], AppModule);
