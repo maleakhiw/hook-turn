@@ -10,5 +10,8 @@ mongoose.connect('mongodb://localhost/myappdatabase',function(err){
     }
 });
 
-require('./user.js');
-require('./disruption.js');
+var User = require('./user.js');
+var Disruption = require('./disruption.js');
+
+module.exports.User = User;
+module.exports.Disruption = Disruption;
