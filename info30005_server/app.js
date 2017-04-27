@@ -23,6 +23,7 @@ var Crowdedness = require('./models/user.js').Crowdedness;
 app.set("view engine", "ejs");
 // Serve static files
 app.use(express.static("assets"));
+app.use('/nextramlive', express.static(path.join(__dirname, 'nextram')));
 
 // PTV API request setup
 var PTV = require('./ptvApi.js');
@@ -142,8 +143,6 @@ app.get("/nextram", function(req, res) {
 	   res.render("index", {pageId: "nextram"});
     }
 });
-
-app.use('/nextramlive', express.static('nextram'));
 
 // Route Guide
 app.get("/route-guide", function(req, res) {
