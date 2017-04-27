@@ -102,7 +102,17 @@ export class AppComponent implements OnInit {
   }
 
   getDeparturesData(): void { // TODO: change to Observables using RxJS
-    this.departuresService.getDeparturesData()
+    // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
+
+    class Params {
+      stopid: any;
+    }
+
+    var queryDict = new Params();
+    window.location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
+    // TODO: Angular2 routing, validation
+
+    this.departuresService.getDeparturesData(queryDict.stopid)
       .then(departuresData => this.updateDeparturesData(departuresData));  // when the Promise is resolved, add to local departuresData
   }
 

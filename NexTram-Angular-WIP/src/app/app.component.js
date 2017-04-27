@@ -84,8 +84,17 @@ var AppComponent = (function () {
         this.directions = departuresData.ptvData.directions;
     };
     AppComponent.prototype.getDeparturesData = function () {
+        // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
         var _this = this;
-        this.departuresService.getDeparturesData()
+        var Params = (function () {
+            function Params() {
+            }
+            return Params;
+        }());
+        var queryDict = new Params();
+        window.location.search.substr(1).split("&").forEach(function (item) { queryDict[item.split("=")[0]] = item.split("=")[1]; });
+        // TODO: Angular2 routing, validation
+        this.departuresService.getDeparturesData(queryDict.stopid)
             .then(function (departuresData) { return _this.updateDeparturesData(departuresData); }); // when the Promise is resolved, add to local departuresData
     };
     return AppComponent;

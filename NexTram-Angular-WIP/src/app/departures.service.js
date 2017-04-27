@@ -20,10 +20,10 @@ var DeparturesService = (function () {
         console.log(this.apiUrl + '?stopid=' + stopId);
         return this.apiUrl + '?stopid=' + stopId;
     };
-    DeparturesService.prototype.getDeparturesData = function () {
+    DeparturesService.prototype.getDeparturesData = function (stopId) {
         // console.log(DEPARTURESDATA);
         // return Promise.resolve(DEPARTURESDATA);
-        return this.http.get(this.getDeparturesUrl('2497'))
+        return this.http.get(this.getDeparturesUrl(stopId))
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
