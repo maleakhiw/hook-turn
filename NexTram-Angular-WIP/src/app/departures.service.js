@@ -23,7 +23,7 @@ var DeparturesService = (function () {
     DeparturesService.prototype.getDeparturesData = function () {
         // console.log(DEPARTURESDATA);
         // return Promise.resolve(DEPARTURESDATA);
-        return this.http.get(this.getDeparturesUrl('2489'))
+        return this.http.get(this.getDeparturesUrl('2497'))
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);

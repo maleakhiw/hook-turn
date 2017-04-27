@@ -20,7 +20,7 @@ export class DeparturesService {
   getDeparturesData(): Promise<DeparturesData> {
     // console.log(DEPARTURESDATA);
     // return Promise.resolve(DEPARTURESDATA);
-    return this.http.get(this.getDeparturesUrl('2489'))
+    return this.http.get(this.getDeparturesUrl('2497'))
       .toPromise()
       .then(response => response.json() as DeparturesData)
       .catch(this.handleError);
