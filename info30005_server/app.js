@@ -143,7 +143,11 @@ app.get("/nextram", function(req, res) {
     }
 });
 
-app.use('/nextramlive', serveStatic('nextram'))
+app.get("/nextramlive/*", function(req, res) {
+  var uid = req.params.uid,
+        path = req.params[0] ? req.params[0] : 'index.html';
+    res.sendfile(path, {root: './public'});
+})
 
 // Route Guide
 app.get("/route-guide", function(req, res) {
