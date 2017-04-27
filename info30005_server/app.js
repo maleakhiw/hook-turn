@@ -23,7 +23,7 @@ var Crowdedness = require('./models/user.js').Crowdedness;
 app.set("view engine", "ejs");
 // Serve static files
 app.use(express.static("assets"));
-app.use('/nextramlive', express.static(path.join(__dirname, 'nextram')));
+app.use('/nextramlive', express.static('../nextram'));
 
 // PTV API request setup
 var PTV = require('./ptvApi.js');
