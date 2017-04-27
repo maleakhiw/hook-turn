@@ -31,6 +31,22 @@ var tramData = require("./assets/json/tramstops.json");
 
 /***********************************PTV ROUTES********************************/
 
+var groupByRouteDirectionID = function(ptvData) {
+  var departures = ptvData.departures;
+  var newDepartures = {};
+  for (var i=0; i<departures.length; i++) {
+    var key = departures[i].route_id + '-' + departures[i].run_id;
+    if (key in newDepartures) {
+      newDepartures[key].push(departures[i]); // add to existing array
+    }
+    else {
+      newDepartures[key] = [departures[i]]; // initialise new array
+    }
+  }
+
+  return newDepartures;
+}
+
 // GET request. params - stopid: int
 app.get("/departures", cors(), function(req, res) {
 
@@ -46,6 +62,7 @@ app.get("/departures", cors(), function(req, res) {
                 status: "success",
                 stopID: stopID,
                 ptvData: JSON.parse(body),
+                groupedDepts: groupByRouteDirectionID(JSON.parse(body).departures);
                 crowdSourcedDisruptions: [],
                 routeGuide: null
               }
