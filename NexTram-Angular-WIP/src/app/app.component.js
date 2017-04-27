@@ -11,6 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 // import { GongService } from './gong.service';
 var departures_service_1 = require("./departures.service");
+var jumbotronImages = ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
+var getRandomImageURL = function () {
+    var randomNo = Math.floor(Math.random() * jumbotronImages.length);
+    return jumbotronImages[randomNo];
+};
 var AppComponent = (function () {
     // name = "hello";
     // stopData = {'stop_name': 'Southern Cross Station'};
@@ -89,7 +94,8 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
         templateUrl: './partials/app_component.html',
-        providers: [departures_service_1.DeparturesService]
+        providers: [departures_service_1.DeparturesService],
+        styles: ['.jumbotron { background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("' + getRandomImageURL() + '"); }']
     }),
     __metadata("design:paramtypes", [departures_service_1.DeparturesService])
 ], AppComponent);
