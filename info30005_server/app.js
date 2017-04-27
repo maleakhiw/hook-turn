@@ -35,7 +35,7 @@ var groupByRouteDirectionID = function(ptvData) {
   var departures = ptvData.departures;
   var newDepartures = {};
   for (var i=0; i<departures.length; i++) {
-    var key = departures[i].route_id + '-' + departures[i].run_id;
+    var key = departures[i].route_id + '-' + departures[i].direction_id;
     if (key in newDepartures) {
       newDepartures[key].push(departures[i]); // add to existing array
     }
