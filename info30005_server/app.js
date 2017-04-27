@@ -136,12 +136,14 @@ app.get("/nextram", function(req, res) {
                 break;
             }
         }
-        res.redirect("/nextram?stop_id=" + stop_id);
+        res.redirect("/nextramlive?stop_id=" + stop_id);
     }
     else {
-	   res.render("index", {pageId: "nextram"});
+	  //  res.render("index", {pageId: "nextram"});
     }
 });
+
+app.use('/nextramlive', serveStatic('nextram'))
 
 // Route Guide
 app.get("/route-guide", function(req, res) {
