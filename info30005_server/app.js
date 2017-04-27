@@ -62,7 +62,7 @@ app.get("/departures", cors(), function(req, res) {
                 status: "success",
                 stopID: stopID,
                 ptvData: JSON.parse(body),
-                groupedDepts: groupByRouteDirectionID(JSON.parse(body).departures);
+                groupedDepts: groupByRouteDirectionID(JSON.parse(body).departures),
                 crowdSourcedDisruptions: [],
                 routeGuide: null
               }
