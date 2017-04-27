@@ -143,7 +143,7 @@ app.get("/nextram", function(req, res) {
     }
 });
 
-server.use('/nextramlive', express.static(__dirname + '/nextram'));
+app.use('/nextramlive', express.static(__dirname + '/nextram'));
 
 // Route Guide
 app.get("/route-guide", function(req, res) {
