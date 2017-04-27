@@ -18,7 +18,7 @@
   <!-- <div *ngFor="let key of processedGroupedDepts | keys;"> -->
     <div *ngFor="let row of processedGroupedDepts" class="row match-my-cols">
       <div class="col-sm-6 nextram_box full text-center" *ngFor="let column of row"><div class="box padding-15px">
-        <span class="route_number_table route_number_96">{{ routes[column[0].route_id].route_number }}</span>
+        <span class="{{ 'route_number_table route_number_' + routes[column[0].route_id].route_number }}">{{ routes[column[0].route_id].route_number }}</span>
         {{ routes[column[0].route_id].route_name }}
 
         <h1></h1>
