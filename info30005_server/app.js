@@ -9,21 +9,17 @@ var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var path = require("path");
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Database setup
-var User = require('./models/db.js');
-var Crowdedness = require('./models/user.js').Crowdedness;
-
-// Routes setup
-// var routes = require('./routes/routes.js');
-// app.use('/',routes);
+var Database = require('./models/db.js');
 
 // View setup
 app.set("view engine", "ejs");
 // Serve static files
 app.use(express.static("assets"));
-app.use('/nextramlive', express.static('../nextram'));
+// app.use(express.static("../NexTram-Angular-WIP"));
 
 // PTV API request setup
 var PTV = require('./ptvApi.js');
@@ -58,24 +54,23 @@ app.get("/departures", cors(), function(req, res) {
             // Check validity (only process JSON files, does not want website request)
             if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
 
-            Crowdedness.find({}, function(err, result) {
-              console.log(err);
-              console.log(result);
-            })
-
-
-            if (body) {
-              var toSend = {
-                status: "success",
-                stopID: stopID,
-                ptvData: JSON.parse(body),
-                groupedDepts: groupByRouteDirectionID(JSON.parse(body)),
-                crowdSourcedDisruptions: [],
-                routeGuide: null
-              }
-
-                res.json(toSend);
-            }
+            // Get Crowdedness from database
+            Database.Crowdedness.find({}, function(err, result) {
+                console.log(err);
+                console.log(result);
+                // Send back the result in json format
+                if (body) {
+                    var toSend = {
+                        status: "success",
+                        stopID: stopID,
+                        ptvData: JSON.parse(body),
+                        groupedDepts: groupByRouteDirectionID(JSON.parse(body)),
+                        crowdSourcedDisruptions: [result],
+                        routeGuide: null
+                    }
+                    res.json(toSend);
+                }
+            });
         }
     }
 
@@ -91,9 +86,9 @@ app.get("/departures", cors(), function(req, res) {
 
 /*********************************H/T ROUTES**********************************/
 
-app.get("/reportdisruption", function(req, res) {
+// app.get("/reportdisruption", function(req, res) {
 
-})
+// })
 
 /******************************SUPPORTING JSONS*******************************/
 // NexTram Picture Assets
@@ -106,52 +101,58 @@ app.get("/reportdisruption", function(req, res) {
 /***********************************ROUTES************************************/
 // Home
 app.get("/", function(req, res) {
-	res.render("index", {pageId: "home"});
+    res.render("index", {pageId: "home"});
 });
 
 // About
 app.get("/about", function(req, res) {
-	res.render("index", {pageId: "about"});
+    res.render("index", {pageId: "about"});
 });
 
 // How It Works
 app.get("/how-it-works", function(req, res) {
-	res.render("index", {pageId: "hiw"});
+    res.render("index", {pageId: "hiw"});
 });
 
 // Search
 app.get("/search", function(req, res) {
-	res.render("index", {pageId: "search"});
+    res.render("index", {pageId: "search"});
 });
 
 // Nextram
 app.get("/nextram", function(req, res) {
-    // Process query
+    // Process query if user has given stop name on search bar 
     if (req.query.search) {
         var stop_name = req.query.search;
         var stop_id;
         // Find appropriate stop id
         for (var i = 0; i < tramData["stops"].length; i++) {
-            if (tramData["stops"][i]["stop_name"] === stop_name) {
+            if (tramData["stops"][i]["stop_name"].includes(stop_name)) {
                 stop_id = tramData["stops"][i]["stop_id"];
                 break;
             }
         }
-        res.redirect("/nextramlive?stop_id=" + stop_id);
+        res.redirect("/nextram?stop_id=" + stop_id);
     }
     else {
-	   res.render("index", {pageId: "nextram"});
+       res.render("index", {pageId: "nextram"});
     }
 });
 
+// // Angular nextramlive
+// // Please fix something on the angular file, there is some issues
+// app.get("/nextramlive", function(req, res) {
+//     res.sendfile(path.resolve("../NexTram-Angular-WIP/src/index.html"));
+// });
+
 // Route Guide
 app.get("/route-guide", function(req, res) {
-	res.render("index", {pageId: "route_guide"});
+    res.render("index", {pageId: "route_guide"});
 });
 
 // 404 Page Not Found
 app.get("*", function(req, res) {
-	res.render("index", {pageId: "404"});
+    res.render("index", {pageId: "404"});
 });
 
 /*********************************POST****************************************/
@@ -159,9 +160,8 @@ app.get("*", function(req, res) {
 // Information gather from nextram page
 app.post("/nextram", function(req, res) {
     var crowdedness = req.body.crowdedness;
-    console.log("here");
     var userInput = {crowdednessLevel: crowdedness};
-    User.create(userInput, function(err, object) {
+    Database.Crowdedness.create(userInput, function(err, object) {
         if (err) {
             console.log("Error");
         }
@@ -175,6 +175,6 @@ app.post("/nextram", function(req, res) {
 
 
 /**********************************LISTEN*************************************/
-app.listen(80, function(req, res) {
+app.listen(3000, "localhost", function(req, res) {
   console.log("HookTurns server has started...")
 });
