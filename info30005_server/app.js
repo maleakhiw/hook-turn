@@ -19,6 +19,7 @@ var Database = require('./models/db.js');
 app.set("view engine", "ejs");
 // Serve static files
 app.use(express.static("assets"));
+
 // app.use(express.static("../NexTram-Angular-WIP"));
 
 // PTV API request setup
@@ -144,6 +145,7 @@ app.get("/nextram", function(req, res) {
 // app.get("/nextramlive", function(req, res) {
 //     res.sendfile(path.resolve("../NexTram-Angular-WIP/src/index.html"));
 // });
+
 
 // Route Guide
 app.get("/route-guide", function(req, res) {
