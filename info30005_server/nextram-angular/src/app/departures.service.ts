@@ -8,7 +8,8 @@ import { DEPARTURESDATA } from './mock-departures';
 
 @Injectable()
 export class DeparturesService {
-  apiUrl = 'http://hookturns.info/departures';
+  // apiUrl = 'http://hookturns.info/departures';
+  apiUrl = 'http://104.199.124.40/departures'
 
   constructor(private http: Http) {}
 
