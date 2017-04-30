@@ -1,0 +1,301 @@
+/* Nextram.css */
+
+/* Jumbotron */
+.jumbotron {
+    text-align:left;
+    height: 400px;
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../resources/img/sxs.jpg");*/
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4),
+                    0 8px 13px rgba(0, 0, 0, 0.1),
+                        0 13px 18px rgba(0, 0,0, 0.1);
+    padding: 0;
+    margin-bottom: 0px;
+}
+
+.jumbotron>.container {
+    font-family: 'Lato', sans-serif;
+    min-height: 100%;
+    min-width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    height: 100%;
+}
+
+.jumbotron h3 {
+    text-transform:uppercase;
+    margin-top: 12%;
+    font-family:"Oswald", sans-serif;
+    font-size: 1em;
+}
+
+.jumbotron h2 {
+    font-size:1.5em;
+    font-family:"Lato";
+}
+
+.jumbotron h1 {
+  font-size: 3em;
+  font-family:"Oswald";
+  text-transform: uppercase;
+}
+
+/* Section */
+
+h4 {
+  margin-top: 25px;
+}
+
+/* Progress bar */
+.progress-bar-empty {
+  background-color: #b8efca;
+}
+
+.progress-bar-decent {
+  background-color: #22c958;
+}
+
+.progress-bar-full {
+  background-color: #9b5030;
+}
+
+.progress-bar-overcrowded {
+  background-color: #f23737;
+}
+
+
+.progress-bar-disruption {
+  background-color: #F1D628;
+}
+
+.row {
+  font-family: 'Lato',sans-serif;
+  margin-bottom: 0px;
+}
+
+
+/* Boxes */
+.nextram_box {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 1px solid #ddd;
+  font-size: 20px;
+  word-wrap: break-word;
+}
+
+.full {
+  background-color: #d89c82;
+}
+
+.box {
+  background: none;
+  position: static;
+  min-height: 100px;
+  padding-bottom: 20px;
+}
+
+.clear_10px_left {
+  margin-left: 10px;
+}
+
+.clear_10px_right {
+  margin-right: 10px;
+}
+
+.clear_5px_top {
+  margin-top:  5px;
+}
+
+.no-margin {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.empty {
+  background-color: #F0FFF5;
+}
+
+.decent {
+  background-color: #E3F1E8;
+}
+
+.overcrowded {
+  background-color: #FFE4E4;
+
+}
+
+.disruption {
+  background-color: #F1D628;
+}
+
+.nextram_box h1 { /*Definition for style on the ETA*/
+  font-family: 'Lato',sans-serif;
+  color: #333333;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.disruption_font {
+  font-family:  'Lato',sans-serif;
+  color:  #000;
+  font-weight:  bold;
+  font-size: 36px;
+}
+
+.disruption_table {
+  padding-top: 2px;
+  padding-bottom:  2px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  border: 1px solid;
+}
+
+.route_number_table {
+  padding-top: 2px;
+  padding-bottom: 4px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius:31px;
+  box-sizing: border-box;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  border: 5px solid;
+  background-color: #000;
+
+}
+
+.route_number_86 {
+  border-color: #ffd503;
+
+}
+
+.route_number_12 {
+  border-color: #8dc63f;
+
+}
+
+.route_number_96 {
+  border-color: #c6168d;
+
+}
+
+.progress_box {
+  width: 80%;
+}
+
+.no-margin {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.no-top-padding {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.take-bg {
+  background-color: inherit;
+}
+
+
+p.expected {
+  font-size:14px;
+}
+
+p.disruption {
+  font-size: 16px;
+  text-align: justify;
+}
+
+p.justify {
+  text-align: justify;
+}
+
+a.onlight {
+  color: blue;
+}
+
+.well {
+  width:100%;
+}
+
+/* workaround to allow columns to automatically size like one another
+source: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
+*/
+
+.row.match-my-cols {
+    overflow: hidden;
+}
+
+.row.match-my-cols [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.match-my-cols .box {
+  background: none;
+  position: static;
+}
+.match-my-cols [class*="col-"] {
+}
+.match-my-cols .box a {
+  position: relative;
+}
+
+/* added by @krusli below */
+.padding-15px {
+  padding: 15px;
+}
+
+.btn-group {
+  margin-bottom: 15px;
+}
+
+/* from How It Works */
+.panel-heading [data-toggle="collapse"]:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e072";
+    /* "play" icon */
+    float: right;
+    color: #F58723;
+    font-size: 18px;
+    line-height: 22px;
+    /* rotate "play" icon from > (right arrow) to down arrow */
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+    /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    color: #454444;
+}
+
+/* end from How It Works */
+
+.center-pills {
+    display: flex;
+    justify-content: center;
+}
+
+.pill-tabs {
+  margin: 15px 5px 15px 5px;
+  font-size: 12pt;
+
+}

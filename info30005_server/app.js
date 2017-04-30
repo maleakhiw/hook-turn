@@ -20,7 +20,10 @@ app.set("view engine", "ejs");
 // Serve static files
 app.use(express.static("assets"));
 
+app.use('/nextramlive', express.static("nextram-angular/src/"));
+
 // app.use(express.static("../NexTram-Angular-WIP"));
+// app.use(express.static("NexTram-Angular-WIP"));
 
 // PTV API request setup
 var PTV = require('./ptvApi.js');
@@ -122,7 +125,7 @@ app.get("/search", function(req, res) {
 
 // Nextram
 app.get("/nextram", function(req, res) {
-    // Process query if user has given stop name on search bar 
+    // Process query if user has given stop name on search bar
     if (req.query.search) {
         var stop_name = req.query.search;
         var stop_id;
@@ -139,12 +142,6 @@ app.get("/nextram", function(req, res) {
        res.render("index", {pageId: "nextram"});
     }
 });
-
-// // Angular nextramlive
-// // Please fix something on the angular file, there is some issues
-// app.get("/nextramlive", function(req, res) {
-//     res.sendfile(path.resolve("../NexTram-Angular-WIP/src/index.html"));
-// });
 
 
 // Route Guide
