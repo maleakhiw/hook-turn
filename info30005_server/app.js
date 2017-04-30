@@ -139,7 +139,7 @@ app.get("/nextram", function(req, res) {
         res.redirect("/nextram?stop_id=" + stop_id);
     }
     else {
-       res.render("index", {pageId: "nextram"});
+       res.sendfile("nextram-angular/src/index.html")
     }
 });
 
@@ -174,6 +174,6 @@ app.post("/nextram", function(req, res) {
 
 
 /**********************************LISTEN*************************************/
-app.listen(3000, function(req, res) {
+app.listen(3000, "localhost", function(req, res) {
   console.log("HookTurns server has started...")
 });
