@@ -14,7 +14,8 @@ require("rxjs/add/operator/toPromise");
 var DeparturesService = (function () {
     function DeparturesService(http) {
         this.http = http;
-        this.apiUrl = 'http://hookturns.info/departures';
+        // apiUrl = 'http://hookturns.info/departures';
+        this.apiUrl = 'http://104.199.124.40/departures';
     }
     DeparturesService.prototype.getDeparturesUrl = function (stopId) {
         console.log(this.apiUrl + '?stopid=' + stopId);
