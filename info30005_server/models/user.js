@@ -3,11 +3,7 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
   username: String,
-  data: String
-});
-
-var crowdednessSchema = new Schema({
-  crowdednessLevel: String
+  password: String
 });
 
 var User = mongoose.model('User', userSchema);

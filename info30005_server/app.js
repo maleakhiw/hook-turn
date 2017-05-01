@@ -102,7 +102,7 @@ app.post('/reportdisruption', function(req, res) {
     "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
   });
 
-  disruption.save(function(err,newDisruption){
+  disruption.save(function(err,newDisruption ){
       if(!err){
           res.send(newDisruption);
       }else{
@@ -110,6 +110,7 @@ app.post('/reportdisruption', function(req, res) {
       }
   });
 });
+
 // Find all disruptions
 app.get('/reportdisruption', function(req,res) {
     Disruption.find(function(err,disruptions){
