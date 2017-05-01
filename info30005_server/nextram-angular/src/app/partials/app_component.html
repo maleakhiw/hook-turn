@@ -95,9 +95,14 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                          <button class="btn btn-success btn-lg clear_5px_top" type="button">Empty</button> <button class="btn btn-success btn-lg clear_5px_top" type="button">Decent</button> <button class="btn btn-warning btn-lg clear_5px_top" type="button">Full</button> <button class="btn btn-danger btn-lg clear_5px_top" type="button">Overcrowded</button>
-                        </div>
+                        <form method="POST" action="/nextram" class="col-xs-10 col-xs-offset-1">
+                          <!-- Pass information about route_id and direction_id -->
+                          <input type="hidden" name="route_id" value="{{ column[0].route_id }}" />
+                          <input type="hidden" name="direction_id" value="{{ column[0].direction_id }}" />
+
+                          <!-- Button crowdedness -->
+                          <button class="btn btn-success btn-lg clear_5px_top" type="submit" name="crowdedness" value="0">Empty</button> <button class="btn btn-success btn-lg clear_5px_top" name="crowdedness" value="1" type="submit">Decent</button> <button name="crowdedness" value="2" class="btn btn-warning btn-lg clear_5px_top" type="submit">Full</button> <button class="btn btn-danger btn-lg clear_5px_top" type="submit" name="crowdedness" value="3">Overcrowded</button>
+                        </form>
                       </div>
                     </div>
                   </div>

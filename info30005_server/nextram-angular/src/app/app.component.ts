@@ -24,8 +24,6 @@ export class AppComponent implements OnInit {
   routes: any[];
   directions: any[];
   processedGroupedDepts: any;
-  // name = "hello";
-  // stopData = {'stop_name': 'Southern Cross Station'};
 
   constructor(private departuresService: DeparturesService) {}
 

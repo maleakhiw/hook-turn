@@ -69,7 +69,7 @@ app.get("/departures", cors(), function(req, res) {
                         stopID: stopID,
                         ptvData: JSON.parse(body),
                         groupedDepts: groupByRouteDirectionID(JSON.parse(body)),
-                        crowdSourcedDisruptions: [result],
+                        crowdSourcedDisruptions: result,
                         routeGuide: null
                     }
                     res.json(toSend);
@@ -149,31 +149,31 @@ app.get("/route-guide", function(req, res) {
     res.render("index", {pageId: "route_guide"});
 });
 
-// 404 Page Not Found
-app.get("*", function(req, res) {
-    res.render("index", {pageId: "404"});
-});
-
 /*********************************POST****************************************/
 
 // Information gather from nextram page
 app.post("/nextram", function(req, res) {
     var crowdedness = req.body.crowdedness;
-    var userInput = {crowdednessLevel: crowdedness};
+    var runId = req.body.direction_id;
+    var stopId = req.body.route_id;
+    var userInput = {"runID": runId, "stopID": stopId, "crowdednessLevel": crowdedness};
     Database.Crowdedness.create(userInput, function(err, object) {
         if (err) {
             console.log("Error");
         }
         else {
-            console.log("Insertion success");
+            console.log("Insertion success" + object);
         }
     });
 
 });
 
-
-
 /**********************************LISTEN*************************************/
+// 404 Page Not Found
+app.get("*", function(req, res) {
+    res.render("index", {pageId: "404"});
+});
+
 app.listen(3000, "localhost", function(req, res) {
   console.log("HookTurns server has started...")
 });
