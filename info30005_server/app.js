@@ -88,11 +88,83 @@ app.get("/departures", cors(), function(req, res) {
     }
 });
 
-/*********************************H/T ROUTES**********************************/
+/***********************************DISRUPTION********************************/
 
-// app.get("/reportdisruption", function(req, res) {
+var mongoose = require('mongoose');
+var Disruption = mongoose.model('Disruption');
 
-// })
+// Create new disruption
+app.post('/reportdisruption', function(req, res) {
+  var disruption = new Disruption({
+    "status": req.body.status,
+    "runID": req.body.runID,
+    "stopID": req.body.stopID,
+    "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
+  });
+
+  disruption.save(function(err,newDisruption){
+      if(!err){
+          res.send(newDisruption);
+      }else{
+          res.sendStatus(400);
+      }
+  });
+});
+// Find all disruptions
+app.get('/reportdisruption', function(req,res) {
+    Disruption.find(function(err,disruptions){
+        if(!err){
+            res.send(disruptions);
+        }else{
+            res.sendStatus(404);
+        }
+    });
+});
+
+// Find one disruption by id
+app.get('/reportdisruption/:id', function(req,res){
+    var disruptionInx = req.params.id;
+    Disruption.findById(disruptionInx,function(err,disruption){
+        if(!err){
+            res.send(disruption);
+        }else{
+            res.sendStatus(404);
+        }
+    });
+});
+
+// Find one disruption and update by id
+app.post('/reportdisruption/:id', function(req,res) {
+    var disruptionInx = req.params.id;
+    Disruption.findByIdAndUpdate(disruptionInx,
+      {
+        $push:
+        {
+          "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
+        }
+      },
+      {safe: true, upsert: true},
+      function(err,disruption){
+        if(!err){
+            ////////////
+            res.send(disruption);
+        }else{
+            res.sendStatus(404);
+        }
+    });
+});
+
+// Delete one disruption by id
+app.delete('/reportdisruption/:id', function(req,res){
+    var disruptionInx = req.params.id;
+    Disruption.findByIdAndRemove(disruptionInx,function(err,disruption){
+        if(!err){
+            res.send(disruption);
+        }else{
+            res.sendStatus(404);
+        }
+    });
+});
 
 /******************************SUPPORTING JSONS*******************************/
 // NexTram Picture Assets
@@ -168,10 +240,7 @@ app.post("/nextram", function(req, res) {
             console.log("Insertion success");
         }
     });
-
 });
-
-
 
 /**********************************LISTEN*************************************/
 app.listen(3000, "localhost", function(req, res) {
