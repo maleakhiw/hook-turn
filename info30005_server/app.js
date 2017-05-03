@@ -51,9 +51,28 @@ app.get("/departures", cors(), function(req, res) {
             if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
 
             // Get Crowdedness from database
-            Database.Crowdedness.find({}, function(err, result) {
-                console.log(err);
-                console.log(result);
+            Database.Crowdedness.find({stopID: stopID}, function(err, result) {
+                // Iterate result and calculate the crowdedness for the requested stop id
+                var total = 0;
+                var runCrowdedness = {};
+                for (var i = 0; i < result.length; i++) {
+                    // Compare based on run_id
+                    // Create key if not exist in runCrowdedness object
+                    if (!(result[i].runID in runCrowdedness)) {
+                        runCrowdedness[result[i].runID] = {crowdedness: Number(result[i].crowdednessLevel), count: 1, average: 0};
+                    }
+                    // Else increment crowdedness level and count
+                    else {
+                        runCrowdedness[result[i].runID].crowdedness += Number(result[i].crowdednessLevel);
+                        runCrowdedness[result[i].runID].count++;
+                    }
+                }
+
+                // Iterate every run id in runCrowdednessObject and calculate the average of every run id
+                for (var run in runCrowdedness) {
+                    runCrowdedness[run].average = Math.round(runCrowdedness[run].crowdedness / runCrowdedness[run].count);
+                }
+                
                 // Send back the result in json format
                 if (body) {
                     var toSend = {
@@ -61,7 +80,7 @@ app.get("/departures", cors(), function(req, res) {
                         stopID: stopID,
                         ptvData: JSON.parse(body),
                         groupedDepts: groupByRouteDirectionID(JSON.parse(body)),
-                        crowdSourcedDisruptions: result,
+                        crowdSourcedDisruptions: runCrowdedness,
                         routeGuide: null
                     }
                     res.json(toSend);
@@ -79,7 +98,6 @@ app.get("/departures", cors(), function(req, res) {
        ptv.departures(stopID, callback); // sample stopID: 2504
     }
 });
-
 /***********************************DISRUPTION********************************/
 
 var mongoose = require('mongoose');
@@ -218,9 +236,10 @@ app.get("/route-guide", function(req, res) {
 
 // Information gather from nextram page
 app.post("/nextram", function(req, res) {
+    console.log(req.body);
     var crowdedness = req.body.crowdedness;
-    var runId = req.body.direction_id;
-    var stopId = req.body.route_id;
+    var runId = req.body.run_id;
+    var stopId = req.body.stop_id;
     var userInput = {"runID": runId, "stopID": stopId, "crowdednessLevel": crowdedness};
     Database.Crowdedness.create(userInput, function(err, object) {
         if (err) {

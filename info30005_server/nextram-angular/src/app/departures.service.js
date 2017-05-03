@@ -15,7 +15,7 @@ var DeparturesService = (function () {
     function DeparturesService(http) {
         this.http = http;
         // apiUrl = 'http://hookturns.info/departures';
-        this.apiUrl = 'http://104.199.124.40/departures';
+        this.apiUrl = 'http://localhost:3000/departures';
     }
     DeparturesService.prototype.getDeparturesUrl = function (stopId) {
         console.log(this.apiUrl + '?stopid=' + stopId);

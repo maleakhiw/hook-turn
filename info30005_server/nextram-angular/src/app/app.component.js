@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 // import { GongService } from './gong.service';
+var tram_service_1 = require("./tram.service");
 var departures_service_1 = require("./departures.service");
 var jumbotronImages = ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
 var getRandomImageURL = function () {
@@ -17,11 +18,22 @@ var getRandomImageURL = function () {
     return jumbotronImages[randomNo];
 };
 var AppComponent = (function () {
-    // name = "hello";
-    // stopData = {'stop_name': 'Southern Cross Station'};
-    function AppComponent(departuresService) {
+    function AppComponent(departuresService, tramService) {
         this.departuresService = departuresService;
+        this.tramService = tramService;
+        // Data needed for post
+        this.data = {};
     }
+    // Method used for crowdedness post
+    AppComponent.prototype.onInputData = function (stop_id, run_id, crowdedness) {
+        this.data.stop_id = stop_id;
+        this.data.run_id = run_id;
+        this.data.crowdedness = crowdedness;
+    };
+    AppComponent.prototype.onSubmitCrowdedness = function () {
+        this.tramService.storeTrams(this.data).subscribe(function (response) { return console.log(response); }, function (error) { return console.log(error); });
+        console.log(this.data);
+    };
     AppComponent.prototype.ngOnInit = function () {
         this.getDeparturesData();
     };
@@ -103,10 +115,10 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
         templateUrl: './partials/app_component.html',
-        providers: [departures_service_1.DeparturesService],
+        providers: [departures_service_1.DeparturesService, tram_service_1.TramService],
         styles: ['.jumbotron { background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("' + getRandomImageURL() + '"); }']
     }),
-    __metadata("design:paramtypes", [departures_service_1.DeparturesService])
+    __metadata("design:paramtypes", [departures_service_1.DeparturesService, tram_service_1.TramService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
