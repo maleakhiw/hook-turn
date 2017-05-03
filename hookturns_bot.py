@@ -12,6 +12,6 @@ def pull(message):
         output = subprocess.check_output("git pull", shell=True)
     except Exception as e:
         output = e
-    send.markdown_reply(message.chat_id, output, message.message_id)
+    send.message_reply(message.chat_id, output, message.message_id)
 if __name__ == '__main__':
     bot.run()
