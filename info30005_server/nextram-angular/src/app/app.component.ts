@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   }
   onSubmitCrowdedness() {
     this.tramService.storeTrams(this.data).subscribe((response) => console.log(response), (error) => console.log(error));
-    console.log(this.data);
+    this.getDeparturesData();
   }
 
   // Method used for styling the percentage

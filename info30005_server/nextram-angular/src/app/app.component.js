@@ -34,11 +34,10 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.onSubmitCrowdedness = function () {
         this.tramService.storeTrams(this.data).subscribe(function (response) { return console.log(response); }, function (error) { return console.log(error); });
-        console.log(this.data);
+        this.getDeparturesData();
     };
     // Method used for styling the percentage
     AppComponent.prototype.calculateWidth = function (run_id) {
-        this.getDeparturesData();
         // if user has already submit information
         if (this.crowdsourcedDisruption[run_id]) {
             var width = this.crowdsourcedDisruption[run_id].average / 3 * 100;
