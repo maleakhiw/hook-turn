@@ -20,10 +20,6 @@ var TramService = (function () {
         console.log(data);
         return this.http.post("/nextramdb", data);
     };
-    // Method that will be used to get data from database
-    TramService.prototype.getTrams = function (stop_id) {
-        return this.http.get("/departures?stopid=" + stop_id);
-    };
     return TramService;
 }());
 TramService = __decorate([

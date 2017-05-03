@@ -36,6 +36,20 @@ var AppComponent = (function () {
         this.tramService.storeTrams(this.data).subscribe(function (response) { return console.log(response); }, function (error) { return console.log(error); });
         console.log(this.data);
     };
+    // Method used for styling the percentage
+    AppComponent.prototype.calculateWidth = function (run_id) {
+        this.getDeparturesData();
+        // if user has already submit information
+        if (this.crowdsourcedDisruption[run_id]) {
+            var width = this.crowdsourcedDisruption[run_id].average / 3 * 100;
+            console.log(width + "%");
+            return (width + "%");
+        }
+        else {
+            console.log("20%");
+            return "0%";
+        }
+    };
     AppComponent.prototype.ngOnInit = function () {
         this.getDeparturesData();
     };
@@ -48,6 +62,10 @@ var AppComponent = (function () {
     AppComponent.prototype.updateDeparturesData = function (departuresData) {
         console.log(departuresData);
         this.departuresData = departuresData;
+        // Get crowdsourced data
+        this.crowdsourcedDisruption = departuresData.crowdSourcedDisruptions;
+        ;
+        console.log(this.crowdsourcedDisruption);
         /* get stop name and no for jumbotron, load to attribs */
         for (var key in departuresData.ptvData.stops) {
             this.stopData = departuresData.ptvData.stops[key];
@@ -93,7 +111,7 @@ var AppComponent = (function () {
             i++;
         }
         this.processedGroupedDepts = groupedBy2Departures;
-        console.log(groupedBy2Departures);
+        // console.log(groupedBy2Departures);
         this.routes = departuresData.ptvData.routes;
         this.directions = departuresData.ptvData.directions;
     };

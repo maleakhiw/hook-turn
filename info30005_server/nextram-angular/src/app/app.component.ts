@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   routes: any[];
   directions: any[];
   processedGroupedDepts: any;
+  crowdsourcedDisruption: any;
 
   // Data needed for post
   data = {};
@@ -40,6 +41,20 @@ export class AppComponent implements OnInit {
   onSubmitCrowdedness() {
     this.tramService.storeTrams(this.data).subscribe((response) => console.log(response), (error) => console.log(error));
     console.log(this.data);
+  }
+
+  // Method used for styling the percentage
+  calculateWidth(run_id) {
+    // if user has already submit information
+    if (this.crowdsourcedDisruption[run_id]) {
+      var width = this.crowdsourcedDisruption[run_id].average / 3 * 100;
+      console.log(width + "%");
+      return (width + "%");
+    }
+    else {
+      console.log("20%");
+      return "0%";
+    }
   }
 
   constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http) {}
@@ -58,6 +73,10 @@ export class AppComponent implements OnInit {
   updateDeparturesData(departuresData: any): void {
     console.log(departuresData);
     this.departuresData = departuresData;
+
+    // Get crowdsourced data
+    this.crowdsourcedDisruption = departuresData.crowdSourcedDisruptions);
+    console.log(this.crowdsourcedDisruption);
 
     /* get stop name and no for jumbotron, load to attribs */
     for (var key in departuresData.ptvData.stops) { // assume only 1 stop
@@ -109,7 +128,7 @@ export class AppComponent implements OnInit {
     }
 
     this.processedGroupedDepts = groupedBy2Departures;
-    console.log(groupedBy2Departures);
+    // console.log(groupedBy2Departures);
 
     this.routes = departuresData.ptvData.routes;
 

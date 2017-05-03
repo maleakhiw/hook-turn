@@ -72,6 +72,19 @@ app.get("/departures", cors(), function(req, res) {
                 // Iterate every run id in runCrowdednessObject and calculate the average of every run id
                 for (var run in runCrowdedness) {
                     runCrowdedness[run].average = Math.round(runCrowdedness[run].crowdedness / runCrowdedness[run].count);
+                    // Classify level of crowdedness
+                    if (runCrowdedness[run].average == 0) {
+                        runCrowdedness[run]["class"] = "Empty"; 
+                    }
+                    else if (runCrowdedness[run].average == 1) {
+                        runCrowdedness[run]["class"] = "Decent"; 
+                    }
+                    else if (runCrowdedness[run].average == 2) {
+                        runCrowdedness[run]["class"] = "Full"; 
+                    }
+                    else if (runCrowdedness[run].average == 3) {
+                        runCrowdedness[run]["class"] = "Overcrowded"; 
+                    }
                 }
                 
                 // Send back the result in json format

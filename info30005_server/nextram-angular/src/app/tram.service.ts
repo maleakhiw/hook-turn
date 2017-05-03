@@ -13,8 +13,4 @@ export class TramService {
 		return this.http.post("/nextramdb", data);
 	}
 
-	// Method that will be used to get data from database
-	getTrams(stop_id) {
-		return this.http.get("/departures?stopid=" + stop_id)
-	}
 }
