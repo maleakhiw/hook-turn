@@ -15,9 +15,14 @@ var TramService = (function () {
     function TramService(http) {
         this.http = http;
     }
-    // Method that will be used to store server
+    // Method that will be used to store tram data
     TramService.prototype.storeTrams = function (data) {
-        return this.http.post("/nextram", data);
+        console.log(data);
+        return this.http.post("/nextramdb", data);
+    };
+    // Method that will be used to get data from database
+    TramService.prototype.getTrams = function (stop_id) {
+        return this.http.get("/departures?stopid=" + stop_id);
     };
     return TramService;
 }());

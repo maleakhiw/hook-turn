@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors'); // cross-origin
 var path = require("path");
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 var Database = require('./models/db.js');
 app.set("view engine", "ejs");
@@ -235,8 +236,8 @@ app.get("/route-guide", function(req, res) {
 /*********************************POST****************************************/
 
 // Information gather from nextram page
-app.post("/nextram", function(req, res) {
-    console.log(req.body);
+app.post("/nextramdb", function(req, res) {
+    console.log(req.body)
     var crowdedness = req.body.crowdedness;
     var runId = req.body.run_id;
     var stopId = req.body.stop_id;
