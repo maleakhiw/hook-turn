@@ -8,27 +8,20 @@
 var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
-var cors = require('cors');
+var cors = require('cors'); // cross-origin
 var path = require("path");
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Database setup
 var Database = require('./models/db.js');
-
-// View setup
 app.set("view engine", "ejs");
-// Serve static files
-app.use(express.static("assets"));
 
+/* static files */
+app.use(express.static("assets"));
 app.use('/nextramlive', express.static("nextram-angular/src/"));
 
-// app.use(express.static("../NexTram-Angular-WIP"));
-// app.use(express.static("NexTram-Angular-WIP"));
-
-// PTV API request setup
+/* PTV, trams */
 var PTV = require('./ptvApi.js');
 var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
-
 var tramData = require("./assets/json/tramstops.json");
 
 /***********************************PTV ROUTES********************************/
@@ -51,7 +44,6 @@ var groupByRouteDirectionID = function(ptvData) {
 
 // GET request. params - stopid: int
 app.get("/departures", cors(), function(req, res) {
-
     var callback = function(error, response, body) {
         // Check status and error reporting before processing JSON
         if (!error && response.statusCode == 200) {
@@ -236,6 +228,7 @@ app.post("/nextram", function(req, res) {
         }
         else {
             console.log("Insertion success" + object);
+            res.json({"status": "success"});
         }
     });
 });
