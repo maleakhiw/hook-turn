@@ -30,10 +30,10 @@ export class AppComponent implements OnInit {
   crowdsourcedDisruption: any;
 
   // Data needed for post
-  data = {};
+  data: any = {};
 
   // Method used for crowdedness post
-  onInputData(stop_id, run_id, crowdedness) {
+  onInputData(stop_id: any, run_id: any, crowdedness: any) {
     this.data.stop_id = stop_id;
     this.data.run_id = run_id;
     this.data.crowdedness = crowdedness;
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   }
 
   // Method used for styling the percentage
-  calculateWidth(run_id) {
+  calculateWidth(run_id: any) {
     // if user has already submit information
     if (this.crowdsourcedDisruption[run_id]) {
       var width = this.crowdsourcedDisruption[run_id].average / 3 * 100;
@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
     this.departuresData = departuresData;
 
     // Get crowdsourced data
-    this.crowdsourcedDisruption = departuresData.crowdSourcedDisruptions);
+    this.crowdsourcedDisruption = departuresData.crowdSourcedDisruptions;
     console.log(this.crowdsourcedDisruption);
 
     /* get stop name and no for jumbotron, load to attribs */

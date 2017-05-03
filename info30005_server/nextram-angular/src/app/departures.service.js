@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
@@ -15,7 +16,7 @@ var DeparturesService = (function () {
     function DeparturesService(http) {
         this.http = http;
         // apiUrl = 'http://hookturns.info/departures';
-        this.apiUrl = 'http://localhost:3000/departures';
+        this.apiUrl = 'http://104.199.124.40/departures';
     }
     DeparturesService.prototype.getDeparturesUrl = function (stopId) {
         console.log(this.apiUrl + '?stopid=' + stopId);

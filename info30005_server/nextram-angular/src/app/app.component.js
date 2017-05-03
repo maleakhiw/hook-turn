@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 // import { GongService } from './gong.service';
 var tram_service_1 = require("./tram.service");
@@ -63,7 +64,6 @@ var AppComponent = (function () {
         this.departuresData = departuresData;
         // Get crowdsourced data
         this.crowdsourcedDisruption = departuresData.crowdSourcedDisruptions;
-        ;
         console.log(this.crowdsourcedDisruption);
         /* get stop name and no for jumbotron, load to attribs */
         for (var key in departuresData.ptvData.stops) {
