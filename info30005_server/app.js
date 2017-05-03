@@ -228,7 +228,8 @@ app.post("/nextram", function(req, res) {
         }
         else {
             console.log("Insertion success" + object);
-            res.json({"status": "success"});
+            // res.json({"status": "success"});
+            res.redirect("/nextram?stop_id=" + stopId);
         }
     });
 });
