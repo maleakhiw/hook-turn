@@ -1,25 +1,7 @@
 /* Nextram.css */
 
 /* Loading tram animation */
-.loading-tram {
-    /*width: 100px;
-    height: 100px;
-    background: red;*/
-    position: relative;
-    -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
-    animation: mymove 5s infinite;
-}
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes mymove {
-    from {left: -20%;}
-    to {left: 120%;}
-}
-
-@keyframes mymove {
-    from {left: -20%;}
-    to {left: 120%;}
-}
 
 /* Jumbotron */
 .jumbotron {
