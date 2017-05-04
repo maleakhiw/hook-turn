@@ -1,14 +1,14 @@
 /* Jumbotron */
 
 .jumbotron {
-    text-align:center;
-    min-height: 400px;
+    text-align: center;
+    min-height: 100%;
     background: url("https://source.unsplash.com/yg8Cz-i5U30");
     background-size:cover;
     background-position:center;
     color:white;
-    text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4), 
-                    0 8px 13px rgba(0, 0, 0, 0.1), 
+    text-shadow: 0px 4px 3px rgba(0, 0, 0,0.4),
+                    0 8px 13px rgba(0, 0, 0, 0.1),
                         0 13px 18px rgba(0, 0,0, 0.1);
     padding: 0;
 }
@@ -18,7 +18,7 @@
     min-width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     background-size: cover;
-    min-height: 400px;
+    min-height: 100%;
 }
 
 .jumbotron h1 {
@@ -34,12 +34,12 @@
 }
 
 /* Search field */
-#searchfield { 
-  display: block; 
-  width: 100%; 
-  text-align: center; 
+#searchfield {
+  display: block;
+  width: 100%;
+  text-align: center;
   margin-bottom: 60px;
-  margin-top: 60px; 
+  margin-top: 60px;
 }
 
 #searchfield form {
