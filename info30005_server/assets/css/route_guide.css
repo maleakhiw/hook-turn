@@ -37,20 +37,15 @@
 .container-fluid {
     padding-right: 5px;
     padding-left: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     margin-right: auto;
     margin-left: auto;
 }
 
 .col-xs-12 {
-    overflow: auto;
+    overflow-y: auto;
     max-height: 500px;
-    white-space: nowrap;
-    border-collapse: collapse;
-}
-
-.table {
-  white-space: nowrap;
-  border-collapse: collapse;
 }
 
 .table>thead>tr>td,
@@ -59,15 +54,11 @@
     line-height: 0;
     vertical-align: top;
     border-top: 0px;
-    white-space: nowrap;
-    border-collapse: collapse;
 }
 
 .table>tbody>tr>td {
     padding: 0px;
     border-top: 0px;
-    white-space: nowrap;
-    border-collapse: collapse;
 }
 
 .boxes-routemap {
