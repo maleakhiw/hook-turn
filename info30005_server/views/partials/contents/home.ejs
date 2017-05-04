@@ -17,9 +17,9 @@
 			<em>NextTram users</em></p>
 			<h3>Try it out:</h3>
 
-			<form action="/nextram">
+			<form method="GET" action="/nextram">
 				<div class="input-group">
-  					<input type="text" class="form-control" placeholder="Search for...">
+  					<input id="autocomplete" type="text" name="search" class="form-control" placeholder="Search for...">
   					<span class="input-group-btn">
     				<button class="btn btn-success" onclick="window.location.href='/nextram'" type="button">Go!</button>
   					</span>
