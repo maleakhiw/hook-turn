@@ -78,9 +78,14 @@
                             <div class="row no-margin">
                               <div class="col-xs-10 col-xs-offset-1">
                                 <div class="progress">
-                                  <div class="progress-bar progress-bar-full" role="progressbar" style="width: 100%">
-                                    Full
+                                  <div attr.class="{{ 'progress-bar progress-bar-' + crowdsourcedDisruption[departure.run_id]?.class.toLowerCase() }}"
+                                    role="progressbar" style="font-weight:bold" [ngStyle]="{width: calculateWidth(departure.run_id)}">
+                                    {{ crowdsourcedDisruption[departure.run_id] ? crowdsourcedDisruption[departure.run_id].class : "Empty" }}
                                   </div>
+
+                                  <!-- <div class="progress-bar progress-bar-full" role="progressbar" style="width: 100%">
+                                    Full
+                                  </div> -->
                                 </div>
                               </div>
                             </div><!-- end bunch -->
