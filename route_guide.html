@@ -51,7 +51,7 @@
 		<!-- Modal for Login -->
 	  	<div class="modal fade" id="Login" role="dialog">
 	    	<div class="modal-dialog">
-	   
+
 	      		<!-- Modal content-->
 	      		<div class="modal-content">
 		        	<div class="modal-header">
@@ -91,7 +91,7 @@
 		<!-- Modal for Signup -->
 	  	<div class="modal fade" id="Signup" role="dialog">
 	    	<div class="modal-dialog">
-	   
+
 	      		<!-- Modal content-->
 	      		<div class="modal-content">
 		        	<div class="modal-header">
@@ -163,6 +163,68 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="container">
+		  <h2>Route Guide</h2>
+		  <div class="table-responsive">
+
+		  <table class="table">
+		    <thead>
+   				<tr>
+							<td>1</td>
+   				</tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>1</td>
+		        <td>Anna</td>
+		        <td>Pitt</td>
+		        <td>35</td>
+		        <td>New York</td>
+		        <td>USA</td>
+		      </tr>
+		    </tbody>
+		  </table>
+
+		  </div>
+		</div>
+
+		<script type="text/javascript">
+
+			var init = function() {
+				var c_array = document.getElementsByClassName("horizontal-r_canvas"); // array of route lines in each div
+
+				for (var i = 0; i < c_array.length; i++) {
+		        var c = c_array[i];
+						c.width = 200;
+		        c.height = 100;
+		    }
+			}
+
+			var draw_canvas_horizontal = function() {
+				var c_array = document.getElementsByClassName("horizontal-r_canvas");
+
+			    for (var i = 0; i < c_array.length; i++) {
+			      var c = c_array[i];
+			      var ctx = c.getContext("2d");
+
+						ctx.beginPath();
+						ctx.rect(0,37.5,200,25);
+						ctx.fillStyle = "#c6168d";
+						ctx.fill();
+
+						ctx.beginPath();
+						ctx.arc(100,50,25,0,2*Math.PI);
+						ctx.fillStyle = "white";
+						ctx.stroke();
+						ctx.fill();
+				  }
+			}
+
+			init();
+			draw_canvas_horizontal();
+
+		</script>
 
 		<!-- Route map -->
 		<div class="route-map">

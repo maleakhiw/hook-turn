@@ -74,19 +74,19 @@ app.get("/departures", cors(), function(req, res) {
                     runCrowdedness[run].average = Math.round(runCrowdedness[run].crowdedness / runCrowdedness[run].count);
                     // Classify level of crowdedness
                     if (runCrowdedness[run].average == 0) {
-                        runCrowdedness[run]["class"] = "Empty"; 
+                        runCrowdedness[run]["class"] = "Empty";
                     }
                     else if (runCrowdedness[run].average == 1) {
-                        runCrowdedness[run]["class"] = "Decent"; 
+                        runCrowdedness[run]["class"] = "Decent";
                     }
                     else if (runCrowdedness[run].average == 2) {
-                        runCrowdedness[run]["class"] = "Full"; 
+                        runCrowdedness[run]["class"] = "Full";
                     }
                     else if (runCrowdedness[run].average == 3) {
-                        runCrowdedness[run]["class"] = "Overcrowded"; 
+                        runCrowdedness[run]["class"] = "Overcrowded";
                     }
                 }
-                
+
                 // Send back the result in json format
                 if (body) {
                     var toSend = {
@@ -240,10 +240,14 @@ app.get("/nextram", function(req, res) {
     }
 });
 
-
 // Route Guide
 app.get("/route-guide", function(req, res) {
-    res.render("index", {pageId: "route_guide"});
+  var info = require('../PTV/tram_routes/96.json');
+  var route96_stop = info.stops;
+  res.render("index", {
+    pageId: "route_guide",
+    route96Data: route96_stop
+  });
 });
 
 /*********************************POST****************************************/

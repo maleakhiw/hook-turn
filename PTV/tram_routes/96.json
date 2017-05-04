@@ -1,0 +1,316 @@
+{
+  "stops": [
+    {
+      "stop_name": "Blyth St/Nicholson St #27",
+      "stop_id": 2934,
+      "route_type": 1,
+      "stop_latitude": -37.7674637,
+      "stop_longitude": 144.980225
+    },
+    {
+      "stop_name": "Victoria St/Nicholson St #26",
+      "stop_id": 2935,
+      "route_type": 1,
+      "stop_latitude": -37.76876,
+      "stop_longitude": 144.980087
+    },
+    {
+      "stop_name": "Albert St/Nicholson St #25",
+      "stop_id": 2936,
+      "route_type": 1,
+      "stop_latitude": -37.77042,
+      "stop_longitude": 144.979828
+    },
+    {
+      "stop_name": "Glenlyon Rd/Nicholson St #24",
+      "stop_id": 2938,
+      "route_type": 1,
+      "stop_latitude": -37.77361,
+      "stop_longitude": 144.97908
+    },
+    {
+      "stop_name": "Miller St/Nicholson St #23",
+      "stop_id": 2940,
+      "route_type": 1,
+      "stop_latitude": -37.77637,
+      "stop_longitude": 144.978622
+    },
+    {
+      "stop_name": "Holden St/Nicholson St #22",
+      "stop_id": 2941,
+      "route_type": 1,
+      "stop_latitude": -37.77896,
+      "stop_longitude": 144.9784
+    },
+    {
+      "stop_name": "Scotchmer St/Nicholson St #21",
+      "stop_id": 2943,
+      "route_type": 1,
+      "stop_latitude": -37.78252,
+      "stop_longitude": 144.977722
+    },
+    {
+      "stop_name": "Reid St/Nicholson St #20",
+      "stop_id": 2945,
+      "route_type": 1,
+      "stop_latitude": -37.78505,
+      "stop_longitude": 144.977264
+    },
+    {
+      "stop_name": "Tempany St/Nicholson St #19",
+      "stop_id": 2947,
+      "route_type": 1,
+      "stop_latitude": -37.78732,
+      "stop_longitude": 144.976837
+    },
+    {
+      "stop_name": "Freeman St/Nicholson St #18",
+      "stop_id": 2948,
+      "route_type": 1,
+      "stop_latitude": -37.78967,
+      "stop_longitude": 144.9764
+    },
+    {
+      "stop_name": "Alexandra Pde/Nicholson St #17",
+      "stop_id": 2950,
+      "route_type": 1,
+      "stop_latitude": -37.79276,
+      "stop_longitude": 144.975815
+    },
+    {
+      "stop_name": "Rose St/Nicholson St #16",
+      "stop_id": 2952,
+      "route_type": 1,
+      "stop_latitude": -37.79525,
+      "stop_longitude": 144.975388
+    },
+    {
+      "stop_name": "Johnston St/Nicholson St #15",
+      "stop_id": 2954,
+      "route_type": 1,
+      "stop_latitude": -37.79852,
+      "stop_longitude": 144.974823
+    },
+    {
+      "stop_name": "Bell St/Nicholson St #14",
+      "stop_id": 2956,
+      "route_type": 1,
+      "stop_latitude": -37.80036,
+      "stop_longitude": 144.9745
+    },
+    {
+      "stop_name": "Hanover St/Nicholson St #13",
+      "stop_id": 2958,
+      "route_type": 1,
+      "stop_latitude": -37.80291,
+      "stop_longitude": 144.974075
+    },
+    {
+      "stop_name": "Melbourne Museum/Nicholson St #12",
+      "stop_id": 2032,
+      "route_type": 1,
+      "stop_latitude": -37.80597,
+      "stop_longitude": 144.973557
+    },
+    {
+      "stop_name": "Victoria Pde/Nicholson St #11",
+      "stop_id": 2082,
+      "route_type": 1,
+      "stop_latitude": -37.8083076,
+      "stop_longitude": 144.973083
+    },
+    {
+      "stop_name": "Albert St/Nicholson St #10",
+      "stop_id": 2003,
+      "route_type": 1,
+      "stop_latitude": -37.80942,
+      "stop_longitude": 144.9729
+    },
+    {
+      "stop_name": "Spring St/Bourke St #9",
+      "stop_id": 2076,
+      "route_type": 1,
+      "stop_latitude": -37.81154,
+      "stop_longitude": 144.97258
+    },
+    {
+      "stop_name": "Russell St/Bourke St #7",
+      "stop_id": 2071,
+      "route_type": 1,
+      "stop_latitude": -37.81278,
+      "stop_longitude": 144.968338
+    },
+    {
+      "stop_name": "Swanston St/Bourke St #6",
+      "stop_id": 2077,
+      "route_type": 1,
+      "stop_latitude": -37.81352,
+      "stop_longitude": 144.965927
+    },
+    {
+      "stop_name": "Elizabeth St/Bourke St #5",
+      "stop_id": 2029,
+      "route_type": 1,
+      "stop_latitude": -37.81427,
+      "stop_longitude": 144.9634
+    },
+    {
+      "stop_name": "Queen St/Bourke St #4",
+      "stop_id": 2067,
+      "route_type": 1,
+      "stop_latitude": -37.81494,
+      "stop_longitude": 144.960938
+    },
+    {
+      "stop_name": "William St/Bourke St #3",
+      "stop_id": 2087,
+      "route_type": 1,
+      "stop_latitude": -37.81564,
+      "stop_longitude": 144.958481
+    },
+    {
+      "stop_name": "Spencer St/Bourke St #1",
+      "stop_id": 2091,
+      "route_type": 1,
+      "stop_latitude": -37.81706,
+      "stop_longitude": 144.9535
+    },
+    {
+      "stop_name": "Southern Cross Railway Station/Spencer St #122",
+      "stop_id": 2497,
+      "route_type": 1,
+      "stop_latitude": -37.8188057,
+      "stop_longitude": 144.953964
+    },
+    {
+      "stop_name": "Batman Park/Spencer St #124",
+      "stop_id": 2499,
+      "route_type": 1,
+      "stop_latitude": -37.8216667,
+      "stop_longitude": 144.955322
+    },
+    {
+      "stop_name": "124A-Casino/MCEC/Clarendon St",
+      "stop_id": 2500,
+      "route_type": 1,
+      "stop_latitude": -37.82329,
+      "stop_longitude": 144.956055
+    },
+    {
+      "stop_name": "124B-Whiteman St/Clarendon St",
+      "stop_id": 2641,
+      "route_type": 1,
+      "stop_latitude": -37.82493,
+      "stop_longitude": 144.956924
+    },
+    {
+      "stop_name": "Port Junction/79 Whiteman St #125",
+      "stop_id": 2504,
+      "route_type": 1,
+      "stop_latitude": -37.8260765,
+      "stop_longitude": 144.9562
+    },
+    {
+      "stop_name": "City Rd/Light Rail #126",
+      "stop_id": 2959,
+      "route_type": 1,
+      "stop_latitude": -37.83014,
+      "stop_longitude": 144.954483
+    },
+    {
+      "stop_name": "South Melbourne Station/Light Rail #127",
+      "stop_id": 2960,
+      "route_type": 1,
+      "stop_latitude": -37.83307,
+      "stop_longitude": 144.95546
+    },
+    {
+      "stop_name": "Albert Park Station/Light Rail #128",
+      "stop_id": 2961,
+      "route_type": 1,
+      "stop_latitude": -37.84039,
+      "stop_longitude": 144.958847
+    },
+    {
+      "stop_name": "Melbourne Sports and Aquatic Centre/Light Rail #129",
+      "stop_id": 2800,
+      "route_type": 1,
+      "stop_latitude": -37.84527,
+      "stop_longitude": 144.96167
+    },
+    {
+      "stop_name": "Middle Park Station/Light Rail #130",
+      "stop_id": 2963,
+      "route_type": 1,
+      "stop_latitude": -37.84979,
+      "stop_longitude": 144.965836
+    },
+    {
+      "stop_name": "Fraser St/Light Rail #131",
+      "stop_id": 2964,
+      "route_type": 1,
+      "stop_latitude": -37.85373,
+      "stop_longitude": 144.971024
+    },
+    {
+      "stop_name": "St Kilda Station/Light Rail #132",
+      "stop_id": 2883,
+      "route_type": 1,
+      "stop_latitude": -37.8593025,
+      "stop_longitude": 144.977509
+    },
+    {
+      "stop_name": "Canterbury Rd/Fitzroy St #133",
+      "stop_id": 2884,
+      "route_type": 1,
+      "stop_latitude": -37.86018,
+      "stop_longitude": 144.976776
+    },
+    {
+      "stop_name": "Park St/Fitzroy St #134",
+      "stop_id": 2886,
+      "route_type": 1,
+      "stop_latitude": -37.8611336,
+      "stop_longitude": 144.975159
+    },
+    {
+      "stop_name": "Jacka Bvd/Fitzroy St #135",
+      "stop_id": 2888,
+      "route_type": 1,
+      "stop_latitude": -37.86241,
+      "stop_longitude": 144.973
+    },
+    {
+      "stop_name": "The Esplanade #136",
+      "stop_id": 2889,
+      "route_type": 1,
+      "stop_latitude": -37.8652534,
+      "stop_longitude": 144.973511
+    },
+    {
+      "stop_name": "Luna Park/The Esplanade #138",
+      "stop_id": 2968,
+      "route_type": 1,
+      "stop_latitude": -37.8670235,
+      "stop_longitude": 144.976944
+    },
+    {
+      "stop_name": "Belford St/Acland St #139",
+      "stop_id": 2969,
+      "route_type": 1,
+      "stop_latitude": -37.86835,
+      "stop_longitude": 144.979477
+    },
+    {
+      "stop_name": "Barkly St/Acland St #140",
+      "stop_id": 2970,
+      "route_type": 1,
+      "stop_latitude": -37.8693,
+      "stop_longitude": 144.980347
+    }
+  ],
+  "status": {
+    "version": "3.0",
+    "health": 1
+  }
+}
