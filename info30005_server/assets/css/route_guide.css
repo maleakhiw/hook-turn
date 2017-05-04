@@ -41,17 +41,33 @@
     margin-left: auto;
 }
 
+.col-xs-12 {
+    overflow: auto;
+    max-height: 500px;
+    white-space: nowrap;
+    border-collapse: collapse;
+}
+
+.table {
+  white-space: nowrap;
+  border-collapse: collapse;
+}
+
 .table>thead>tr>td,
 .table>thead>tr>th {
     padding: 0;
     line-height: 0;
     vertical-align: top;
     border-top: 0px;
+    white-space: nowrap;
+    border-collapse: collapse;
 }
 
 .table>tbody>tr>td {
-    padding: 5px;
+    padding: 0px;
     border-top: 0px;
+    white-space: nowrap;
+    border-collapse: collapse;
 }
 
 .boxes-routemap {
