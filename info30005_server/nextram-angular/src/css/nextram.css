@@ -1,5 +1,20 @@
 /* Nextram.css */
 
+/* Loading tram animation */
+@-webkit-keyframes slide {
+  from{
+      background-position:1725px;
+  }
+  to{
+      background-position:575px;
+  }
+}
+
+.loading-tram {
+  margin: auto;
+  -webkit-animation: slide 10s linear infinite;
+}
+
 /* Jumbotron */
 .jumbotron {
     text-align:left;
