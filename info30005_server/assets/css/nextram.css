@@ -7,6 +7,7 @@
 }
 
 .loading-tram {
+  position: relative;
   animation: mymove 5s infinite;
 }
 
