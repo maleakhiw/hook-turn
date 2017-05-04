@@ -1,7 +1,14 @@
 /* Nextram.css */
 
 /* Loading tram animation */
+.loading-tram {
+  animation: marquee 3s linear infinite;
+}
 
+@keyframes marquee {
+  0% { left: 0; }
+  100% { left: -100%; }
+}
 
 /* Jumbotron */
 .jumbotron {
