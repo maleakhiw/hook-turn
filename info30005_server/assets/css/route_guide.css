@@ -37,8 +37,15 @@
 .container-fluid {
     padding-right: 5px;
     padding-left: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     margin-right: auto;
     margin-left: auto;
+}
+
+.col-xs-12 {
+    overflow-y: auto;
+    max-height: 500px;
 }
 
 .table>thead>tr>td,
@@ -50,7 +57,7 @@
 }
 
 .table>tbody>tr>td {
-    padding: 5px;
+    padding: 0px;
     border-top: 0px;
 }
 

@@ -35,8 +35,8 @@
 
 		<!-- ================================================================ -->
 		<!-- Table Container -->
-		<div class="container-fluid">
-		  <div class="table-responsive">
+		<div class="table-responsive">
+		<div class="col-xs-12 hidden-xs">
 		  <table class="table">
 		    <thead>
    				<tr>
@@ -63,13 +63,32 @@
 		      </tr>
 		    </tbody>
 		  </table>
+		 </div>
 
-		  </div>
+		<div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+		<table cellpadding="0" border="0" cellspacing="0">
+			<%route96Data.forEach(function(item,index){%>
+			<tr>
+				<td>
+					<canvas class="vertical-r_canvas">
+						Your browser does not support the HTML5 canvas tag.
+					</canvas>
+				</td>
+				<td>
+					<h3><%=item.stop_name%></h3>
+					<a class="btn btn-default"
+					href="https://www.google.com/maps?q=
+					<%=item.stop_latitude %>,<%=item.stop_longitude %>"
+					role="button">View Map</a>
+				</td>
+			</tr>
+			<%});%>
+		</table>
 		</div>
+	</div>
 
 		<script type="text/javascript">
-
-			var init = function() {
+			var draw_canvas_horizontal = function() {
 				var c_array = document.getElementsByClassName("horizontal-r_canvas");
 
 				for (var i = 0; i < c_array.length; i++) {
@@ -77,10 +96,6 @@
 						c.width = 300;
 		        c.height = 30;
 		    }
-			}
-
-			var draw_canvas_horizontal = function() {
-				var c_array = document.getElementsByClassName("horizontal-r_canvas");
 
 			    for (var i = 0; i < c_array.length; i++) {
 			      var c = c_array[i];
@@ -99,8 +114,34 @@
 				  }
 			}
 
-			init();
+			var draw_canvas_vertical = function() {
+				var c_array = document.getElementsByClassName("vertical-r_canvas");
+
+				for (var i = 0; i < c_array.length; i++) {
+		        var c = c_array[i];
+						c.width = 50;
+		        c.height = 150;
+		    }
+
+			    for (var i = 0; i < c_array.length; i++) {
+			      var c = c_array[i];
+			      var ctx = c.getContext("2d");
+
+						ctx.beginPath();
+						ctx.rect(7.5,0,15,155);
+						ctx.fillStyle = "#c6168d";
+						ctx.fill();
+
+						ctx.beginPath();
+						ctx.arc(15,75,15,0,2*Math.PI);
+						ctx.fillStyle = "white";
+						ctx.stroke();
+						ctx.fill();
+				  }
+			}
+
 			draw_canvas_horizontal();
+			draw_canvas_vertical();
 
 		</script>
 
