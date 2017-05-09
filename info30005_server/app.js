@@ -25,6 +25,19 @@ var PTV = require('./ptvApi.js');
 var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 var tramData = require("./assets/json/tramstops.json");
 
+/* ---------------------------- Mongoose schemas ---------------------------- */
+var Schema = mongoose.Schema;
+
+var crowdednessSchema = new Schema({
+  runID: String,
+  stopID: String,
+  crowdednessLevel: String,
+  dirtyLevel: String,
+  speedingLevel: String
+});
+
+var Crowdedness = mongoose.model("crowdedness", crowdednessSchema);
+
 /***********************************PTV ROUTES********************************/
 
 /* groups the departures by a combination of route and direction ID */
