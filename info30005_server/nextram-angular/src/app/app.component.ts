@@ -75,6 +75,8 @@ export class AppComponent implements OnInit {
   minsToNow(dateTimeString: string): string {
     var date = new Date(dateTimeString);
     var time = date.getTime() - new Date().getTime();
+    console.log(date, new Date());
+    console.log(time);
     if (date < new Date()) {
       return "Departed"
     }
