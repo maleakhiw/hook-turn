@@ -55,6 +55,9 @@ export class AppComponent implements OnInit {
 
   // TODO: probably still broken
   onSubmitDisruption(departure: any, disruption: any) {
+    console.log('onSubmitDisruption');
+    console.log(departure);
+    console.log(disruption);
     let data = {};
     data['runID'] = departure.run_id;
     data['stopID'] = departure.stop_id;

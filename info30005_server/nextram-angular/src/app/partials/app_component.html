@@ -113,7 +113,8 @@
                         <div class="col-xs-10 col-xs-offset-1">
                           <div class="input-group">
                             <textarea class="form-control" id="disruption" placeholder="Enter here" rows="2"></textarea>
-                            <span (onclick)="onSubmitDisruption()" class="input-group-addon btn btn-primary">Submit</span>
+                            <!-- TODO: fix fixed string -->
+                            <span (onclick)="onSubmitDisruption(column[0], 'fixed string')" class="input-group-addon btn btn-primary">Submit</span>
                           </div>
                         </div>
                       </div>
