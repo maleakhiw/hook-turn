@@ -28,18 +28,21 @@ var tramData = require("./assets/json/tramstops.json");
 /* ---------------------------- Mongoose schemas ---------------------------- */
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+// var Schema = mongoose.Schema;
+//
+// var crowdednessSchema = new Schema({
+//   runID: String,
+//   stopID: String,
+//   crowdednessLevel: String,
+//   dirtyLevel: String,
+//   speedingLevel: String
+// });
+//
+// var Crowdedness = mongoose.model("crowdedness", crowdednessSchema);
+// var Disruption = mongoose.model('Disruption');
 
-var crowdednessSchema = new Schema({
-  runID: String,
-  stopID: String,
-  crowdednessLevel: String,
-  dirtyLevel: String,
-  speedingLevel: String
-});
-
-var Disruption = mongoose.model('Disruption');
-var Crowdedness = mongoose.model("crowdedness", crowdednessSchema);
+var Crowdedness = Database.Crowdedness;
+var Disruption = Database.Disruption;
 
 /***********************************PTV ROUTES********************************/
 
