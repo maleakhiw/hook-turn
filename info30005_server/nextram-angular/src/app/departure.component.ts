@@ -11,7 +11,7 @@ import {Component, Input} from '@angular/core';
     <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowdSourcedDisruptions[departure.run_id]?.class.toLowerCase()}}"
         role="progressbar" [ngStyle]="{width: calculateWidth(departure.run_id)}">
       {{crowdSourcedDisruptions[departure.run_id]?.class}}
-    </div><span *ngIf="crowdSourcedDisruptions[departure.run_id]?.class == 'Empty'">{{crowdSourcedDisruptions[departure.run_id]?.class}}</span> <!-- if empty, will be squished by 0% width progress bar -->
+    </div>
   </div>
   `
 })
