@@ -64,7 +64,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getDeparturesData();
 
-    IntervalObservable.create(1 * 1000)  // ms
+    IntervalObservable.create(1 * 1000) // ms
+        .startWith(1) // needs value, but won't be used
         .map(() => console.log('pull'));
   }
 

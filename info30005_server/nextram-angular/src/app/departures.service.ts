@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import { Observable } from 'rxjs/Rx';
 
 import { DeparturesData } from './departures';
 import { DEPARTURESDATA } from './mock-departures';
@@ -26,10 +25,6 @@ export class DeparturesService {
       .toPromise()
       .then(response => response.json() as DeparturesData)
       .catch(this.handleError);
-  }
-
-  pollDeparturesData(stopId: any): Observable<any> {
-    return this.http.get(this.getDeparturesUrl(stopId))
   }
 
   handleError(error: any): Promise<any> {
