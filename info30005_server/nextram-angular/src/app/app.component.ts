@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
     if (mins < 0) {
       ret = "Departed"
     }
-    else if (mins < 1) {
+    else if (mins == 0) {
       ret = "Now";
     }
     else if (mins == 1) {
