@@ -146,6 +146,7 @@ export class AppComponent implements OnInit {
         }
 
         if (isNotFound) { // add to the group if it does not exist there
+          console.log("Added", this.lastSubmitted);
           group.unshift(this.lastSubmitted);  // add to beginning of array
         }
 
