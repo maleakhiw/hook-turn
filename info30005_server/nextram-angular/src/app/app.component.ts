@@ -94,6 +94,23 @@ export class AppComponent implements OnInit {
       }
     }
 
+    /* sort groupedDepts */
+    // add actual route numbers
+    for (let key in departuresData.groupedDepts) {
+      for (let i=0; i<departuresData.groupedDepts[key].length; i++) {
+        departuresData.groupedDepts[key][i].route_no = departuresData.ptvData.routes[departuresData.groupedDepts[key][i].route_id].route_number;
+      }
+    }
+
+    console.log(departuresData.groupedDepts);
+
+    var ordered = {};
+    Object.keys(departuresData.groupedDepts).sort(function(a, b) {
+        return parseInt(departuresData.groupedDepts[a][0].route_no) - parseInt(departuresData.groupedDepts[b][0].route_no);
+      }).forEach((key) => ordered[key] = departuresData.groupedDepts[key]);
+
+    departuresData.groupedDepts = ordered;
+
     /* processed data */
     var processed = {};
 

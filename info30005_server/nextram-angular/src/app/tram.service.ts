@@ -6,9 +6,9 @@ import "rxjs/Rx";
 export class TramService {
 
 	constructor(private http: Http) {}
-	
+
 	// Method that will be used to store tram data
-	storeTrams(data) {
+	storeTrams(data: any) {
 		console.log(data);
 		return this.http.post("/nextramdb", data);
 	}

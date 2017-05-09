@@ -80,6 +80,19 @@ var AppComponent = (function () {
                 this.stopName = stopName;
             }
         }
+        /* sort groupedDepts */
+        // add actual route numbers
+        for (var key_1 in departuresData.groupedDepts) {
+            for (var i_1 = 0; i_1 < departuresData.groupedDepts[key_1].length; i_1++) {
+                departuresData.groupedDepts[key_1][i_1].route_no = departuresData.ptvData.routes[departuresData.groupedDepts[key_1][i_1].route_id].route_number;
+            }
+        }
+        console.log(departuresData.groupedDepts);
+        var ordered = {};
+        Object.keys(departuresData.groupedDepts).sort(function (a, b) {
+            return parseInt(departuresData.groupedDepts[a][0].route_no) - parseInt(departuresData.groupedDepts[b][0].route_no);
+        }).forEach(function (key) { return ordered[key] = departuresData.groupedDepts[key]; });
+        departuresData.groupedDepts = ordered;
         /* processed data */
         var processed = {};
         for (var key in departuresData.groupedDepts) {
