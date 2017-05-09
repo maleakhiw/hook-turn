@@ -27,6 +27,7 @@ var tramData = require("./assets/json/tramstops.json");
 
 /***********************************PTV ROUTES********************************/
 
+/* groups the departures by a combination of route and direction ID */
 var groupByRouteDirectionID = function(ptvData) {
   var departures = ptvData.departures;
   var newDepartures = {};
@@ -46,13 +47,27 @@ var groupByRouteDirectionID = function(ptvData) {
 // GET request. params - stopid: int
 app.get("/departures", cors(), function(req, res) {
     var callback = function(error, response, body) {
+
+        /* list all the runIDs. We'll do an IN query with them later */
+        var runIds = [];
+        if (body) { // body: PTV response
+          // get a list of route IDs
+          var ptvData = JSON.parse(body);
+          var departures = ptvData.departures;
+          for (let i=0; i<departures.length; i++) {
+            runIds.push(departures[i].run_id);
+          }
+        }
+
         // Check status and error reporting before processing JSON
         if (!error && response.statusCode == 200) {
             // Check validity (only process JSON files, does not want website request)
             if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
 
             // Get Crowdedness from database
-            Database.Crowdedness.find({stopID: stopID}, function(err, result) {
+            Crowdedness.find({runID: {$in: runIds}}, function(err, result) {
+                console.log(err);
+                console.log(result);
                 // Iterate result and calculate the crowdedness for the requested stop id
                 var total = 0;
                 var runCrowdedness = {};

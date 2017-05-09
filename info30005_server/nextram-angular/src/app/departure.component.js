@@ -47,7 +47,6 @@ var DepartureComponent = (function () {
         return ret;
     };
     DepartureComponent.prototype.calculateWidth = function (runId) {
-        console.log(runId);
         if (this.crowdSourcedDisruptions[runId]) {
             return this.crowdSourcedDisruptions[runId].average / 3 * 100 + '%';
         }

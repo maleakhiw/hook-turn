@@ -56,7 +56,6 @@ export class DepartureComponent {
   }
 
   calculateWidth(runId: any): string {
-    console.log(runId);
     if (this.crowdSourcedDisruptions[runId]) {
       return this.crowdSourcedDisruptions[runId].average/3*100 + '%';
     } else {
