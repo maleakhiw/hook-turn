@@ -26,6 +26,8 @@ var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 var tramData = require("./assets/json/tramstops.json");
 
 /* ---------------------------- Mongoose schemas ---------------------------- */
+var mongoose = require('mongoose');
+
 var Schema = mongoose.Schema;
 
 var crowdednessSchema = new Schema({
@@ -36,6 +38,7 @@ var crowdednessSchema = new Schema({
   speedingLevel: String
 });
 
+var Disruption = mongoose.model('Disruption');
 var Crowdedness = mongoose.model("crowdedness", crowdednessSchema);
 
 /***********************************PTV ROUTES********************************/
@@ -141,9 +144,6 @@ app.get("/departures", cors(), function(req, res) {
     }
 });
 /***********************************DISRUPTION********************************/
-
-var mongoose = require('mongoose');
-var Disruption = mongoose.model('Disruption');
 
 // Create new disruption
 app.post('/reportdisruption', function(req, res) {
