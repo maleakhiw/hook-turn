@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getDeparturesData();
 
-    IntervalObservable.create(60 * 1000)  // ms
+    IntervalObservable.create(20 * 1000)  // ms
         .map(() => this.getDeparturesData());
   }
 
@@ -188,6 +188,7 @@ export class AppComponent implements OnInit {
   getDeparturesData(): void { // TODO: change to Observables using RxJS
     // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
 
+    console.log('Getting departures data');
     class Params {
       stop_id: any;
     }
