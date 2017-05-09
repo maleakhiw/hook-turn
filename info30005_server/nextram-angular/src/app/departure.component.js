@@ -17,8 +17,6 @@ var DepartureComponent = (function () {
     DepartureComponent.prototype.minsToNow = function (dateTimeString) {
         var date = new Date(dateTimeString);
         var time = date.getTime() - new Date().getTime();
-        console.log(date, new Date());
-        console.log(time);
         if (date < new Date()) {
             return "Departed";
         }
@@ -83,7 +81,7 @@ __decorate([
 DepartureComponent = __decorate([
     core_1.Component({
         selector: 'departure',
-        template: "\n  <div class=\"upcoming-tram\">\n    <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdSourcedDisruptions[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdSourcedDisruptions[departure.run_id]?.class}}\n    </div>\n  </div>\n  "
+        template: "\n  <div class=\"upcoming-tram\">\n    <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdSourcedDisruptions[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdSourcedDisruptions[departure.run_id]?.class}}\n    </div><span *ngIf=\"crowdSourcedDisruptions[departure.run_id]?.class == 'Empty'\">{{crowdSourcedDisruptions[departure.run_id]?.class}}</span> <!-- if empty, will be squished by 0% width progress bar -->\n  </div>\n  "
     })
 ], DepartureComponent);
 exports.DepartureComponent = DepartureComponent;

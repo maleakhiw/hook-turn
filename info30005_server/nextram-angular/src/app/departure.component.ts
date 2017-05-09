@@ -11,7 +11,7 @@ import {Component, Input} from '@angular/core';
     <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowdSourcedDisruptions[departure.run_id]?.class.toLowerCase()}}"
         role="progressbar" [ngStyle]="{width: calculateWidth(departure.run_id)}">
       {{crowdSourcedDisruptions[departure.run_id]?.class}}
-    </div>
+    </div><span *ngIf="crowdSourcedDisruptions[departure.run_id]?.class == 'Empty'">{{crowdSourcedDisruptions[departure.run_id]?.class}}</span> <!-- if empty, will be squished by 0% width progress bar -->
   </div>
   `
 })
@@ -25,11 +25,6 @@ export class DepartureComponent {
   minsToNow(dateTimeString: string): string {
     var date = new Date(dateTimeString);
     var time = date.getTime() - new Date().getTime();
-    console.log(date, new Date());
-    console.log(time);
-    if (date < new Date()) {
-      return "Departed"
-    }
     var mins = Math.round(time/1000/60);  // milliseconds -> seconds -> minutes
 
     var ret = "in ";
