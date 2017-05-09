@@ -78,7 +78,10 @@ export class AppComponent implements OnInit {
     var mins = Math.round(time/1000/60);  // milliseconds -> seconds -> minutes
 
     var ret = "in ";
-    if (mins <= 0) {
+    if (mins < 0) {
+      ret = "Departed"
+    }
+    else if (mins < 1) {
       ret = "Now";
     }
     else if (mins == 1) {
