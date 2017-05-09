@@ -18,7 +18,7 @@
   <!-- <div *ngFor="let key of processedGroupedDepts | keys;"> -->
     <div *ngFor="let row of processedGroupedDepts" class="row match-my-cols">
       <div class="col-sm-6 nextram_box full text-center"
-          attr.class="{{'col-sm-6 nextram_box text-center ' + crowdsourcedDisruption[column[0].run_id]?.class.toLowerCase()}}"
+          attr.class="{{'col-sm-6 nextram_box text-center ' + crowdSourcedDisruptions[column[0].run_id]?.class.toLowerCase()}}"
           *ngFor="let column of row"><div class="box padding-15px">
         <span class="{{ 'route_number_table route_number_' + routes[column[0].route_id].route_number }}">{{ routes[column[0].route_id].route_number }}</span>
         {{ directions[column[0].direction_id].direction_name }}
@@ -27,21 +27,12 @@
 
         <div *ngFor="let departure of column; let i=index">
           <div *ngIf="i==0">
-            <h1>{{ getMinutesToNow(departure.parsedEstDeptTime) + " min" }}</h1>
-            <div class="row">
-              <p class="expected">Expected Crowd Level</p>
-            </div>
-            <div class="row no-margin">
-              <div class="col-xs-10 col-xs-offset-1">
-                <div class="progress">
-                  <div attr.class="{{ 'progress-bar progress-bar-' + crowdsourcedDisruption[column[0].run_id]?.class.toLowerCase() }}"
-
-                    role="progressbar" style="font-weight:bold" [ngStyle]="{width: calculateWidth(column[0].run_id)}">
-                    {{ crowdsourcedDisruption[column[0].run_id] ? crowdsourcedDisruption[column[0].run_id].class : "Empty" }}
-                  </div>
-                </div>
-              </div>
-            </div><!-- end bunch -->
+            <departure
+                [crowdSourcedDisruptions]="crowdSourcedDisruptions"
+                [departure]="column[0]"
+                [routes]="routes"
+                [directions]="directions">
+            </departure>
           </div>
         </div>
 
@@ -71,24 +62,12 @@
 
                         <div *ngFor="let departure of column; let i=index">
                           <div *ngIf="i>0">
-                            <h1>{{ getMinutesToNow(departure.parsedEstDeptTime) + " min" }}</h1>
-                            <div class="row">
-                              <p class="expected">Expected Crowd Level</p>
-                            </div>
-                            <div class="row no-margin">
-                              <div class="col-xs-10 col-xs-offset-1">
-                                <div class="progress">
-                                  <div attr.class="{{ 'progress-bar progress-bar-' + crowdsourcedDisruption[departure.run_id]?.class.toLowerCase() }}"
-                                    role="progressbar" style="font-weight:bold" [ngStyle]="{width: calculateWidth(departure.run_id)}">
-                                    {{ crowdsourcedDisruption[departure.run_id] ? crowdsourcedDisruption[departure.run_id].class : "Empty" }}
-                                  </div>
-
-                                  <!-- <div class="progress-bar progress-bar-full" role="progressbar" style="width: 100%">
-                                    Full
-                                  </div> -->
-                                </div>
-                              </div>
-                            </div><!-- end bunch -->
+                            <smalldeparture
+                                [crowdSourcedDisruptions]="crowdSourcedDisruptions"
+                                [departure]="departure"
+                                [routes]="routes"
+                                [directions]="directions">
+                            </smalldeparture>
                           </div>
                         </div>
 

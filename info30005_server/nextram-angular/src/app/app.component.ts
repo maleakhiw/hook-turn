@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   routes: any[];
   directions: any[];
   processedGroupedDepts: any;
-  crowdsourcedDisruption: any;
+  crowdSourcedDisruptions: any;
 
   // Data needed for post
   data: any = {};
@@ -46,8 +46,8 @@ export class AppComponent implements OnInit {
   // Method used for styling the percentage
   calculateWidth(run_id: any) {
     // if user has already submit information
-    if (this.crowdsourcedDisruption[run_id]) {
-      var width = this.crowdsourcedDisruption[run_id].average / 3 * 100;
+    if (this.crowdSourcedDisruptions[run_id]) {
+      var width = this.crowdSourcedDisruptions[run_id].average / 3 * 100;
       console.log(width + "%");
       return (width + "%");
     }
@@ -64,10 +64,37 @@ export class AppComponent implements OnInit {
   }
 
   // TODO: assumes waiting time only up to 1h
-  getMinutesToNow(date: Date): number {
-    // return 1;
+  minsToNow(dateTimeString: string): string {
+    var date = new Date(dateTimeString);
     var time = date.getTime() - new Date().getTime();
-    return Math.round(time/1000/60);  // milliseconds -> seconds -> minutes
+    var mins = Math.round(time/1000/60);  // milliseconds -> seconds -> minutes
+
+    var ret = "in ";
+    if (mins <= 0) {
+      ret = "Now";
+    }
+    else if (mins == 1) {
+      ret += mins + " min";
+    }
+    else if (mins < 60) {
+      ret += mins + " mins";
+    }
+    else if (mins%60 == 1) {
+      if (Math.round(mins/60) == 1) {
+        ret += Math.round(mins/60) + " hour " + mins%60 + " min";
+      } else {
+        ret += Math.round(mins/60) + " hours " + mins%60 + " min";
+      }
+    }
+    else {
+      if (Math.round(mins/60) == 1) {
+        ret += Math.round(mins/60) + " hour " + mins%60 + " mins";
+      } else {
+        ret += Math.round(mins/60) + " hours " + mins%60 + " mins";
+      }
+    }
+
+    return ret;
   }
 
   updateDeparturesData(departuresData: any): void {
@@ -75,8 +102,8 @@ export class AppComponent implements OnInit {
     this.departuresData = departuresData;
 
     // Get crowdsourced data
-    this.crowdsourcedDisruption = departuresData.crowdSourcedDisruptions;
-    console.log(this.crowdsourcedDisruption);
+    this.crowdSourcedDisruptions = departuresData.crowdSourcedDisruptions;
+    console.log(this.crowdSourcedDisruptions);
 
     /* get stop name and no for jumbotron, load to attribs */
     for (var key in departuresData.ptvData.stops) { // assume only 1 stop
