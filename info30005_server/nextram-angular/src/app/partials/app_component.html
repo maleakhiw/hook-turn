@@ -75,7 +75,7 @@
                     </div>
 
                   <div class="tab-pane fade in" id="{{'reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}">
-                    <div class="well">
+                    <div class="well" *ngIf="column[0].run_id != lastSubmitted?.run_id || !lastSubmitted"> <!-- if not last submitted -->
                       <div class="row">
                         <h5>Rate the crowding level of the tram below:</h5>
                       </div>
@@ -97,6 +97,9 @@
                                   class="btn btn-danger btn-lg clear_5px_top" type="submit" name="crowdedness" value="3">Overcrowded</button>
                         </div>
                       </div>
+                    </div>
+                    <div class="well" *ngIf="column[0].run_id == lastSubmitted?.run_id"> <!-- if not last submitted -->
+                      <p>Thank you for submitting!</p>
                     </div>
                   </div>
 
