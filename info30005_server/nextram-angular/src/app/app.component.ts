@@ -75,6 +75,9 @@ export class AppComponent implements OnInit {
   minsToNow(dateTimeString: string): string {
     var date = new Date(dateTimeString);
     var time = date.getTime() - new Date().getTime();
+    if (time < 0) {
+      console.log("SHOULD BE DEPARTED");
+    }
     var mins = Math.round(time/1000/60);  // milliseconds -> seconds -> minutes
 
     var ret = "in ";
