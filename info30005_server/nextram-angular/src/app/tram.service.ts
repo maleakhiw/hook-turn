@@ -9,8 +9,11 @@ export class TramService {
 
 	// Method that will be used to store tram data
 	storeTrams(data: any) {
-		console.log(data);
 		return this.http.post("/nextramdb", data);
+	}
+
+	storeDisruption(data: any) {
+		return this.http.post('/reportdisruption', data);
 	}
 
 }

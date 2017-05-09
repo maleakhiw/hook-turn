@@ -33,7 +33,9 @@ export class AppComponent implements OnInit {
 
   // Data needed for post
   data: any = {};
+  disruptionData: any = {};
   lastSubmitted: any; // departure
+  lastSubmittedDisruption: any;
 
   // Method used for crowdedness post
   onInputData(departure: any, crowdedness: number) {
@@ -43,8 +45,24 @@ export class AppComponent implements OnInit {
     this.data.run_id = departure.run_id;
     this.data.crowdedness = crowdedness;
   }
+
   onSubmitCrowdedness() {
-    this.tramService.storeTrams(this.data).subscribe((response) => console.log(response), (error) => console.log(error));
+    this.tramService.storeTrams(this.data).
+          subscribe((response) => console.log(response),
+                    (error) => console.log(error));
+    this.getDeparturesData();
+  }
+
+  // TODO: probably still broken
+  onSubmitDisruption(departure: any, disruption: any) {
+    let data = {};
+    data['runID'] = departure.run_id;
+    data['stopID'] = departure.stop_id;
+    this.tramService.storeDisruption(data)
+      .subscribe((response) => console.log(response),
+                  (error) => console.log(error));
+
+    this.lastSubmittedDisruption = departure;
     this.getDeparturesData();
   }
 
