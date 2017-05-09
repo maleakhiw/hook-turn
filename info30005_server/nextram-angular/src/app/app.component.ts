@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
         .subscribe(x => this.getDeparturesData());
   }
 
-  // TODO: assumes waiting time only up to 1h
+  // TODO: one single function imported
   minsToNow(dateTimeString: string): string {
     var date = new Date(dateTimeString);
     var time = date.getTime() - new Date().getTime();

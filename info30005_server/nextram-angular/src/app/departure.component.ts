@@ -25,10 +25,18 @@ export class DepartureComponent {
   minsToNow(dateTimeString: string): string {
     var date = new Date(dateTimeString);
     var time = date.getTime() - new Date().getTime();
+    console.log(date, new Date());
+    console.log(time);
+    if (date < new Date()) {
+      return "Departed"
+    }
     var mins = Math.round(time/1000/60);  // milliseconds -> seconds -> minutes
 
     var ret = "in ";
-    if (mins <= 0) {
+    if (mins < 0) {
+      ret = "Departed"
+    }
+    else if (mins == 0) {
       ret = "Now";
     }
     else if (mins == 1) {

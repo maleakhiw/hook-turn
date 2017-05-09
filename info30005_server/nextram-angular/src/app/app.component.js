@@ -14,6 +14,7 @@ var core_1 = require("@angular/core");
 var tram_service_1 = require("./tram.service");
 var departures_service_1 = require("./departures.service");
 var http_1 = require("@angular/http");
+var IntervalObservable_1 = require("rxjs/observable/IntervalObservable");
 var jumbotronImages = ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
 var getRandomImageURL = function () {
     var randomNo = Math.floor(Math.random() * jumbotronImages.length);
@@ -28,9 +29,11 @@ var AppComponent = (function () {
         this.data = {};
     }
     // Method used for crowdedness post
-    AppComponent.prototype.onInputData = function (stop_id, run_id, crowdedness) {
-        this.data.stop_id = stop_id;
-        this.data.run_id = run_id;
+    AppComponent.prototype.onInputData = function (departure, crowdedness) {
+        console.log(departure);
+        this.lastSubmitted = departure;
+        this.data.stop_id = departure.stop_id;
+        this.data.run_id = departure.run_id;
         this.data.crowdedness = crowdedness;
     };
     AppComponent.prototype.onSubmitCrowdedness = function () {
@@ -51,15 +54,26 @@ var AppComponent = (function () {
         }
     };
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.getDeparturesData();
+        IntervalObservable_1.IntervalObservable.create(10 * 1000) // ms
+            .subscribe(function (x) { return _this.getDeparturesData(); });
     };
-    // TODO: assumes waiting time only up to 1h
+    // TODO: one single function imported
     AppComponent.prototype.minsToNow = function (dateTimeString) {
         var date = new Date(dateTimeString);
         var time = date.getTime() - new Date().getTime();
+        console.log(date, new Date());
+        console.log(time);
+        if (date < new Date()) {
+            return "Departed";
+        }
         var mins = Math.round(time / 1000 / 60); // milliseconds -> seconds -> minutes
         var ret = "in ";
-        if (mins <= 0) {
+        if (mins < 0) {
+            ret = "Departed";
+        }
+        else if (mins == 0) {
             ret = "Now";
         }
         else if (mins == 1) {
@@ -107,11 +121,32 @@ var AppComponent = (function () {
                 this.stopName = stopName;
             }
         }
+        /* check if last submitted entry has disappeared from a group, and put it back if it has */
+        if (this.lastSubmitted) {
+            var key = this.lastSubmitted.route_id + '-' + this.lastSubmitted.direction_id;
+            var group = departuresData.groupedDepts[key];
+            if (group) {
+                // iterate over all entries in the group, find if we can find the same run_id there
+                var isNotFound = true;
+                for (var i_1 = 0; i_1 < group.length; i_1++) {
+                    if (group[i_1].run_id == this.lastSubmitted.run_id) {
+                        isNotFound = false;
+                    }
+                }
+                if (isNotFound) {
+                    console.log("Added", this.lastSubmitted);
+                    group.unshift(this.lastSubmitted); // add to beginning of array
+                }
+            }
+            else {
+                departuresData.groupedDepts[key] = this.lastSubmitted; // add it back
+            }
+        }
         /* sort groupedDepts */
         // add actual route numbers
         for (var key_1 in departuresData.groupedDepts) {
-            for (var i_1 = 0; i_1 < departuresData.groupedDepts[key_1].length; i_1++) {
-                departuresData.groupedDepts[key_1][i_1].route_no = departuresData.ptvData.routes[departuresData.groupedDepts[key_1][i_1].route_id].route_number;
+            for (var i_2 = 0; i_2 < departuresData.groupedDepts[key_1].length; i_2++) {
+                departuresData.groupedDepts[key_1][i_2].route_no = departuresData.ptvData.routes[departuresData.groupedDepts[key_1][i_2].route_id].route_number;
             }
         }
         console.log(departuresData.groupedDepts);
@@ -155,8 +190,8 @@ var AppComponent = (function () {
         this.directions = departuresData.ptvData.directions;
     };
     AppComponent.prototype.getDeparturesData = function () {
-        // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
         var _this = this;
+        // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
         var Params = (function () {
             function Params() {
             }
