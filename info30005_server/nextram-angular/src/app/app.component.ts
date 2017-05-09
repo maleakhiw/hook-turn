@@ -5,6 +5,8 @@ import { DeparturesService } from './departures.service'
 import { DeparturesData, Stop } from './departures';
 import { Http, Response } from "@angular/http";
 
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
+
 
 var jumbotronImages = ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
 
@@ -61,6 +63,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDeparturesData();
+
+    IntervalObservable.create(60 * 1000)  // ms
+        .map(() => this.getDeparturesData());
   }
 
   // TODO: assumes waiting time only up to 1h
@@ -178,6 +183,7 @@ export class AppComponent implements OnInit {
 
     this.directions = departuresData.ptvData.directions;
   }
+
 
   getDeparturesData(): void { // TODO: change to Observables using RxJS
     // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
