@@ -27,6 +27,7 @@ var AppComponent = (function () {
         this.http = http;
         // Data needed for post
         this.data = {};
+        this.disruptionData = {};
     }
     // Method used for crowdedness post
     AppComponent.prototype.onInputData = function (departure, crowdedness) {
@@ -37,7 +38,21 @@ var AppComponent = (function () {
         this.data.crowdedness = crowdedness;
     };
     AppComponent.prototype.onSubmitCrowdedness = function () {
-        this.tramService.storeTrams(this.data).subscribe(function (response) { return console.log(response); }, function (error) { return console.log(error); });
+        this.tramService.storeTrams(this.data).
+            subscribe(function (response) { return console.log(response); }, function (error) { return console.log(error); });
+        this.getDeparturesData();
+    };
+    // TODO: probably still broken
+    AppComponent.prototype.onSubmitDisruption = function (departure, disruption) {
+        console.log('onSubmitDisruption');
+        console.log(departure);
+        console.log(disruption);
+        var data = {};
+        data['runID'] = departure.run_id;
+        data['stopID'] = departure.stop_id;
+        this.tramService.storeDisruption(data)
+            .subscribe(function (response) { return console.log(response); }, function (error) { return console.log(error); });
+        this.lastSubmittedDisruption = departure;
         this.getDeparturesData();
     };
     // Method used for styling the percentage
@@ -56,49 +71,8 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getDeparturesData();
-        IntervalObservable_1.IntervalObservable.create(10 * 1000) // ms
+        IntervalObservable_1.IntervalObservable.create(60 * 1000) // ms, 1 minute
             .subscribe(function (x) { return _this.getDeparturesData(); });
-    };
-    // TODO: one single function imported
-    AppComponent.prototype.minsToNow = function (dateTimeString) {
-        var date = new Date(dateTimeString);
-        var time = date.getTime() - new Date().getTime();
-        console.log(date, new Date());
-        console.log(time);
-        if (date < new Date()) {
-            return "Departed";
-        }
-        var mins = Math.round(time / 1000 / 60); // milliseconds -> seconds -> minutes
-        var ret = "in ";
-        if (mins < 0) {
-            ret = "Departed";
-        }
-        else if (mins == 0) {
-            ret = "Now";
-        }
-        else if (mins == 1) {
-            ret += mins + " min";
-        }
-        else if (mins < 60) {
-            ret += mins + " mins";
-        }
-        else if (mins % 60 == 1) {
-            if (Math.round(mins / 60) == 1) {
-                ret += Math.round(mins / 60) + " hour " + mins % 60 + " min";
-            }
-            else {
-                ret += Math.round(mins / 60) + " hours " + mins % 60 + " min";
-            }
-        }
-        else {
-            if (Math.round(mins / 60) == 1) {
-                ret += Math.round(mins / 60) + " hour " + mins % 60 + " mins";
-            }
-            else {
-                ret += Math.round(mins / 60) + " hours " + mins % 60 + " mins";
-            }
-        }
-        return ret;
     };
     AppComponent.prototype.updateDeparturesData = function (departuresData) {
         console.log(departuresData);

@@ -18,8 +18,10 @@ var TramService = (function () {
     }
     // Method that will be used to store tram data
     TramService.prototype.storeTrams = function (data) {
-        console.log(data);
         return this.http.post("/nextramdb", data);
+    };
+    TramService.prototype.storeDisruption = function (data) {
+        return this.http.post('/reportdisruption', data);
     };
     return TramService;
 }());
