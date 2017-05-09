@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
 
   // Method used for crowdedness post
   onInputData(departure: any, crowdedness: number) {
+    console.log(departure);
     this.lastSubmitted = departure;
     this.data.stop_id = departure.stop_id;
     this.data.run_id = departure.run_id;
