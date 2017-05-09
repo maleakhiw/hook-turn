@@ -33,11 +33,13 @@ export class AppComponent implements OnInit {
 
   // Data needed for post
   data: any = {};
+  lastSubmitted: any; // departure
 
   // Method used for crowdedness post
-  onInputData(stop_id: any, run_id: any, crowdedness: any) {
-    this.data.stop_id = stop_id;
-    this.data.run_id = run_id;
+  onInputData(departure: any, crowdedness: number) {
+    this.lastSubmitted = departure;
+    this.data.stop_id = departure.stop_id;
+    this.data.run_id = departure.run_id;
     this.data.crowdedness = crowdedness;
   }
   onSubmitCrowdedness() {
@@ -126,6 +128,29 @@ export class AppComponent implements OnInit {
       }
     }
 
+    /* check if last submitted entry has disappeared from a group, and put it back if it has */
+    if (this.lastSubmitted) {
+      var key = this.lastSubmitted.route_id + '-' + this.lastSubmitted.direction_id;
+      var group = departuresData.groupedDepts[key];
+      if (group) {  // if a group exists
+        // iterate over all entries in the group, find if we can find the same run_id there
+        var isNotFound = true;
+        for (let i=0; i<group.length; i++) {
+          if (group[i].run_id == this.lastSubmitted.run_id) {
+            isNotFound = false;
+          }
+        }
+
+        if (isNotFound) { // add to the group if it does not exist there
+          group.push(this.lastSubmitted);
+        }
+
+      }
+      else {
+        departuresData.groupedDepts[key] = this.lastSubmitted;  // add it back
+      }
+    }
+
     /* sort groupedDepts */
     // add actual route numbers
     for (let key in departuresData.groupedDepts) {
@@ -187,8 +212,6 @@ export class AppComponent implements OnInit {
 
   getDeparturesData(): void { // TODO: change to Observables using RxJS
     // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
-
-    console.log('Getting departures data');
     class Params {
       stop_id: any;
     }

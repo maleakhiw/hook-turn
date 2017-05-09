@@ -83,16 +83,16 @@
                       <div class="row">
                         <div class="col-xs-10 col-xs-offset-1">
                           <!-- Button crowdedness -->
-                          <button (click)="onInputData(column[0].stop_id, column[0].run_id, 0)"
+                          <button (click)="onInputData(departure, 0)"
                                   (click)="onSubmitCrowdedness()"
                                   class="btn btn-success btn-lg clear_5px_top" type="submit" name="crowdedness" value="0">Empty</button>
-                          <button (click)="onInputData(column[0].stop_id, column[0].run_id, 1)"
+                          <button (click)="onInputData(departure, 1)"
                                   (click)="onSubmitCrowdedness()"
                                   class="btn btn-success btn-lg clear_5px_top" name="crowdedness" value="1" type="submit">Decent</button>
-                          <button (click)="onInputData(column[0].stop_id, column[0].run_id, 2)"
+                          <button (click)="onInputData(departure, 2)"
                                   (click)="onSubmitCrowdedness()"
                                   name="crowdedness" value="2" class="btn btn-warning btn-lg clear_5px_top" type="submit">Full</button>
-                          <button (click)="onInputData(column[0].stop_id, column[0].run_id, 3)"
+                          <button (click)="onInputData(departure, 3)"
                                   (click)="onSubmitCrowdedness()"
                                   class="btn btn-danger btn-lg clear_5px_top" type="submit" name="crowdedness" value="3">Overcrowded</button>
                         </div>
