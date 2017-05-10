@@ -18,7 +18,7 @@ app.set("view engine", "ejs");
 
 /* static files */
 app.use(express.static("assets"));
-app.use('/nextramlive', express.static("nextram-angular/src/"));
+app.use('/nextramlive', express.static("nextram-angular/src/dist"));  // changed to point to distribution output
 
 /* PTV, trams */
 var PTV = require('./ptvApi.js');
