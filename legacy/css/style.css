@@ -1,0 +1,105 @@
+#dank_footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
+
+.collapsing {
+    transition: height 0.6s;
+}
+
+/** General css style */
+
+/* General */
+
+@font-face {
+	font-family: "ADAM.CG PRO" ;
+	src:url("../resources/fonts/ADAM.CG PRO.otf");
+}
+
+body {
+	font-family: "Lato", sans-serif;
+	font-size: 16px;
+}
+
+h1, h2 {
+	font-family: "Oswald", sans-serif;
+}
+
+a {
+	color: #fdb000;
+}
+
+a:hover {
+	color:black;
+}
+
+/* Navigation presentation */
+/*.navbar-brand {height: 28px; padding-top:23px !important; padding-bottom:0px !important;}*/
+
+@media (min-width: 768px) {
+.navbar {
+    border-radius: 0 ;
+}
+}
+
+.navbar {
+	margin-bottom: 0;
+	font-family: Lato !important;
+}
+
+.navbar-inverse {
+	background: #A9c722;
+	border-color: transparent;
+	padding:5px 2%;
+}
+
+.navbar-inverse .navbar-brand {
+	font-family: "ADAM.CG PRO";
+	color: black;
+	font-size: 2em;
+	line-height: 10px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: black;
+}
+
+
+.navbar-inverse .navbar-toggle {
+	border-color: white;
+	border-width: 2px;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+	background: #A9C722 ;
+}
+
+nav a {
+	outline:none !important;
+}
+
+.navbar-brand {
+	height: 50px !important;
+	line-height: 50px !important;
+	padding: 0px !important;
+	/* padding-top: 0px !imporant; */
+	/* padding-bottom: 0px !important; */
+}
+
+
+/* Footer presentation */
+
+footer {
+	text-align:center;
+	height: 60px;
+	background: #a9c722;
+	line-height:60px;
+	font-weight: bold;
+	margin-top:50px;
+}
+
+footer p {
+	margin-bottom: 0;
+}

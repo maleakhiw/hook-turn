@@ -33,6 +33,11 @@ class HookTurns:
             directions = results['ptvData']['directions']
 
             output = "Departures for {}\n".format(stops[str(stop_id)]['stop_name'])
+
+            # sort by departure time
+            departures = sorted(departures, key=lambda departure: dateutil.parser.parse(departure['scheduled_departure_utc']))
+
+
             for departure in departures:
                 scheduled_departure = dateutil.parser.parse(departure['scheduled_departure_utc'])
                 if (scheduled_departure < datetime.datetime.now(tzlocal())):    # already departed
@@ -43,7 +48,6 @@ class HookTurns:
                 hours_to_departure = time_to_departure//3600
                 mins_to_departure = time_to_departure//60 % 60
                 secs_to_departure = time_to_departure - hours_to_departure*3600 - mins_to_departure*60
-                print(hours_to_departure, mins_to_departure, secs_to_departure)
                 if hours_to_departure == 0 and mins_to_departure == 0:
                     time_str = 'Now'
                 elif hours_to_departure == 0:
@@ -62,7 +66,7 @@ class HookTurns:
                         time_str = 'in {} hours {}'.format(hours_to_departure, time_str)
 
 
-                output += "Route {} to {} {}\n".format(routes[str(departure['route_id'])]['route_number'], \
+                output += "Route {} to {} - {}\n".format(routes[str(departure['route_id'])]['route_number'], \
                             directions[str(departure['direction_id'])]['direction_name'], \
                             time_str)
             return output

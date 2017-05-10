@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Route Guide</title>
+	<style>
+       #map {
+        height: 500px;
+        width: 100%;
+       }
+    </style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CDN -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Extra CSS style -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<!-- Font awesome CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400|Lato" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/route_guide.css" />
+</head>
+<body>
+	<!-- Static navbar with Login and SignUp -->
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">HOOK/TURNS</a>
+				</div>
+
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					    <li><a href="search.html">NexTram</a></li>
+						<li><a href="how-it-works/how-it-works.html">How it Works</a></li>
+						<li><a href="about/about.html">About</a></li>
+						<li><a href="route_guide.html">Explore</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#" data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					</ul>
+				</div>
+		</nav>
+
+		<!-- Modal for Login -->
+	  	<div class="modal fade" id="Login" role="dialog">
+	    	<div class="modal-dialog">
+
+	      		<!-- Modal content-->
+	      		<div class="modal-content">
+		        	<div class="modal-header">
+		          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		          		<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+		        	</div>
+
+		        	<div class="modal-body">
+		          		<form role="form">
+		          			<!-- Username -->
+			            	<div class="form-group">
+			              		<label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+			              		<input type="text" class="form-control" id="username" placeholder="Enter email/username">
+			            	</div>
+			            	<!-- Password -->
+			            	<div class="form-group">
+			              		<label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+			              		<input type="text" class="form-control" id="password" placeholder="Enter password">
+			            	</div>
+			            	<!-- Others -->
+			            	<div class="checkbox">
+			              		<label><input type="checkbox" value="" checked>Remember me</label>
+			            	</div>
+			              	<button type="submit" class="btn btn-success btn-block">Login</button>
+		          		</form>
+		        	</div>
+
+		        	<div class="modal-footer">
+		          		<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+		          		<p>Not a member? <a href="#" data-toggle="modal" data-target="#Signup" data-dismiss="modal">Sign Up</a></p>
+		          		<p><a href="#">Forgot Password?</a></p>
+		        	</div>
+	      		</div> <!-- End of modal content -->
+			</div> <!-- End of modal dialog -->
+		</div> <!-- End of modal -->
+
+		<!-- Modal for Signup -->
+	  	<div class="modal fade" id="Signup" role="dialog">
+	    	<div class="modal-dialog">
+
+	      		<!-- Modal content-->
+	      		<div class="modal-content">
+		        	<div class="modal-header">
+		          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		          		<h4><span class="glyphicon glyphicon-user"></span> Sign Up</h4>
+		        	</div>
+
+		        	<div class="modal-body">
+		          		<form role="form">
+			            	<!-- Email address -->
+			            	<div class="form-group">
+			              		<label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+			              		<input type="email" class="form-control" id="email" placeholder="Enter email address">
+			            	</div>
+			            	<!-- Username -->
+			            	<div class="form-group">
+			              		<label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+			              		<input type="text" class="form-control" id="username" placeholder="Enter username">
+			            	</div>
+			            	<!-- Password -->
+			            	<div class="form-group">
+			              		<label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+			              		<input type="text" class="form-control" id="password" placeholder="Enter password">
+			            	</div>
+			            	<!-- Others -->
+			              	<button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+		          		</form>
+		        	</div>
+
+		        	<div class="modal-footer">
+		          		<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+		          		<p>Already a member? <a href="#" data-toggle="modal" data-target="#Login" data-dismiss="modal"> Login</a></p>
+		        	</div>
+	      		</div> <!-- End of modal content -->
+			</div> <!-- End of modal dialog -->
+		</div> <!-- End of modal -->
+
+	<!-- Jumbotron -->
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3">
+					<h3>ROUTE GUIDE</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3">
+					<h1>96</h1>
+				</div>
+				<div class="col-sm-7">
+					<h3>EAST BRUNSWICK - ST KILDA BEACH</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+
+		<!-- Terminus stops -->
+		<div class="terminus-stops">
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>EAST BRUNSWICK</h3>
+				</div>
+				<div class="col-sm-6 hidden-xs" style="text-align: right">
+					<h3>ST KILDA BEACH</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+		  <h2>Route Guide</h2>
+		  <div class="table-responsive">
+
+		  <table class="table">
+		    <thead>
+   				<tr>
+							<td>1</td>
+   				</tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>1</td>
+		        <td>Anna</td>
+		        <td>Pitt</td>
+		        <td>35</td>
+		        <td>New York</td>
+		        <td>USA</td>
+		      </tr>
+		    </tbody>
+		  </table>
+
+		  </div>
+		</div>
+
+		<script type="text/javascript">
+
+			var init = function() {
+				var c_array = document.getElementsByClassName("horizontal-r_canvas"); // array of route lines in each div
+
+				for (var i = 0; i < c_array.length; i++) {
+		        var c = c_array[i];
+						c.width = 200;
+		        c.height = 100;
+		    }
+			}
+
+			var draw_canvas_horizontal = function() {
+				var c_array = document.getElementsByClassName("horizontal-r_canvas");
+
+			    for (var i = 0; i < c_array.length; i++) {
+			      var c = c_array[i];
+			      var ctx = c.getContext("2d");
+
+						ctx.beginPath();
+						ctx.rect(0,37.5,200,25);
+						ctx.fillStyle = "#c6168d";
+						ctx.fill();
+
+						ctx.beginPath();
+						ctx.arc(100,50,25,0,2*Math.PI);
+						ctx.fillStyle = "white";
+						ctx.stroke();
+						ctx.fill();
+				  }
+			}
+
+			init();
+			draw_canvas_horizontal();
+
+		</script>
+
+		<!-- Route map -->
+		<div class="route-map">
+			<div class="row">
+				<div class="col-sm-3 boxes-routemap">
+					<div class="row">
+						<div class="col-xs-12 hidden-xs route-line">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
+						</div>
+						<div class="col-xs-10 col-md-12 stop-details">
+							<h3>City Road</h3>
+							<p>Stop 126</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<div class="row">
+						<div class="col-xs-12 hidden-xs route-line">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
+						</div>
+						<div class="col-xs-10 col-md-12 stop-details">
+							<h3>South Melbourne</h3>
+							<p>Stop 127</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<div class="row">
+						<div class="col-xs-12 hidden-xs route-line">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
+						</div>
+						<div class="col-xs-10 col-md-12 stop-details">
+							<h3>Albert Park</h3>
+							<p>Stop 128</br>
+							Connections 12</p>
+							<button type="button" class="btn btn-default">View Departures</button>
+							<button type="button" class="btn btn-default">View Stop Guide</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 boxes-routemap">
+					<div class="row">
+						<div class="col-xs-12 hidden-xs route-line">
+							<canvas class="route-canvas" height=20%></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 hidden-sm hidden-md hidden-lg route-line-div-vertical">
+							<canvas class="route-canvas-vertical" width="60px"></canvas>
+						</div>
+						<div class="col-xs-10 col-md-12 stop-details">
+							<h3>Melbourne Sports and Aquatic Centre (MSAC)</h3>
+							<p>Stop 129</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- temporary inline JS to draw on the canvas -->
+		<script type="text/javascript">
+			var initialise = function() {
+				var c_array = document.getElementsByClassName("route-canvas");	// array of route lines in each div
+				var parent_array = document.getElementsByClassName("boxes-routemap");
+
+				if (c_array.length != parent_array.length) {
+					Console.error('Missing <canvas> in route map box(es).');
+					return;
+				}
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var p = parent_array[i];
+					c.width = p.offsetWidth;
+					c.height = 30;
+				}
+
+				var c_array = document.getElementsByClassName("route-canvas-vertical");	// array of canvases
+				var parent_array = document.getElementsByClassName("boxes-routemap");
+
+				// c_array should be the same length as parent_array
+				if (c_array.length != parent_array.length) {
+					Console.error('Missing <canvas> in route map box(es).');
+					return;
+				}
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var p = parent_array[i];
+				}
+			}
+
+			var draw_routes_horizontal = function() {
+				var c_array = document.getElementsByClassName("route-canvas");	// array of route lines in each div
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var ctx = c.getContext("2d");
+
+					ctx.clearRect(0, 0, c.width, c.height);	// clear the rectangle
+
+					// draw the route line
+					ctx.fillStyle = "#c6168d";
+					ctx.fillRect(0, 0.2*c.height, c.width, 0.6*c.height);
+					ctx.fill();
+
+					// draw the circle
+					ctx.fillStyle = "#FFFFFF";	// white
+					ctx.beginPath();
+					ctx.arc(c.width/2, c.height/2, 0.45*c.height, 0, 2*Math.PI, 0);
+					ctx.stroke();
+					ctx.fill();
+				}
+			}
+
+			var draw_routes_vertical = function() {
+				var c_array = document.getElementsByClassName("route-canvas-vertical");	// array of route lines in each div
+
+				for (var i=0; i<c_array.length; i++) {
+					var c = c_array[i];
+					var ctx = c.getContext("2d");
+
+					ctx.clearRect(0, 0, c.width, c.height);	// clear the rectangle
+
+					// draw the route line
+					ctx.fillStyle = "#c6168d";
+					ctx.fillRect(0.35*c.width, 0, c.width*0.3, c.height);
+					ctx.fill();
+
+					// draw the circle
+					ctx.fillStyle = "#FFFFFF";	// white
+					ctx.beginPath();
+					ctx.arc(c.width/2, c.height/2, 0.25*c.width, 0, 2*Math.PI, 0);
+					ctx.stroke();
+					ctx.fill();
+				}
+			}
+
+			initialise();
+			draw_routes_horizontal();
+			draw_routes_vertical();
+
+			window.onresize = function(event) {
+				initialise();
+				draw_routes_horizontal();
+				draw_routes_vertical();
+			}
+		</script>
+
+		<!-- move teminus station to bottom instead of top right -->
+		<div class="terminus-stops">
+			<div class="row">
+				<div class="col-xs-6 hidden-xs">
+					<!-- <h3>EAST BRUNSWICK</h3> -->
+				</div>
+				<div class="col-xs-6 hidden-sm hidden-md hidden-lg hidden-xl">
+					<h3>ST KILDA BEACH</h3>
+				</div>
+			</div>
+		</div>
+
+		<!-- Around a stop -->
+		<div class="around-stop">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="jumbotron vertical-center-flexbox">
+						<div class="container">
+							<h3>AROUND SOUTH MELBOURNE MARKET - STOP 127</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-7">
+				<div class="row">
+					<div class="col-xs-12">
+						<h4>Top picks</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 col-xs-6">
+						<div class="boxes-loc center-flexbox"
+						style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(resources/img/south_melbourne_market.jpg);">
+							<p>South Melbourne Market</p>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-6">
+						<div class="boxes-loc center-flexbox"
+						style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(resources/img/town_hall.jpg);">
+							<p>South Melbourne - Town Hall</p>
+						</div>
+					</div>
+					<div class="col-sm-2 center-flexbox button-loc">
+						<button type="button" class="btn btn-default">More</button>
+					</div>
+				</div>
+
+				</br>	<!-- for padding -->
+
+				<div class="row">
+					<div class="col-xs-12">
+						<h4>Food</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 col-xs-6">
+						<div class="boxes-loc center-flexbox"
+						style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(resources/img/left_handed_chef.jpg);">
+							<p>Left Handed Chef</p>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-6">
+						<div class="boxes-loc center-flexbox"
+						style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(resources/img/st_ali.jpg);">
+							<p>St Ali</p>
+						</div>
+					</div>
+					<div class="col-sm-2 center-flexbox button-loc">
+						<button type="button" class="btn btn-default">More</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<div id="map"></div>
+			</div>
+		</div>
+
+		<!-- inline JS for Google Maps, TODO move to separate .JS file -->
+		<script type="text/javascript">
+		function initMap() {
+        // var uluru = {lat: -25.363, lng: 131.044};
+				var southMelbourne = {lat: -37.8331993, lng: 144.9553748};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: southMelbourne
+        });
+        var marker = new google.maps.Marker({
+          position: southMelbourne,
+          map: map
+        });
+      }
+    </script>
+
+		<!-- Yes, the API key has to be embedded in HTML. The usage can be restricted to specific domains though. -->
+		<!-- See http://stackoverflow.com/questions/1364858/what-steps-should-i-take-to-protect-my-google-maps-api-key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Zp2gR2b1xhyoXCa3lYiB-V0ZUkjjNmA&callback=initMap"
+    async defer></script>
+
+
+	</div>
+	<footer>
+		<p>COPYRIGHT HOOKTURNS 2017</p>
+	</footer>
+	<!-- Include Javascript and Jquery -->
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

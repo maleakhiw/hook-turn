@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Bootstrap CDN -->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Extra CSS style -->
+		<link rel="stylesheet" type="text/css" href="css/search.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<!-- Font awesome CDN -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Oswald:400,500,700" rel="stylesheet">
+	</head>
+	<body>
+		<!-- Static navbar with Login and SignUp -->
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">HOOK/TURNS</a>
+				</div>
+
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					    <li><a href="#">NexTram</a></li>
+						<li><a href="how-it-works/how-it-works.html">How it Works</a></li>
+						<li><a href="about/about.html">About</a></li>
+						<li><a href="route_guide.html">Explore</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#" data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					</ul>
+				</div>
+		</nav>
+
+		<!-- Modal for Login -->
+	  	<div class="modal fade" id="Login" role="dialog">
+	    	<div class="modal-dialog">
+
+	      		<!-- Modal content-->
+	      		<div class="modal-content">
+		        	<div class="modal-header">
+		          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		          		<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+		        	</div>
+
+		        	<div class="modal-body">
+		          		<form role="form">
+		          			<!-- Username -->
+			            	<div class="form-group">
+			              		<label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+			              		<input type="text" class="form-control" id="username" placeholder="Enter email/username">
+			            	</div>
+			            	<!-- Password -->
+			            	<div class="form-group">
+			              		<label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+			              		<input type="text" class="form-control" id="password" placeholder="Enter password">
+			            	</div>
+			            	<!-- Others -->
+			            	<div class="checkbox">
+			              		<label><input type="checkbox" value="" checked>Remember me</label>
+			            	</div>
+			              	<button type="submit" class="btn btn-success btn-block">Login</button>
+		          		</form>
+		        	</div>
+
+		        	<div class="modal-footer">
+		          		<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+		          		<p>Not a member? <a href="#" data-toggle="modal" data-target="#Signup" data-dismiss="modal">Sign Up</a></p>
+		          		<p><a href="#">Forgot Password?</a></p>
+		        	</div>
+	      		</div> <!-- End of modal content -->
+			</div> <!-- End of modal dialog -->
+		</div> <!-- End of modal -->
+
+		<!-- Modal for Signup -->
+	  	<div class="modal fade" id="Signup" role="dialog">
+	    	<div class="modal-dialog">
+
+	      		<!-- Modal content-->
+	      		<div class="modal-content">
+		        	<div class="modal-header">
+		          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		          		<h4><span class="glyphicon glyphicon-user"></span> Sign Up</h4>
+		        	</div>
+
+		        	<div class="modal-body">
+		          		<form role="form">
+			            	<!-- Email address -->
+			            	<div class="form-group">
+			              		<label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+			              		<input type="email" class="form-control" id="email" placeholder="Enter email address">
+			            	</div>
+			            	<!-- Username -->
+			            	<div class="form-group">
+			              		<label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+			              		<input type="text" class="form-control" id="username" placeholder="Enter username">
+			            	</div>
+			            	<!-- Password -->
+			            	<div class="form-group">
+			              		<label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+			              		<input type="text" class="form-control" id="password" placeholder="Enter password">
+			            	</div>
+			            	<!-- Others -->
+			              	<button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+		          		</form>
+		        	</div>
+
+		        	<div class="modal-footer">
+		          		<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+		          		<p>Already a member? <a href="#" data-toggle="modal" data-target="#Login" data-dismiss="modal"> Login</a></p>
+		        	</div>
+	      		</div> <!-- End of modal content -->
+			</div> <!-- End of modal dialog -->
+		</div> <!-- End of modal -->
+
+		<!-- Jumbotron -->
+		<div class="jumbotron">
+			<div class="container">
+				<h1>NexTram</h1>
+				<h2>Search for Tram Stops and Destination</h2>
+			</div>
+		</div> <!-- /jumbotron -->
+
+		<!-- Autocomplete searchbar -->
+		<div id="searchfield">
+		    <div class="container">
+		    	<div class="row">
+		    		<div class="col-md-2 col-xs-1"></div>
+        			<form class="col-md-8 col-xs-10">
+        				<div class="input-group">
+        					<input type="text" name="search" class="biginput" id="autocomplete" placeholder="Search for...">
+        					<span class="input-group-btn">
+	        				<button class="btn btn-success" type="button">Go!</button>
+	      				</span>
+	      				</div><!-- /input-group -->
+        			</form>
+        			<div class="col-md-2 col-xs-1"></div>
+        		</div>
+        	</div>
+      	</div> <!-- End of autocomplete search bar -->
+
+		<footer id="dank_footer">
+			<p>COPYRIGHT HOOKTURNS 2017</p>
+		</footer>
+		<!-- Include Javascript and Jquery -->
+		<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
+		<script type="text/javascript" src="js/search-autocomplete.js"></script>
+	</body>
+</html>
