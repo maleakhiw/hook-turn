@@ -7,8 +7,8 @@
 6 silly lifecycle angular2-webpack@1.0.0~prebuild: no script for prebuild, continuing
 7 info lifecycle angular2-webpack@1.0.0~build: angular2-webpack@1.0.0
 8 verbose lifecycle angular2-webpack@1.0.0~build: unsafe-perm in lifecycle true
-9 verbose lifecycle angular2-webpack@1.0.0~build: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/kenneth/Desktop/Dev/info30005/info30005_server/nextram-angular/node_modules/.bin:/usr/local/bin:/Users/kenneth/anaconda3/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin
-10 verbose lifecycle angular2-webpack@1.0.0~build: CWD: /Users/kenneth/Desktop/Dev/info30005/info30005_server/nextram-angular
+9 verbose lifecycle angular2-webpack@1.0.0~build: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/kenneth/Desktop/Dev/info30005/info30005_server/nextram-angular-old/node_modules/.bin:/usr/local/bin:/Users/kenneth/anaconda3/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin
+10 verbose lifecycle angular2-webpack@1.0.0~build: CWD: /Users/kenneth/Desktop/Dev/info30005/info30005_server/nextram-angular-old
 11 silly lifecycle angular2-webpack@1.0.0~build: Args: [ '-c',
 11 silly lifecycle   'rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail' ]
 12 silly lifecycle angular2-webpack@1.0.0~build: Returned: code: 1  signal: null
@@ -24,7 +24,7 @@
 14 verbose stack     at maybeClose (internal/child_process.js:852:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
 15 verbose pkgid angular2-webpack@1.0.0
-16 verbose cwd /Users/kenneth/Desktop/Dev/info30005/info30005_server/nextram-angular
+16 verbose cwd /Users/kenneth/Desktop/Dev/info30005/info30005_server/nextram-angular-old
 17 error Darwin 16.5.0
 18 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "build"
 19 error node v6.2.2
