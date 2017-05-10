@@ -18,7 +18,7 @@ app.set("view engine", "ejs");
 
 /* static files */
 app.use(express.static("assets"));
-app.use('/nextramlive', express.static("nextram-angular/src/dist"));  // changed to point to distribution output
+app.use('/nextramlive', express.static("nextram-angular/dist"));  // changed to point to distribution output
 
 /* PTV, trams */
 var PTV = require('./ptvApi.js');
@@ -267,7 +267,7 @@ app.get("/nextram", function(req, res) {
         res.redirect("/nextram?stop_id=" + stop_id);
     }
     else {
-       res.sendfile("nextram-angular/src/dist/index.html")
+       res.sendfile("nextram-angular/dist/index.html")
     }
 });
 
