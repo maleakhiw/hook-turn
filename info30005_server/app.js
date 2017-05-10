@@ -267,7 +267,7 @@ app.get("/nextram", function(req, res) {
         res.redirect("/nextram?stop_id=" + stop_id);
     }
     else {
-       res.sendfile("nextram-angular/src/index.html")
+       res.sendfile("nextram-angular/src/dist/index.html")
     }
 });
 
