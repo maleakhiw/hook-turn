@@ -67,11 +67,20 @@ var groupByRouteDirectionID = function(ptvData) {
 app.get("/departures", cors(), function(req, res) {
     var callback = function(error, response, body) {
 
+        try {
+          var body = JSON.parse(body);
+        }
+        catch (SyntaxError) { // JSON parsing failed
+          res.json({status: 'error'});
+          return;
+        }
+
+
         /* list all the runIDs. We'll do an IN query with them later */
         var runIds = [];
         if (body) { // body: PTV response
           // get a list of route IDs
-          var ptvData = JSON.parse(body);
+          var ptvData = body;
           var departures = ptvData.departures;
           for (let i=0; i<departures.length; i++) {
             runIds.push(departures[i].run_id);
@@ -126,8 +135,8 @@ app.get("/departures", cors(), function(req, res) {
                     var toSend = {
                         status: "success",
                         stopID: stopID,
-                        ptvData: JSON.parse(body),
-                        groupedDepts: groupByRouteDirectionID(JSON.parse(body)),
+                        ptvData: body,
+                        groupedDepts: groupByRouteDirectionID(body),
                         crowdSourcedDisruptions: runCrowdedness,
                         routeGuide: null
                     }
