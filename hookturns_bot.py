@@ -10,7 +10,7 @@ bot = Telegram_Bot(token)
 send = bot.sender
 
 class HookTurns:
-    url = "http://104.155.227.151:3000/departures"
+    url = "http://hookturns.info/departures"
     def __init__(self):
         with open('tramstops.json') as tramstops_file:
             stops = json.load(tramstops_file)['stops']
