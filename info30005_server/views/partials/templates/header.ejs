@@ -31,5 +31,14 @@
 		<meta name="google-signin-scope" content="https://www.googleapis.com/auth/userinfo.email">
     <meta name="google-signin-client_id" content="46251385268-d4q4r8kb5n7r1c0533hpfkudok8bpth1.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script>
+	    function start() {
+	      gapi.load('auth2', function() {
+	        auth2 = gapi.auth2.init({
+	          client_id: '46251385268-d4q4r8kb5n7r1c0533hpfkudok8bpth1.apps.googleusercontent.com',
+	        });
+	      });
+	    }
+	  </script>
 	</head>
 	<body>
