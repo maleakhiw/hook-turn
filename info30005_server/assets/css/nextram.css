@@ -53,6 +53,13 @@
   text-transform: uppercase;
 }
 
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .jumbotron h1 {
+    font-size: 2.5em; /* hopefully fixes line wrapping */
+  }
+}
+
 /* Section */
 
 h4 {
