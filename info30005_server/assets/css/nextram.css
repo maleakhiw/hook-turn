@@ -66,10 +66,11 @@ h4 {
   margin-top: 25px;
 }
 
-/* Progress bar */
-.progress-bar-null {
-  background-color: #ffffff;
+.null {
+  background-color: #fff;
 }
+
+/* Progress bar */
 
 .progress-bar-empty {
   background-color: #b8efca;
