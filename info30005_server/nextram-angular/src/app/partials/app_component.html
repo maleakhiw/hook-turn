@@ -114,7 +114,7 @@
                           <div class="input-group">
                             <textarea [(ngModel)]="disruptionData[column[0].run_id]" class="form-control" id="disruption" placeholder="Enter here" rows="2"></textarea>
                             <!-- TODO: fix fixed string -->
-                            <span (click)="onSubmitDisruption(column[0], disruptionData.column[0].run_id)" class="input-group-addon btn btn-primary">Submit</span>
+                            <span (click)="onSubmitDisruption(column[0], disruptionData[column[0].run_id])" class="input-group-addon btn btn-primary">Submit</span>
                           </div>
                         </div>
                       </div>
