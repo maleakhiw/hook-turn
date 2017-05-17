@@ -358,39 +358,79 @@ app.get("/route-guide", function(req, res) {
 
 // Information gather from nextram page
 app.post("/nextramdb", function(req, res) {
-    console.log(req.body)
-    var crowdedness = req.body.crowdedness;
-    var runId = req.body.run_id;
-    var stopId = req.body.stop_id;
-    var userInput = {"runID": runId, "stopID": stopId, "crowdednessLevel": crowdedness};
-    Database.Crowdedness.create(userInput, function(err, object) {
-        if (err) {
-            console.log("Error");
+    var token = req.body.token;
+
+    // verify with Google API token
+    client.verifyIdToken(
+      req.body.token,
+      CLIENT_ID,
+      function(error, login) {
+        var payload = login.getPayload();
+        var userid = payload['sub'];
+        if (userid) {
+          var userInput = {
+            "runID": req.body.run_id,
+            "stopID": req.body.stop_id,
+            "crowdednessLevel": req.body.crowdedness,
+            "userID": userid
+          };
+          Database.Crowdedness.create(userInput, function(err, object) {
+              if (err) {
+                  console.log("Error");
+                  res.json({status: 'fail', reason: 'Database error occurred.'});
+              }
+              else {
+                  console.log("Insertion success" + object);
+                  res.json({status: 'success'});
+              }
+          });
         }
-        else {
-            console.log("Insertion success" + object);
-            // res.json({"status": "success"});
-            res.redirect("/nextram?stop_id=" + stopId);
+        else {  // invalid token
+          res.json({status: 'fail', reason: 'Invalid Google login token.'});
         }
-    });
+      }
+    )
+
 });
 
 // Create new disruption
 app.post('/reportdisruption', function(req, res) {
-  var disruption = new Disruption({
-    "status": req.body.status,
-    "runID": req.body.runID,
-    "stopID": req.body.stopID,
-    "disruption": req.body.disruption
-  });
+  var token = req.body.token;
 
-  disruption.save(function(err,newDisruption ){
-      if(!err){
-          res.send(newDisruption);
-      }else{
-          res.sendStatus(400);
+  // verify with Google API token
+  client.verifyIdToken(
+    req.body.token,
+    CLIENT_ID,
+    function(error, login) {
+      var payload = login.getPayload();
+      var userid = payload['sub'];
+      if (userid) {
+        var disruption = new Disruption({
+          "status": req.body.status,
+          "runID": req.body.runID,
+          "stopID": req.body.stopID,
+          "disruption": req.body.disruption
+          "userID": userid
+        });
+
+        disruption.save(function(err,newDisruption ){
+            if (!err) {
+                console.log('Insertion success' + object);
+                res.json({status: 'success'});
+            }
+            else {
+              console.log("Error");
+              res.json({status: 'fail', reason: 'Database error occurred.'});
+            }
+        });
       }
-  });
+      else {  // invalid token
+        res.json({status: 'fail', reason: 'Invalid Google login token.'});
+      }
+    }
+  )
+
+
 });
 
 // route to handle sign in. We'll use the userid

@@ -12,7 +12,8 @@ var disruptionSchema = new Schema({
   stopID: {type: Number},
   disruption: String,
   timeReported: { type: Date, default: Date.now() },
-  timeExpiry: { type: Date, default: jsonDate }
+  timeExpiry: { type: Date, default: jsonDate },
+  userID: String
 });
 
 var Disruption = mongoose.model('Disruption', disruptionSchema);
