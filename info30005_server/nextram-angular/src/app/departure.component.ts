@@ -8,7 +8,7 @@ import {Component, Input} from '@angular/core';
   </div>
 
   <p class="expected">Expected Crowd Level</p>
-  <div *ngIf="!inCrowdedness(departure.run_id)"><p>Data not available yet.</p></div>
+  <div *ngIf="!inCrowdedness(departure.run_id)"><p>Crowding data not available yet.</p></div>
   <div class="progress">
     <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}"
         role="progressbar" [ngStyle]="{width: calculateWidth(departure.run_id)}">

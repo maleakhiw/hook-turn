@@ -81,6 +81,7 @@ export class AppComponent implements OnInit {
                       this.lastSubmitted.push(departure);
                       this.lastSubmitted_crowdedness.push(departure);
                     }
+                    this.getDeparturesData(); // refresh data
                   } ,
                   (error) => {
                     console.log(error);
@@ -88,7 +89,7 @@ export class AppComponent implements OnInit {
                   });
 
 
-    this.getDeparturesData(); // refresh data
+
   }
 
   submitDisruption(departure: any, disruption: any) {
@@ -107,14 +108,14 @@ export class AppComponent implements OnInit {
                       this.lastSubmitted.push(departure);
                       this.lastSubmitted_disruption.push(departure);
                     }
+                    this.getDeparturesData();
                   } ,
                   (error) => {
                     console.log(error);
                     this.showSubmissionFailedError = true;
                   });
 
-    // add to lastSubmitted array if it's not there yet
-    this.getDeparturesData();
+
   }
 
   // Method used for styling the percentage
