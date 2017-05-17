@@ -19,6 +19,9 @@ var core_1 = __webpack_require__(17);
 var DepartureComponent = (function () {
     function DepartureComponent() {
     }
+    DepartureComponent.prototype.inCrowdedness = function (run_id) {
+        return (run_id in this.crowdedness);
+    };
     /* formats the time string to a time from now */
     DepartureComponent.prototype.minsToNow = function (dateTimeString) {
         var date = new Date(dateTimeString);
@@ -91,7 +94,7 @@ __decorate([
 DepartureComponent = __decorate([
     core_1.Component({
         selector: 'departure',
-        template: "\n  <div class=\"upcoming-tram\">\n    <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>\n  </div>\n\n  <p class=\"expected\">Expected Crowd Level</p>\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdedness[departure.run_id]?.class}}\n      <div *ngIf=\"!(departure.run_id in crowdedness)\">Data not available yet.</div>\n    </div>\n  </div>\n  "
+        template: "\n  <div class=\"upcoming-tram\">\n    <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>\n  </div>\n\n  <p class=\"expected\">Expected Crowd Level</p>\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdedness[departure.run_id]?.class}}\n      <div *ngIf=\"!inCrowdedness(departure.run_id)\">Data not available yet.</div>\n    </div>\n  </div>\n  "
     })
 ], DepartureComponent);
 exports.DepartureComponent = DepartureComponent;
