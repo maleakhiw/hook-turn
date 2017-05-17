@@ -57,7 +57,7 @@ var DepartureComponent = (function () {
     };
     DepartureComponent.prototype.calculateWidth = function (runId) {
         if (this.crowdedness[runId]) {
-            if (this.crowdedness[runId].class = "empty") {
+            if (this.crowdedness[runId].class == "empty") {
                 return '100%';
             }
             return this.crowdedness[runId].average / 3 * 100 + '%';
