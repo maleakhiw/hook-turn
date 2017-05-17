@@ -111,55 +111,77 @@ app.get("/departures", cors(), function(req, res) {
 
             // Get Crowdedness from database
             Crowdedness.find({runID: {$in: runIds}}, function(err, result) {
+              console.log('Crowdedness data');
+              console.log(err);
+              console.log(result);
+              // Iterate result and calculate the crowdedness for the requested stop id
+              var total = 0;
+              var runCrowdedness = {};
+              for (let i = 0; i < result.length; i++) {
+                  // Compare based on run_id
+                  // Create key if not exist in runCrowdedness object
+                  if (!(result[i].runID in runCrowdedness)) {
+                      runCrowdedness[result[i].runID] = {crowdedness: Number(result[i].crowdednessLevel), count: 1, average: 0};
+                  }
+                  // Else increment crowdedness level and count
+                  else {
+                      runCrowdedness[result[i].runID].crowdedness += Number(result[i].crowdednessLevel);
+                      runCrowdedness[result[i].runID].count++;
+                  }
+              }
+
+              // Iterate every run id in runCrowdednessObject and calculate the average of every run id
+              for (var run in runCrowdedness) {
+                  runCrowdedness[run].average = Math.round(runCrowdedness[run].crowdedness / runCrowdedness[run].count);
+                  // Classify level of crowdedness
+                  if (runCrowdedness[run].average == 0) {
+                      runCrowdedness[run]["class"] = "Empty";
+                  }
+                  else if (runCrowdedness[run].average == 1) {
+                      runCrowdedness[run]["class"] = "Decent";
+                  }
+                  else if (runCrowdedness[run].average == 2) {
+                      runCrowdedness[run]["class"] = "Full";
+                  }
+                  else if (runCrowdedness[run].average == 3) {
+                      runCrowdedness[run]["class"] = "Overcrowded";
+                  }
+                }
+              }
+
+              // get all crowdsourced disruptions
+              Disruption.find({runID: {$in: runIds}}, function(err, result) {
+                console.log('Disruption data');
                 console.log(err);
                 console.log(result);
-                // Iterate result and calculate the crowdedness for the requested stop id
-                var total = 0;
-                var runCrowdedness = {};
-                for (var i = 0; i < result.length; i++) {
-                    // Compare based on run_id
-                    // Create key if not exist in runCrowdedness object
-                    if (!(result[i].runID in runCrowdedness)) {
-                        runCrowdedness[result[i].runID] = {crowdedness: Number(result[i].crowdednessLevel), count: 1, average: 0};
-                    }
-                    // Else increment crowdedness level and count
-                    else {
-                        runCrowdedness[result[i].runID].crowdedness += Number(result[i].crowdednessLevel);
-                        runCrowdedness[result[i].runID].count++;
-                    }
+
+                disruptions = {};
+                for (let i=0; i<result.length; i++) {
+                  if (!(result[i].runID in disruptions)) {  // key does not exist, create
+                      disruptions[result[i].runID] = [result[i].disruption];
+                  }
+                  else {
+                    disruptions[result[i].runID].push(result[i].disruption);  // add to existing array
+                  }
                 }
 
-                // Iterate every run id in runCrowdednessObject and calculate the average of every run id
-                for (var run in runCrowdedness) {
-                    runCrowdedness[run].average = Math.round(runCrowdedness[run].crowdedness / runCrowdedness[run].count);
-                    // Classify level of crowdedness
-                    if (runCrowdedness[run].average == 0) {
-                        runCrowdedness[run]["class"] = "Empty";
-                    }
-                    else if (runCrowdedness[run].average == 1) {
-                        runCrowdedness[run]["class"] = "Decent";
-                    }
-                    else if (runCrowdedness[run].average == 2) {
-                        runCrowdedness[run]["class"] = "Full";
-                    }
-                    else if (runCrowdedness[run].average == 3) {
-                        runCrowdedness[run]["class"] = "Overcrowded";
-                    }
-                }
+              }
 
-                // Send back the result in json format
-                if (body) {
-                    var toSend = {
-                        status: "success",
-                        stopID: stopID,
-                        ptvData: body,
-                        groupedDepts: groupByRouteDirectionID(body),
-                        crowdSourcedDisruptions: runCrowdedness,
-                        routeGuide: null
-                    }
-                    res.json(toSend);
-                }
-            });
+              let crowdData = {crowdedness: runCrowdedness, disruptions: disruptions}
+
+              // Send back the result in json format
+              if (body) {
+                  var toSend = {
+                      status: "success",
+                      stopID: stopID,
+                      ptvData: body,
+                      groupedDepts: groupByRouteDirectionID(body),
+                      crowdSourcedDisruptions: crowdData,
+                      routeGuide: null
+                  }
+                  res.json(toSend);
+              }
+          });
         }
     }
 
