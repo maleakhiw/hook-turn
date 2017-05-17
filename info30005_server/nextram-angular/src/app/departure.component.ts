@@ -62,11 +62,12 @@ export class DepartureComponent {
 
   calculateWidth(runId: any): string {
     if (this.crowdedness[runId]) {
-      return this.crowdedness [runId].average/3*100 + '%';
+      if (this.crowdedness[runId].class = "empty") {  // fix for text inside progressbar not being seen if empty
+        return '100%';
+      }
+      return this.crowdedness[runId].average/3*100 + '%';
     }
-    else if (this.crowdedness[runId].class == 'empty') {
-      return '100%';
-    }
+
 
     else {
       return "0%";
