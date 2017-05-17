@@ -55,23 +55,23 @@ export class AppComponent implements OnInit {
   userAuthToken: String;
   userDisplayName: String;
 
-  ngAfterViewInit() {
-    gapi.signin2.render(
-      'g-signin-btn',
-      {
-        'onSuccess': this.onGoogleLoginSuccess
-      }
-    )
-  }
-
-  onGoogleLoginSuccess = (loggedInUser: any) => {
-    this._zone.run(() => {
-      // console.log(loggedInUser);
-      // console.log(loggedInUser.getAuthResponse());
-      // this.userAuthToken = loggedInUser.getAuthResponse().id_token;
-      // this.userDisplayName = loggedInUser.getBasicProfile().getName();
-   });
-  }
+  // ngAfterViewInit() {
+  //   gapi.signin2.render(
+  //     'g-signin-btn',
+  //     {
+  //       'onSuccess': this.onGoogleLoginSuccess
+  //     }
+  //   )
+  // }
+  //
+  // onGoogleLoginSuccess = (loggedInUser: any) => {
+  //   this._zone.run(() => {
+  //     // console.log(loggedInUser);
+  //     // console.log(loggedInUser.getAuthResponse());
+  //     // this.userAuthToken = loggedInUser.getAuthResponse().id_token;
+  //     // this.userDisplayName = loggedInUser.getBasicProfile().getName();
+  //  });
+  // }
 
   showAlert(text: String) {
     this.showAlertBool = true;
