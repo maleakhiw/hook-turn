@@ -413,9 +413,9 @@ app.post('/reportdisruption', function(req, res) {
           "userID": userid
         });
 
-        disruption.save(function(err,newDisruption ){
+        disruption.save(function(err, newDisruption) {
             if (!err) {
-                console.log('Insertion success' + object);
+                console.log('Insertion success' + newDisruption);
                 res.json({status: 'success'});
             }
             else {

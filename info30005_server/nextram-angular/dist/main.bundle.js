@@ -268,6 +268,10 @@ var AppComponent = (function () {
         var _this = this;
         console.log('submitDisruption, logging:', departure, disruption);
         if (this.token) {
+            if (disruption.length < 10) {
+                this.showAlert('Please describe the disruption or inconvenience.');
+                return;
+            }
             this.clearAlert();
             var data = {
                 runID: departure.run_id,
