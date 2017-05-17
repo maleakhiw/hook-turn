@@ -74,19 +74,18 @@ export class AppComponent implements OnInit {
       crowdedness: crowdedness
     };
 
-    this.tramService.storeTrams(data).
-          subscribe((response) => console.log(response),
-                    (error) => {
-                      console.log(error);
-                      this.showSubmissionFailedError = true;
-                    });
-
-
-    // add to lastSubmitted array if it's not there yet
-    if (!this.containsObject(departure, this.lastSubmitted)) {
-      this.lastSubmitted.push(departure);
-      this.lastSubmitted_crowdedness.push(departure);
-    }
+    this.tramService.storeDisruption(data)
+      .subscribe((response) => {
+                    console.log(response)
+                    if (!this.containsObject(departure, this.lastSubmitted)) {
+                      this.lastSubmitted.push(departure);
+                      this.lastSubmitted_crowdedness.push(departure);
+                    }
+                  } ,
+                  (error) => {
+                    console.log(error);
+                    this.showSubmissionFailedError = true;
+                  });
 
     this.getDeparturesData(); // refresh data
   }
@@ -101,18 +100,19 @@ export class AppComponent implements OnInit {
     }
 
     this.tramService.storeDisruption(data)
-      .subscribe((response) => console.log(response),
+      .subscribe((response) => {
+                    console.log(response)
+                    if (!this.containsObject(departure, this.lastSubmitted)) {
+                      this.lastSubmitted.push(departure);
+                      this.lastSubmitted_disruption.push(departure);
+                    }
+                  } ,
                   (error) => {
                     console.log(error);
                     this.showSubmissionFailedError = true;
                   });
 
     // add to lastSubmitted array if it's not there yet
-    if (!this.containsObject(departure, this.lastSubmitted)) {
-      this.lastSubmitted.push(departure);
-      this.lastSubmitted_disruption.push(departure);
-    }
-
     this.getDeparturesData();
   }
 
