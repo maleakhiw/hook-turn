@@ -59,6 +59,9 @@ var DepartureComponent = (function () {
         if (this.crowdedness[runId]) {
             return this.crowdedness[runId].average / 3 * 100 + '%';
         }
+        else if (this.crowdedness[runId].class == 'empty') {
+            return '100%';
+        }
         else {
             return "0%";
         }
@@ -88,7 +91,7 @@ __decorate([
 DepartureComponent = __decorate([
     core_1.Component({
         selector: 'departure',
-        template: "\n  <div class=\"upcoming-tram\">\n    <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdedness[departure.run_id]?.class}}\n    </div>\n  </div>\n  "
+        template: "\n  <div class=\"upcoming-tram\">\n    <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>\n  </div>\n\n  <p class=\"expected\">Expected Crowd Level</p>\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdedness[departure.run_id]?.class}}\n    </div>\n  </div>\n  "
     })
 ], DepartureComponent);
 exports.DepartureComponent = DepartureComponent;
