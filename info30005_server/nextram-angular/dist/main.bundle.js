@@ -15,7 +15,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(18);
+var core_1 = __webpack_require__(17);
 var DepartureComponent = (function () {
     function DepartureComponent() {
     }
@@ -92,7 +92,7 @@ exports.DepartureComponent = DepartureComponent;
 
 /***/ }),
 
-/***/ 183:
+/***/ 185:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -101,27 +101,27 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 183;
+webpackEmptyContext.id = 185;
 
 
 /***/ }),
 
-/***/ 184:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var platform_browser_dynamic_1 = __webpack_require__(188);
-var core_1 = __webpack_require__(18);
-var app_module_1 = __webpack_require__(190);
+var platform_browser_dynamic_1 = __webpack_require__(191);
+var core_1 = __webpack_require__(17);
+var app_module_1 = __webpack_require__(193);
 core_1.enableProdMode();
 platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
 //# sourceMappingURL=main.js.map
 
 /***/ }),
 
-/***/ 189:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -136,10 +136,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(18);
+var core_1 = __webpack_require__(17);
 // import { GongService } from './gong.service';
-var tram_service_1 = __webpack_require__(195);
-var departures_service_1 = __webpack_require__(191);
+var tram_service_1 = __webpack_require__(198);
+var departures_service_1 = __webpack_require__(194);
 var http_1 = __webpack_require__(66);
 var IntervalObservable_1 = __webpack_require__(155);
 var jumbotronImages = ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
@@ -310,7 +310,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: __webpack_require__(350),
+        template: __webpack_require__(353),
         providers: [departures_service_1.DeparturesService, tram_service_1.TramService],
         styles: ['.jumbotron { background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("' + getRandomImageURL() + '"); }']
     }),
@@ -322,7 +322,7 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 190:
+/***/ 193:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -334,14 +334,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(18);
-var platform_browser_1 = __webpack_require__(87);
+var core_1 = __webpack_require__(17);
+var platform_browser_1 = __webpack_require__(67);
 var http_1 = __webpack_require__(66);
-var app_component_1 = __webpack_require__(189);
+var forms_1 = __webpack_require__(190);
+var app_component_1 = __webpack_require__(192);
 var departure_component_1 = __webpack_require__(117);
-var small_departure_component_1 = __webpack_require__(194);
-var navbar_component_1 = __webpack_require__(193);
-var keys_pipe_1 = __webpack_require__(192);
+var small_departure_component_1 = __webpack_require__(197);
+var navbar_component_1 = __webpack_require__(196);
+var keys_pipe_1 = __webpack_require__(195);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -349,7 +350,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
+        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule],
         declarations: [app_component_1.AppComponent,
             departure_component_1.DepartureComponent, small_departure_component_1.SmallDepartureComponent,
             navbar_component_1.NavbarComponent, keys_pipe_1.KeysPipe],
@@ -361,7 +362,7 @@ exports.AppModule = AppModule;
 
 /***/ }),
 
-/***/ 191:
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -376,7 +377,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(18);
+var core_1 = __webpack_require__(17);
 var http_1 = __webpack_require__(66);
 __webpack_require__(152);
 var DeparturesService = (function () {
@@ -413,7 +414,7 @@ var _a;
 
 /***/ }),
 
-/***/ 192:
+/***/ 195:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -425,7 +426,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(18);
+var core_1 = __webpack_require__(17);
 var KeysPipe = (function () {
     function KeysPipe() {
     }
@@ -446,7 +447,7 @@ exports.KeysPipe = KeysPipe;
 
 /***/ }),
 
-/***/ 193:
+/***/ 196:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -458,7 +459,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(18);
+var core_1 = __webpack_require__(17);
 var NavbarComponent = (function () {
     function NavbarComponent() {
     }
@@ -467,7 +468,7 @@ var NavbarComponent = (function () {
 NavbarComponent = __decorate([
     core_1.Component({
         selector: 'navbar',
-        template: __webpack_require__(351)
+        template: __webpack_require__(354)
     })
 ], NavbarComponent);
 exports.NavbarComponent = NavbarComponent;
@@ -475,7 +476,7 @@ exports.NavbarComponent = NavbarComponent;
 
 /***/ }),
 
-/***/ 194:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -497,7 +498,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(18);
+var core_1 = __webpack_require__(17);
 var departure_component_1 = __webpack_require__(117);
 var SmallDepartureComponent = (function (_super) {
     __extends(SmallDepartureComponent, _super);
@@ -517,7 +518,7 @@ exports.SmallDepartureComponent = SmallDepartureComponent;
 
 /***/ }),
 
-/***/ 195:
+/***/ 198:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -532,9 +533,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(18);
+var core_1 = __webpack_require__(17);
 var http_1 = __webpack_require__(66);
-__webpack_require__(353);
+__webpack_require__(356);
 var TramService = (function () {
     function TramService(http) {
         this.http = http;
@@ -558,27 +559,27 @@ var _a;
 
 /***/ }),
 
-/***/ 350:
+/***/ 353:
 /***/ (function(module, exports) {
 
 module.exports = "<navbar></navbar>\n<!-- Jumbotron for stopname -->\n<div class=\"jumbotron\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-2\"></div>\n      <div class=\"col-md-8\">\n        <h3>NEXTRAM</h3>\n        <h1>{{ stopName }}</h1>\n        <h2 *ngIf=\"stopNo\">Stop {{ stopNo }}</h2>\n        <p>Not here? <button class=\"btn\" onclick=\"location.href='../search'\">Change</button>\n      </div>\n      <div class=\"col-md-2\"></div>\n    </div>\n  </div>\n</div><!-- /jumbotron -->\n\n<div class=\"container-fluid\">\n  <!-- <div *ngFor=\"let key of processedGroupedDepts | keys;\"> -->\n    <div *ngFor=\"let row of processedGroupedDepts\" class=\"row match-my-cols\">\n      <div class=\"col-sm-6 nextram_box full text-center\"\n          attr.class=\"{{'col-sm-6 nextram_box text-center ' + crowdSourcedDisruptions[column[0].run_id]?.class.toLowerCase()}}\"\n          *ngFor=\"let column of row\"><div class=\"box padding-15px\">\n        <span class=\"{{ 'route_number_table route_number_' + routes[column[0].route_id].route_number }}\">{{ routes[column[0].route_id].route_number }}</span>\n        {{ 'to ' + directions[column[0].direction_id].direction_name }}\n\n        <h1></h1>\n\n        <div *ngFor=\"let departure of column; let i=index\">\n          <div *ngIf=\"i==0\">\n            <departure\n                [crowdSourcedDisruptions]=\"crowdSourcedDisruptions\"\n                [departure]=\"column[0]\"\n                [routes]=\"routes\"\n                [directions]=\"directions\">\n            </departure>\n          </div>\n        </div>\n\n        <div class=\"row\">\n          <div class=\"panel-group\" id=\"{{ 'accordion' + column[0].route_id + '-' + column[0].direction_id }}\">\n            <div class=\"panel panel-default\">\n              <div class=\"panel-heading\">\n                <h4 class=\"panel-title\"><a class=\"accordion-toggle collapsed\"\n                    data-toggle=\"collapse\"\n                    attr.data-parent=\"{{ '#accordion' + column[0].route_id + '-' + column[0].direction_id }}\"\n                    href=\"{{ '#collapse' + column[0].route_id + '-' + column[0].direction_id }}\">\n                  Next departures and reporting</a>\n                </h4>\n              </div>\n\n              <div id=\"{{ 'collapse' + column[0].route_id + '-' + column[0].direction_id }}\" class=\"panel-collapse collapse\">\n                <ul class=\"nav nav-pills center-pills\">\n                  <li class=\"active\"><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#moreDetails' + column[0].route_id + '-' + column[0].direction_id }}\">Next departures</a></li>\n                  <li><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}\">Report Crowd</a></li>\n                  <li><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#reportDisruption' + column[0].route_id + '-' + column[0].direction_id }}\">Report Disruption</a></li>\n                </ul>\n\n                <div class=\"tab-content\">\n                  <div class=\"tab-pane fade in active\" id=\"{{'moreDetails' + column[0].route_id + '-' + column[0].direction_id }}\">\n                      <div class=\"well\">\n                        <div *ngFor=\"let departure of column; let i=index\">\n\n                          <div *ngIf=\"i>0\">\n                            <smalldeparture\n                                [crowdSourcedDisruptions]=\"crowdSourcedDisruptions\"\n                                [departure]=\"departure\"\n                                [routes]=\"routes\"\n                                [directions]=\"directions\">\n                            </smalldeparture>\n                          </div>\n\n                        </div>\n                      </div><!-- end bunch -->\n                    </div>\n\n                  <div class=\"tab-pane fade in\" id=\"{{'reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}\">\n                    <div class=\"well\" *ngIf=\"column[0].run_id != lastSubmitted?.run_id || !lastSubmitted\"> <!-- if not last submitted -->\n                      <div class=\"row\">\n                        <h5>Rate the crowding level of the tram below:</h5>\n                      </div>\n\n                      <div class=\"row\">\n                        <div class=\"col-xs-10 col-xs-offset-1\">\n                          <!-- Button crowdedness -->\n                          <button (click)=\"onInputData(column[0], 0)\"\n                                  (click)=\"onSubmitCrowdedness()\"\n                                  class=\"btn btn-success btn-lg clear_5px_top\" type=\"submit\" name=\"crowdedness\" value=\"0\">Empty</button>\n                          <button (click)=\"onInputData(column[0], 1)\"\n                                  (click)=\"onSubmitCrowdedness()\"\n                                  class=\"btn btn-success btn-lg clear_5px_top\" name=\"crowdedness\" value=\"1\" type=\"submit\">Decent</button>\n                          <button (click)=\"onInputData(column[0], 2)\"\n                                  (click)=\"onSubmitCrowdedness()\"\n                                  name=\"crowdedness\" value=\"2\" class=\"btn btn-warning btn-lg clear_5px_top\" type=\"submit\">Full</button>\n                          <button (click)=\"onInputData(column[0], 3)\"\n                                  (click)=\"onSubmitCrowdedness()\"\n                                  class=\"btn btn-danger btn-lg clear_5px_top\" type=\"submit\" name=\"crowdedness\" value=\"3\">Overcrowded</button>\n                        </div>\n                      </div>\n                    </div>\n                    <div class=\"well\" *ngIf=\"column[0].run_id == lastSubmitted?.run_id\"> <!-- if not last submitted -->\n                      <p>Thank you for submitting!</p>\n                    </div>\n                  </div>\n\n                  <div class=\"tab-pane fade in\" id=\"{{'reportDisruption' + column[0].route_id + '-' + column[0].direction_id }}\">\n                    <div class=\"well\" *ngIf=\"column[0].run_id != lastSubmittedDisruption?.run_id || !lastSubmittedDisruption\">\n                      <div class=\"row\">\n                        <h5>Describe any disruptions or inconveniences below:</h5>\n                      </div>\n\n                      <div class=\"row\">\n                        <div class=\"col-xs-10 col-xs-offset-1\">\n                          <div class=\"input-group\">\n                            <textarea [(ngModel)]=\"disruptionData.column[0].run_id\" class=\"form-control\" id=\"disruption\" placeholder=\"Enter here\" rows=\"2\"></textarea>\n                            <!-- TODO: fix fixed string -->\n                            <span (click)=\"onSubmitDisruption(column[0], 'disruptionData.column[0].run_id')\" class=\"input-group-addon btn btn-primary\">Submit</span>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n\n                    <div class=\"well\" *ngIf=\"column[0].run_id == lastSubmittedDisruption?.run_id\"> <!-- if not last submitted -->\n                      <p>Thank you for submitting!</p>\n                    </div>\n\n\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n\n\n\n\n      </div></div><!-- End of col -->\n\n    </div>\n  <!-- </div> -->\n</div>\n\n\n<footer>\n  <p>COPYRIGHT HOOKTURNS 2017</p>\n</footer>\n\n\n<!-- {{ departuresData?.status }}  http://stackoverflow.com/a/34738113: wait for Promise -->\n"
 
 /***/ }),
 
-/***/ 351:
+/***/ 354:
 /***/ (function(module, exports) {
 
 module.exports = ""
 
 /***/ }),
 
-/***/ 629:
+/***/ 630:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(184);
+module.exports = __webpack_require__(186);
 
 
 /***/ })
 
-},[629]);
+},[630]);
 //# sourceMappingURL=main.bundle.js.map
