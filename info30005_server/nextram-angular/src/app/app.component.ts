@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   routes: any[];
   directions: any[];
   processedGroupedDepts: any;
+  disruptions: any;
 
   /* crowdsourced data */
   crowdedness: any;
@@ -233,6 +234,7 @@ export class AppComponent implements OnInit {
     console.log(departuresData);
     this.departuresData = departuresData;
     this.showConnectionError = false;
+    this.disruptions = departuresData.ptvData.disruptions;
 
     // Get crowdsourced data
     this.crowdedness = departuresData.crowdSourcedDisruptions.crowdedness;

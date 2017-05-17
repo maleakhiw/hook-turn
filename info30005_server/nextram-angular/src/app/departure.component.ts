@@ -32,6 +32,20 @@ import {Component, Input} from '@angular/core';
     </div>
 
   </div>
+
+  <div *ngIf="departure.disruption_ids.length > 0">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <h2 class="disruption_font"><span class="glyphicon glyphicon-warning-sign clear_10px_right"></span>Service Disruption</h2><span class="disruption_table">OFFICIAL</span>
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let disruption_id of departure.disruption_ids">
+      <div class="col-sm-8 col-sm-offset-2">
+        <p>{{disruptions[disruption_id].description}}</p>
+      </div>
+    </div><!-- / service disruption -->
+  </div>
   `
 })
 export class DepartureComponent {
@@ -40,6 +54,7 @@ export class DepartureComponent {
   @Input() directions: any; // list of directions, returned from PTV API
   @Input() crowdDisruptions: any;  // crowdsoured disruptions
   @Input() crowdedness: any;  // crowdsourced crowding data
+  @Input() disruptions: any;  // disruptions from PTV API
 
   inCrowdedness(run_id: any) {
     // console.log(this.crowdedness);
