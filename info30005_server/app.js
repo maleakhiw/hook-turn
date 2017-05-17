@@ -329,12 +329,15 @@ app.get("/nextram", function(req, res) {
                 break;
             }
         }
-        res.redirect("/nextram?stop_id=" + stop_id);
 
         if (!isFound) {
           console.log('not found');
           res.redirect('/search');
         }
+        else {
+          res.redirect("/nextram?stop_id=" + stop_id);
+        }
+
     }
     else {
        res.sendfile("nextram-angular/dist/index.html")
