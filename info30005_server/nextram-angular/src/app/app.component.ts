@@ -68,8 +68,8 @@ export class AppComponent implements OnInit {
     this._zone.run(() => {
       console.log(loggedInUser);
       console.log(loggedInUser.getAuthResponse());
-      this.userAuthToken = loggedInUser.getAuthResponse().id_token;
-      this.userDisplayName = loggedInUser.getBasicProfile().getName();
+      // this.userAuthToken = loggedInUser.getAuthResponse().id_token;
+      // this.userDisplayName = loggedInUser.getBasicProfile().getName();
    });
   }
 

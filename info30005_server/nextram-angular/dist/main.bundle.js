@@ -178,8 +178,8 @@ var AppComponent = (function () {
             _this._zone.run(function () {
                 console.log(loggedInUser);
                 console.log(loggedInUser.getAuthResponse());
-                _this.userAuthToken = loggedInUser.getAuthResponse().id_token;
-                _this.userDisplayName = loggedInUser.getBasicProfile().getName();
+                // this.userAuthToken = loggedInUser.getAuthResponse().id_token;
+                // this.userDisplayName = loggedInUser.getBasicProfile().getName();
             });
         };
     }
