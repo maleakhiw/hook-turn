@@ -300,6 +300,9 @@ app.post("/nextramdb", function(req, res) {
                 email: payload['email'],
                 firstName: payload['given_name'],
                 lastName: payload['family_name']
+              }, (err, results) => {
+                console.log(err)
+                console.log(results)
               })
             }
           });
@@ -352,7 +355,10 @@ app.post('/reportdisruption', function(req, res) {
               email: payload['email'],
               firstName: payload['given_name'],
               lastName: payload['family_name']
-            })
+            }, (err, results) => {
+              console.log(err)
+              console.log(results)
+            }))
           }
         });
       }

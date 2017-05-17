@@ -154,6 +154,7 @@ export class AppComponent implements OnInit {
                         this.lastSubmitted.push(departure);
                         this.lastSubmitted_crowdedness.push(departure);
                       }
+                      this.getDeparturesData();
 
                     } ,
                     (error) => {
@@ -172,6 +173,9 @@ export class AppComponent implements OnInit {
   submitDisruption(departure: any, disruption: any) {
     console.log('submitDisruption, logging:', departure, disruption);
     if (this.token) {
+      if (!disruption) {
+        this.showAlert('Please enter a description for the disruption or inconvenience.');
+      }
       if (disruption.length < 10) {
         this.showAlert('Please describe the disruption or inconvenience.');
         return;
