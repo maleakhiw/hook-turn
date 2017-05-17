@@ -29,7 +29,8 @@
         <div *ngFor="let departure of column; let i=index">
           <div *ngIf="i==0">
             <departure
-                [crowdSourcedDisruptions]="crowdSourcedDisruptions"
+                [crowdDisruptions]="crowdDisruptions"
+                [crowding]="crowding"
                 [departure]="column[0]"
                 [routes]="routes"
                 [directions]="directions">
@@ -63,7 +64,8 @@
 
                           <div *ngIf="i>0">
                             <smalldeparture
-                                [crowdSourcedDisruptions]="crowdSourcedDisruptions"
+                                [crowdDisruptions]="crowdDisruptions"
+                                [crowding]="crowding"
                                 [departure]="departure"
                                 [routes]="routes"
                                 [directions]="directions">

@@ -8,9 +8,9 @@ import {Component, Input} from '@angular/core';
   </div>
 
   <div class="progress">
-    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowdSourcedDisruptions[departure.run_id]?.class.toLowerCase()}}"
+    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowdDisruptions[departure.run_id]?.class.toLowerCase()}}"
         role="progressbar" [ngStyle]="{width: calculateWidth(departure.run_id)}">
-      {{crowdSourcedDisruptions[departure.run_id]?.class}}
+      {{crowdDisruptions[departure.run_id]?.class}}
     </div>
   </div>
   `
@@ -19,7 +19,8 @@ export class DepartureComponent {
   @Input() departure: any;  // departure data: parsedEstDeptTime
   @Input() routes: any; // list of routes, returned from PTV API
   @Input() directions: any; // list of directions, returned from PTV API
-  @Input() crowdSourcedDisruptions: any;  // crowdsoured disruptions
+  @Input() crowdDisruptions: any;  // crowdsoured disruptions
+  @Input() crowdedness: any;  // crowdsourced crowding data
 
   /* formats the time string to a time from now */
   minsToNow(dateTimeString: string): string {
@@ -59,8 +60,8 @@ export class DepartureComponent {
   }
 
   calculateWidth(runId: any): string {
-    if (this.crowdSourcedDisruptions[runId]) {
-      return this.crowdSourcedDisruptions[runId].average/3*100 + '%';
+    if (this.crowdDisruptions[runId]) {
+      return this.crowdDisruptions[runId].average/3*100 + '%';
     } else {
       return "0%";
     }
