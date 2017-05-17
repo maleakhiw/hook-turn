@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
         // console.log('Email: ' + profile.getEmail());
 
       }, function (error: any) {
-        alert(JSON.stringify(error, undefined, 2));
+        console.log(error);
       });
   }
 

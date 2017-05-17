@@ -207,7 +207,7 @@ var AppComponent = (function () {
             // console.log('Image URL: ' + profile.getImageUrl());
             // console.log('Email: ' + profile.getEmail());
         }, function (error) {
-            alert(JSON.stringify(error, undefined, 2));
+            console.log(error);
         });
     };
     AppComponent.prototype.ngOnInit = function () {
