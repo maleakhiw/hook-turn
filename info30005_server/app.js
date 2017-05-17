@@ -174,35 +174,35 @@ app.get("/departures", cors(), function(req, res) {
 });
 /***********************************DISRUPTION********************************/
 
-// Create new disruption
-app.post('/reportdisruption', function(req, res) {
-  var disruption = new Disruption({
-    "status": req.body.status,
-    "runID": req.body.runID,
-    "stopID": req.body.stopID,
-    "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
-  });
+// // Create new disruption
+// app.post('/reportdisruption', function(req, res) {
+//   var disruption = new Disruption({
+//     "status": req.body.status,
+//     "runID": req.body.runID,
+//     "stopID": req.body.stopID,
+//     "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
+//   });
+//
+//   disruption.save(function(err,newDisruption ){
+//       if(!err){
+//           res.send(newDisruption);
+//       }else{
+//           res.sendStatus(400);
+//       }
+//   });
+// });
 
-  disruption.save(function(err,newDisruption ){
-      if(!err){
-          res.send(newDisruption);
-      }else{
-          res.sendStatus(400);
-      }
-  });
-});
-
-// Find all disruptions
-app.get('/reportdisruption', function(req,res) {
-    Disruption.find(function(err,disruptions){
-        if(!err){
-            res.send(disruptions);
-        }else{
-            res.sendStatus(404);
-        }
-    });
-});
-
+// // Find all disruptions
+// app.get('/reportdisruption', function(req,res) {
+//     Disruption.find(function(err,disruptions){
+//         if(!err){
+//             res.send(disruptions);
+//         }else{
+//             res.sendStatus(404);
+//         }
+//     });
+// });
+//
 // // Find one disruption by id
 // app.get('/reportdisruption/:id', function(req,res){
 //     var disruptionInx = req.params.id;
@@ -326,6 +326,24 @@ app.post("/nextramdb", function(req, res) {
             res.redirect("/nextram?stop_id=" + stopId);
         }
     });
+});
+
+// Create new disruption
+app.post('/reportdisruption', function(req, res) {
+  var disruption = new Disruption({
+    "status": req.body.status,
+    "runID": req.body.runID,
+    "stopID": req.body.stopID,
+    "disruption": req.body.disruption
+  });
+
+  disruption.save(function(err,newDisruption ){
+      if(!err){
+          res.send(newDisruption);
+      }else{
+          res.sendStatus(400);
+      }
+  });
 });
 
 

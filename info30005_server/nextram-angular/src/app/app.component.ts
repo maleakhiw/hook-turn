@@ -31,9 +31,9 @@ export class AppComponent implements OnInit {
   processedGroupedDepts: any;
   crowdSourcedDisruptions: any;
 
-  // Data needed for post
-  data: any = {};
-  disruptionData: any = {};
+  // Data needed for POST methods
+  data: any = {}; // for crowding. Keys: stop_id, run_id, crowdedness
+  disruptionData: any = {}; // for disruption. Holds *all* entered text for now
   lastSubmitted: any; // departure
   lastSubmittedDisruption: any;
 
@@ -53,7 +53,6 @@ export class AppComponent implements OnInit {
     this.getDeparturesData();
   }
 
-  // TODO: probably still broken
   onSubmitDisruption(departure: any, disruption: any) {
     console.log('onSubmitDisruption');
     console.log(departure);
@@ -61,6 +60,8 @@ export class AppComponent implements OnInit {
     let data = {};
     data['runID'] = departure.run_id;
     data['stopID'] = departure.stop_id;
+    data['disruption'] = disruption;
+    console.log(data);
     this.tramService.storeDisruption(data)
       .subscribe((response) => console.log(response),
                   (error) => console.log(error));

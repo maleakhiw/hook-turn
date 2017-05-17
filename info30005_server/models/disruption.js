@@ -10,7 +10,7 @@ var disruptionSchema = new Schema({
   status: String,
   runID: {type: Number},
   stopID: {type: Number},
-  crowdSourcedDisruptions: [String],
+  disruption: String,
   timeReported: { type: Date, default: Date.now() },
   timeExpiry: { type: Date, default: jsonDate }
 });
