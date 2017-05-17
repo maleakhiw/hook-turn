@@ -110,6 +110,28 @@ app.get("/departures", cors(), function(req, res) {
             if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
 
             var runCrowdedness = {};
+            var disruptions = {};
+            var crowdednessDone = false;
+            var disruptionDone = false;
+
+            var callback = function() {
+                var crowdData = {crowdedness: runCrowdedness, disruptions: disruptions}
+
+                // Send back the result in json format
+                if (body && crowdednessDone && disruptionDone) {  // ptvData has been loaded, done looking for crowdsourced info from our database
+                    var toSend = {
+                        status: "success",
+                        stopID: stopID,
+                        ptvData: body,
+                        groupedDepts: groupByRouteDirectionID(body),
+                        crowdSourcedDisruptions: crowdData,
+                        routeGuide: null
+                    }
+                    res.json(toSend);
+                }
+
+            }
+
             // Get Crowdedness from database
             Crowdedness.find({runID: {$in: runIds}}, function(err, result) {
               console.log('Crowdedness data');
@@ -147,9 +169,12 @@ app.get("/departures", cors(), function(req, res) {
                     runCrowdedness[run]["class"] = "Overcrowded";
                 }
               }
+
+              crowdednessDone = true;
+              callback();
             });
 
-            var disruptions = {};
+
             // get all crowdsourced disruptions
             Disruption.find({runID: {$in: runIds}}, function(err, result) {
               console.log('Disruption data');
@@ -165,23 +190,11 @@ app.get("/departures", cors(), function(req, res) {
                 }
               }
 
+              disruptionDone = true;
+              callback();
+
             });
 
-            var crowdData = {crowdedness: runCrowdedness, disruptions: disruptions}
-            console.log('crowdData', crowdData);
-
-            // Send back the result in json format
-            if (body) {
-                var toSend = {
-                    status: "success",
-                    stopID: stopID,
-                    ptvData: body,
-                    groupedDepts: groupByRouteDirectionID(body),
-                    crowdSourcedDisruptions: crowdData,
-                    routeGuide: null
-                }
-                res.json(toSend);
-            }
 
         }
     }
