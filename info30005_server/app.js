@@ -360,7 +360,7 @@ app.post('/reportdisruption', function(req, res) {
             }, (err, results) => {
               console.log(err)
               console.log(results)
-            }))
+            });
           }
         });
       }
