@@ -164,12 +164,13 @@ var AppComponent = (function () {
         this.tramService = tramService;
         this.http = http;
         this.zone = zone;
-        // data needed for POST methods
+        /* data for POST methods */
         this.disruptionData = {}; // for disruption. Holds *all* entered text (data binding)
         this.lastSubmitted = []; // list of reported departures
+        /* client-side multiple submission prevention */
         this.lastSubmitted_crowdedness = [];
         this.lastSubmitted_disruption = [];
-        // alerts - visibility and content
+        /* alerts */
         this.showConnectionError = false;
         this.showSubmissionFailedError = false;
         this.showAlertBool = false; // misc. alerts
@@ -187,7 +188,6 @@ var AppComponent = (function () {
                 var profile = googleUser.getBasicProfile();
                 that.token = googleUser.getAuthResponse().id_token;
                 that.name = profile.getName();
-                console.log(that.token, that.name);
             });
         });
     };
@@ -197,20 +197,26 @@ var AppComponent = (function () {
             var profile = googleUser.getBasicProfile();
             that.token = googleUser.getAuthResponse().id_token;
             that.name = profile.getName();
-            console.log(that.token, that.name);
             // console.log('Token || ' + googleUser.getAuthResponse().id_token);
             // console.log('ID: ' + profile.getId());
             // console.log('Name: ' + profile.getName());
             // console.log('Image URL: ' + profile.getImageUrl());
             // console.log('Email: ' + profile.getEmail());
-            //YOUR CODE HERE
         }, function (error) {
             alert(JSON.stringify(error, undefined, 2));
         });
     };
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.getDeparturesData();
+        /* poll our server every minute */
+        IntervalObservable_1.IntervalObservable.create(60 * 1000) // ms, 1 minute
+            .subscribe(function (x) { return _this.getDeparturesData(); });
+    };
     AppComponent.prototype.ngAfterViewInit = function () {
         this.googleInit();
     };
+    /* Alerts */
     AppComponent.prototype.showAlert = function (text) {
         this.showAlertBool = true;
         this.showAlertText = text;
@@ -219,6 +225,7 @@ var AppComponent = (function () {
         this.showAlertBool = false;
         this.showAlertText = '';
     };
+    /* Helpers */
     AppComponent.prototype.containsObject = function (obj, list) {
         for (var i = 0; i < list.length; i++) {
             if (list[i] === obj) {
@@ -235,6 +242,17 @@ var AppComponent = (function () {
         }
         return false;
     };
+    // Method used for calculating the width of the progressbar (representing tram crowdedness)
+    AppComponent.prototype.calculateWidth = function (run_id) {
+        if (this.crowdedness[run_id]) {
+            var width = this.crowdedness[run_id].average / 3 * 100;
+            return (width + "%");
+        }
+        else {
+            return "0%";
+        }
+    };
+    /* POST */
     // POST user-submitted crowdedness data
     AppComponent.prototype.submitCrowdedness = function (departure, crowdedness) {
         var _this = this;
@@ -254,6 +272,7 @@ var AppComponent = (function () {
                     _this.lastSubmitted.push(departure);
                     _this.lastSubmitted_crowdedness.push(departure);
                 }
+                _this.getDeparturesData();
             }, function (error) {
                 console.log(error);
                 _this.showSubmissionFailedError = true;
@@ -268,6 +287,9 @@ var AppComponent = (function () {
         var _this = this;
         console.log('submitDisruption, logging:', departure, disruption);
         if (this.token) {
+            if (!disruption) {
+                this.showAlert('Please enter a description for the disruption or inconvenience.');
+            }
             if (disruption.length < 10) {
                 this.showAlert('Please describe the disruption or inconvenience.');
                 return;
@@ -296,23 +318,6 @@ var AppComponent = (function () {
             this.showAlert('Please sign in first.');
         }
     };
-    // Method used for calculating the width of the progressbar (representing tram crowdedness)
-    AppComponent.prototype.calculateWidth = function (run_id) {
-        if (this.crowdedness[run_id]) {
-            var width = this.crowdedness[run_id].average / 3 * 100;
-            return (width + "%");
-        }
-        else {
-            return "0%";
-        }
-    };
-    AppComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.getDeparturesData();
-        /* poll our server every minute */
-        IntervalObservable_1.IntervalObservable.create(60 * 1000) // ms, 1 minute
-            .subscribe(function (x) { return _this.getDeparturesData(); });
-    };
     // callback for when data is loaded from GongAPI (our API) - does pre-processing, grouping, etc.
     AppComponent.prototype.updateDeparturesData = function (departuresData) {
         console.log(departuresData);
@@ -325,7 +330,7 @@ var AppComponent = (function () {
         for (var key in departuresData.ptvData.stops) {
             this.stopData = departuresData.ptvData.stops[key];
             var stopName = this.stopData.stop_name;
-            var re = '\\d+$';
+            var re = '\\d+$'; // stop number
             var matches = stopName.match(re);
             if (matches) {
                 var match = matches[0];
@@ -336,7 +341,6 @@ var AppComponent = (function () {
                 this.stopName = stopName;
             }
         }
-        console.log('lastSubmitted:', this.lastSubmitted);
         /* check if last submitted entry has disappeared from a group, and put it back if it has */
         if (this.lastSubmitted.length > 0) {
             for (var i_1 = 0; i_1 < this.lastSubmitted.length; i_1++) {
@@ -351,7 +355,6 @@ var AppComponent = (function () {
                         }
                     }
                     if (isNotFound) {
-                        console.log("Added", this.lastSubmitted[i_1]);
                         group.unshift(this.lastSubmitted[i_1]); // add to beginning of array
                     }
                 }

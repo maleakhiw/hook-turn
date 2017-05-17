@@ -33,25 +33,26 @@ export class AppComponent implements OnInit {
   directions: any[];
   processedGroupedDepts: any;
 
-  // crowdsourced data
+  /* crowdsourced data */
   crowdedness: any;
   crowdDisruptions: any;
 
-  // data needed for POST methods
+  /* data for POST methods */
   disruptionData: any = {}; // for disruption. Holds *all* entered text (data binding)
   lastSubmitted: any = []; // list of reported departures
 
+  /* client-side multiple submission prevention */
   lastSubmitted_crowdedness: any = [];
   lastSubmitted_disruption: any = [];
 
-  // alerts - visibility and content
+  /* alerts */
   showConnectionError: boolean = false;
   showSubmissionFailedError: boolean = false;
   showAlertBool: boolean = false; // misc. alerts
   showAlertText: String;
-  // TODO: use an array for alerts
 
-  // google sign in
+
+  /* Google sign-in */
   token: String;
   name: String;
 
@@ -72,8 +73,6 @@ export class AppComponent implements OnInit {
         let profile = googleUser.getBasicProfile();
         that.token = googleUser.getAuthResponse().id_token;
         that.name = profile.getName();
-
-        console.log(that.token, that.name);
       });
     });
 
@@ -89,24 +88,32 @@ export class AppComponent implements OnInit {
         that.token = googleUser.getAuthResponse().id_token;
         that.name = profile.getName();
 
-        console.log(that.token, that.name);
         // console.log('Token || ' + googleUser.getAuthResponse().id_token);
         // console.log('ID: ' + profile.getId());
         // console.log('Name: ' + profile.getName());
         // console.log('Image URL: ' + profile.getImageUrl());
         // console.log('Email: ' + profile.getEmail());
-        //YOUR CODE HERE
-
 
       }, function (error: any) {
         alert(JSON.stringify(error, undefined, 2));
       });
   }
 
+  constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http, private zone: NgZone) {}
+
+  ngOnInit(): void {
+    this.getDeparturesData();
+
+    /* poll our server every minute */
+    IntervalObservable.create(60 * 1000) // ms, 1 minute
+        .subscribe(x => this.getDeparturesData());
+  }
+
   ngAfterViewInit(){
       this.googleInit();
   }
 
+  /* Alerts */
   showAlert(text: String) {
     this.showAlertBool = true;
     this.showAlertText = text;
@@ -117,6 +124,7 @@ export class AppComponent implements OnInit {
     this.showAlertText = '';
   }
 
+  /* Helpers */
   containsObject(obj: any, list: any) {
     for (let i=0; i<list.length; i++) {
       if (list[i] === obj) {
@@ -135,6 +143,18 @@ export class AppComponent implements OnInit {
     return false;
   }
 
+  // Method used for calculating the width of the progressbar (representing tram crowdedness)
+  calculateWidth(run_id: any) {
+    if (this.crowdedness[run_id]) {   // if information for this run exists
+      var width = this.crowdedness[run_id].average / 3 * 100;
+      return (width + "%");
+    }
+    else {
+      return "0%";
+    }
+  }
+
+  /* POST */
   // POST user-submitted crowdedness data
   submitCrowdedness(departure: any, crowdedness: number) {
     console.log('onInputData, logging:', departure, crowdedness);
@@ -206,29 +226,6 @@ export class AppComponent implements OnInit {
     else {
       this.showAlert('Please sign in first.');
     }
-
-
-  }
-
-  // Method used for calculating the width of the progressbar (representing tram crowdedness)
-  calculateWidth(run_id: any) {
-    if (this.crowdedness[run_id]) {   // if information for this run exists
-      var width = this.crowdedness[run_id].average / 3 * 100;
-      return (width + "%");
-    }
-    else {
-      return "0%";
-    }
-  }
-
-  constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http, private zone: NgZone) {}
-
-  ngOnInit(): void {
-    this.getDeparturesData();
-
-    /* poll our server every minute */
-    IntervalObservable.create(60 * 1000) // ms, 1 minute
-        .subscribe(x => this.getDeparturesData());
   }
 
   // callback for when data is loaded from GongAPI (our API) - does pre-processing, grouping, etc.
@@ -245,7 +242,7 @@ export class AppComponent implements OnInit {
     for (var key in departuresData.ptvData.stops) { // assume only 1 stop
       this.stopData = departuresData.ptvData.stops[key];
       var stopName = this.stopData.stop_name;
-      var re = '\\d+$';
+      var re = '\\d+$'; // stop number
       var matches = stopName.match(re);
       if (matches) {
         var match = matches[0];
@@ -257,7 +254,6 @@ export class AppComponent implements OnInit {
       }
     }
 
-    console.log('lastSubmitted:', this.lastSubmitted);
     /* check if last submitted entry has disappeared from a group, and put it back if it has */
     if (this.lastSubmitted.length > 0) {
       for (let i=0; i<this.lastSubmitted.length; i++) {
@@ -273,7 +269,6 @@ export class AppComponent implements OnInit {
           }
 
           if (isNotFound) { // add to the group if it does not exist there
-            console.log("Added", this.lastSubmitted[i]);
             group.unshift(this.lastSubmitted[i]);  // add to beginning of array
           }
         }
