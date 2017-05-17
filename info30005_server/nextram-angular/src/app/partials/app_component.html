@@ -17,6 +17,17 @@
 
 <div class="container-fluid">
   <!-- <div *ngFor="let key of processedGroupedDepts | keys;"> -->
+
+  <div style="margin-top: 20px;" *ngIf="showConnectionError || showSubmissionFailedError">
+    <div class="alert alert-warning" *ngIf="showConnectionError">
+      <strong>Unable to connect to Hook/Turns</strong> Please check your internet connection.
+    </div>
+
+    <div class="alert alert-danger" *ngIf="showSubmissionFailedError">
+      <strong>Submission failed!</strong> Please check your submission and wait a few moments before trying again.
+    </div>
+  </div>
+
     <div *ngFor="let row of processedGroupedDepts" class="row match-my-cols">
       <div class="col-sm-6 nextram_box full text-center"
           attr.class="{{'col-sm-6 nextram_box text-center ' + crowdedness[column[0].run_id]?.class.toLowerCase()}}"
@@ -77,7 +88,7 @@
                     </div>
 
                   <div class="tab-pane fade in" id="{{'reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}">
-                    <div class="well" *ngIf="column[0].run_id != lastSubmitted?.run_id || !lastSubmitted"> <!-- if not last submitted -->
+                    <div class="well" *ngIf="!containsObjectByRunId(column[0], lastSubmitted_crowdedness)"> <!-- if not last submitted -->
                       <div class="row">
                         <h5>Rate the crowdedness level of the tram below:</h5>
                       </div>
@@ -85,28 +96,24 @@
                       <div class="row">
                         <div class="col-xs-10 col-xs-offset-1">
                           <!-- Button crowdedness -->
-                          <button (click)="onInputData(column[0], 0)"
-                                  (click)="onSubmitCrowdedness()"
+                          <button (click)="submitCrowdedness(column[0], 0)"
                                   class="btn btn-success btn-lg clear_5px_top" type="submit" name="crowdedness" value="0">Empty</button>
-                          <button (click)="onInputData(column[0], 1)"
-                                  (click)="onSubmitCrowdedness()"
+                          <button (click)="submitCrowdedness(column[0], 1)"
                                   class="btn btn-success btn-lg clear_5px_top" name="crowdedness" value="1" type="submit">Decent</button>
-                          <button (click)="onInputData(column[0], 2)"
-                                  (click)="onSubmitCrowdedness()"
+                          <button (click)="submitCrowdedness(column[0], 2)"
                                   name="crowdedness" value="2" class="btn btn-warning btn-lg clear_5px_top" type="submit">Full</button>
-                          <button (click)="onInputData(column[0], 3)"
-                                  (click)="onSubmitCrowdedness()"
+                          <button (click)="submitCrowdedness(column[0], 3)"
                                   class="btn btn-danger btn-lg clear_5px_top" type="submit" name="crowdedness" value="3">Overcrowded</button>
                         </div>
                       </div>
                     </div>
-                    <div class="well" *ngIf="column[0].run_id == lastSubmitted?.run_id"> <!-- if not last submitted -->
+                    <div class="well" *ngIf="containsObjectByRunId(column[0], lastSubmitted_crowdedness)"> <!-- if not last submitted -->
                       <p>Thank you for submitting!</p>
                     </div>
                   </div>
 
                   <div class="tab-pane fade in" id="{{'reportDisruption' + column[0].route_id + '-' + column[0].direction_id }}">
-                    <div class="well" *ngIf="column[0].run_id != lastSubmittedDisruption?.run_id || !lastSubmittedDisruption">
+                    <div class="well" *ngIf="!containsObjectByRunId(column[0], lastSubmitted_disruption)">
                       <div class="row">
                         <h5>Describe any disruptions or inconveniences below:</h5>
                       </div>
@@ -116,14 +123,14 @@
                           <div class="input-group">
                             <textarea [(ngModel)]="disruptionData[column[0].run_id]" class="form-control" id="disruption" placeholder="Enter here" rows="2"></textarea>
                             <!-- TODO: fix fixed string -->
-                            <span (click)="onSubmitDisruption(column[0], disruptionData[column[0].run_id])" class="input-group-addon btn btn-primary">Submit</span>
+                            <span (click)="submitDisruption(column[0], disruptionData[column[0].run_id])" class="input-group-addon btn btn-primary">Submit</span>
                           </div>
                         </div>
                       </div>
 
                     </div>
 
-                    <div class="well" *ngIf="column[0].run_id == lastSubmittedDisruption?.run_id"> <!-- if not last submitted -->
+                    <div class="well" *ngIf="containsObjectByRunId(column[0], lastSubmitted_disruption)"> <!-- if not last submitted -->
                       <p>Thank you for submitting!</p>
                     </div>
 

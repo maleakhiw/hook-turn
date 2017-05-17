@@ -4,7 +4,6 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { DeparturesData } from './departures';
-import { DEPARTURESDATA } from './mock-departures';
 
 @Injectable()
 export class DeparturesService {

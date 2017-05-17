@@ -35,41 +35,85 @@ export class AppComponent implements OnInit {
   crowdDisruptions: any;
 
   // Data needed for POST methods
-  data: any = {}; // for crowding. Keys: stop_id, run_id, crowdedness
-  disruptionData: any = {}; // for disruption. Holds *all* entered text for now
-  lastSubmitted: any; // departure
-  lastSubmittedDisruption: any;
+  disruptionData: any = {}; // for disruption. Holds *all* entered text (data binding)
+  lastSubmitted: any = []; // list of reported departures
+
+  lastSubmitted_crowdedness: any = [];
+  lastSubmitted_disruption: any = [];
+
+  // show alerts
+  showConnectionError: boolean = false;
+  showSubmissionFailedError: boolean = false;
+
+
+  containsObject(obj: any, list: any) {
+    for (let i=0; i<list.length; i++) {
+      if (list[i] === obj) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  containsObjectByRunId(obj: any, list: any) {
+    for (let i=0; i<list.length; i++) {
+      if (list[i].run_id === obj.run_id) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   // Method used for crowdedness post
-  onInputData(departure: any, crowdedness: number) {
-    console.log(departure);
-    this.lastSubmitted = departure;
-    this.data.stop_id = departure.stop_id;
-    this.data.run_id = departure.run_id;
-    this.data.crowdedness = crowdedness;
+  submitCrowdedness(departure: any, crowdedness: number) {
+    console.log('onInputData, logging:', departure, crowdedness);
+
+    var data = {
+      stop_id: departure.stop_id,
+      run_id: departure.run_id,
+      crowdedness: crowdedness
+    };
+
+    this.tramService.storeCrowdedness(data)
+      .subscribe((response) => {
+                    console.log(response)
+                    if (!this.containsObject(departure, this.lastSubmitted)) {
+                      this.lastSubmitted.push(departure);
+                      this.lastSubmitted_crowdedness.push(departure);
+                    }
+                  } ,
+                  (error) => {
+                    console.log(error);
+                    this.showSubmissionFailedError = true;
+                  });
+
+
+    this.getDeparturesData(); // refresh data
   }
 
-  onSubmitCrowdedness() {
-    this.tramService.storeTrams(this.data).
-          subscribe((response) => console.log(response),
-                    (error) => console.log(error));
-    this.getDeparturesData();
-  }
+  submitDisruption(departure: any, disruption: any) {
+    console.log('submitDisruption, logging:', departure, disruption);
 
-  onSubmitDisruption(departure: any, disruption: any) {
-    console.log('onSubmitDisruption');
-    console.log(departure);
-    console.log(disruption);
-    let data = {};
-    data['runID'] = departure.run_id;
-    data['stopID'] = departure.stop_id;
-    data['disruption'] = disruption;
-    console.log(data);
+    var data = {
+      runID: departure.run_id,
+      stopID: departure.stop_id,
+      disruption: disruption
+    }
+
     this.tramService.storeDisruption(data)
-      .subscribe((response) => console.log(response),
-                  (error) => console.log(error));
+      .subscribe((response) => {
+                    console.log(response)
+                    if (!this.containsObject(departure, this.lastSubmitted)) {
+                      this.lastSubmitted.push(departure);
+                      this.lastSubmitted_disruption.push(departure);
+                    }
+                  } ,
+                  (error) => {
+                    console.log(error);
+                    this.showSubmissionFailedError = true;
+                  });
 
-    this.lastSubmittedDisruption = departure;
+    // add to lastSubmitted array if it's not there yet
     this.getDeparturesData();
   }
 
@@ -100,12 +144,11 @@ export class AppComponent implements OnInit {
   updateDeparturesData(departuresData: any): void {
     console.log(departuresData);
     this.departuresData = departuresData;
+    this.showConnectionError = false;
 
     // Get crowdsourced data
     this.crowdedness = departuresData.crowdSourcedDisruptions.crowdedness;
-    console.log(this.crowdedness);
     this.crowdDisruptions = departuresData.crowdSourcedDisruptions.disruptions;
-    console.log(this.crowdDisruptions);
 
     /* get stop name and no for jumbotron, load to attribs */
     for (var key in departuresData.ptvData.stops) { // assume only 1 stop
@@ -123,27 +166,30 @@ export class AppComponent implements OnInit {
       }
     }
 
+    console.log('lastSubmitted:', this.lastSubmitted);
     /* check if last submitted entry has disappeared from a group, and put it back if it has */
-    if (this.lastSubmitted) {
-      var key = this.lastSubmitted.route_id + '-' + this.lastSubmitted.direction_id;
-      var group = departuresData.groupedDepts[key];
-      if (group) {  // if a group exists
-        // iterate over all entries in the group, find if we can find the same run_id there
-        var isNotFound = true;
-        for (let i=0; i<group.length; i++) {
-          if (group[i].run_id == this.lastSubmitted.run_id) {
-            isNotFound = false;
+    if (this.lastSubmitted.length > 0) {
+      for (let i=0; i<this.lastSubmitted.length; i++) {
+        var key = this.lastSubmitted[i].route_id + '-' + this.lastSubmitted[i].direction_id;
+        var group = departuresData.groupedDepts[key];
+        if (group) {  // if a group exists
+          // iterate over all entries in the group, find if we can find the same run_id there
+          var isNotFound = true;
+          for (let j=0; j<group.length; j++) {
+            if (group[j].run_id == this.lastSubmitted[i].run_id) {
+              isNotFound = false;
+            }
+          }
+
+          if (isNotFound) { // add to the group if it does not exist there
+            console.log("Added", this.lastSubmitted[i]);
+            group.unshift(this.lastSubmitted[i]);  // add to beginning of array
           }
         }
 
-        if (isNotFound) { // add to the group if it does not exist there
-          console.log("Added", this.lastSubmitted);
-          group.unshift(this.lastSubmitted);  // add to beginning of array
+        else {
+          departuresData.groupedDepts[key] = this.lastSubmitted[i];  // add it back
         }
-
-      }
-      else {
-        departuresData.groupedDepts[key] = this.lastSubmitted;  // add it back
       }
     }
 
@@ -167,8 +213,8 @@ export class AppComponent implements OnInit {
     /* processed data */
     var processed = {};
 
-    for (var key in departuresData.groupedDepts) {  // key: route_id + '-' + direction_id
-      for (var i=0; i<departuresData.groupedDepts[key].length; i++) {
+    for (let key in departuresData.groupedDepts) {  // key: route_id + '-' + direction_id
+      for (let i=0; i<departuresData.groupedDepts[key].length; i++) {
         if (departuresData.groupedDepts[key][i].estimated_departure_utc) {  // if estimated_departure_utc is null, not upcoming tram
           /* parse departure time */
           var departure = departuresData.groupedDepts[key][i];
@@ -217,7 +263,8 @@ export class AppComponent implements OnInit {
     // TODO: Angular2 routing, validation
 
     this.departuresService.getDeparturesData(queryDict.stop_id)
-      .then(departuresData => this.updateDeparturesData(departuresData));  // when the Promise is resolved, add to local departuresData
+      .then(departuresData => this.updateDeparturesData(departuresData))  // when the Promise is resolved, add to local departuresData
+      .catch((reason) => this.showConnectionError = true);
   }
 
 }
