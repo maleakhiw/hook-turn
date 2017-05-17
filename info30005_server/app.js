@@ -395,9 +395,10 @@ app.post('/reportdisruption', function(req, res) {
 
 // route to handle sign in. We'll use the userid
 app.post('/tokensignin', function(req, res) {
-  if (req.query.idtoken) {
+  console.log(req.body);  // from body-parser
+  if (req.body.idtoken) {
     client.verifyIdToken(
-      req.query.idtoken,
+      req.body.idtoken,
       CLIENT_ID,
       function(error, login) {
         var payload = login.getPayload();
