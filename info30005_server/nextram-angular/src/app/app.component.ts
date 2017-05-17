@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
   name: String;
 
   // from http://stackoverflow.com/questions/38846232/how-to-implement-signin-with-google-in-angularjs-2-using-typescript
+  // TODO: move to arrow functions
   public auth2: any;
   public googleInit() {
     let that = this;
@@ -67,10 +68,20 @@ export class AppComponent implements OnInit {
       });
       that.attachSignin(document.getElementById('g-signin-btn'));
     });
+    var googleUser = gapi.auth2.getAuthInstance().currentUser.listen((googleUser: any) => {
+      let profile = googleUser.getBasicProfile();
+      that.token = googleUser.getAuthResponse().id_token;
+      that.name = profile.getName();
+
+      console.log(that.token, that.name);
+    });
+
+
   }
 
   public attachSignin(element: any) {
-    let that = this;  // TODO: move to arrow functions
+    let that = this;
+
     this.auth2.attachClickHandler(element, {},
       function (googleUser: any) {
 
