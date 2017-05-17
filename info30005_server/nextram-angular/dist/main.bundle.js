@@ -533,7 +533,7 @@ var SmallDepartureComponent = (function (_super) {
 SmallDepartureComponent = __decorate([
     core_1.Component({
         selector: 'smalldeparture',
-        template: "\n  <div class=\"upcoming-tram\">\n    <h3>{{ minsToNow(departure.estimated_departure_utc) }}</h3>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdedness[departure.run_id]?.class}}\n      <div *ngIf=\"!(departure.run_id in crowdedness)\">Data not available yet.</div>\n    </div>\n  </div>\n  "
+        template: "\n  <div class=\"upcoming-tram\">\n    <h3>{{ minsToNow(departure.estimated_departure_utc) }}</h3>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdedness[departure.run_id]?.class}}\n      <div *ngIf=\"!inCrowdedness(departure.run_id)\">Data not available yet.</div>\n    </div>\n  </div>\n  "
     })
 ], SmallDepartureComponent);
 exports.SmallDepartureComponent = SmallDepartureComponent;
