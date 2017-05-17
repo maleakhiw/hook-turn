@@ -59,7 +59,10 @@ export class AppComponent implements OnInit {
   ngAfterViewInit() {
     gapi.signin2.render(
       'g-signin-btn',
-      {'onSuccess': this.onGoogleLoginSuccess}
+      {
+        'onSuccess': this.onGoogleLoginSuccess,
+        'theme': 'light'
+      }
     )
 }
 
