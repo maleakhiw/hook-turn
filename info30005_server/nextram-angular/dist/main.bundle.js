@@ -56,8 +56,8 @@ var DepartureComponent = (function () {
         return ret;
     };
     DepartureComponent.prototype.calculateWidth = function (runId) {
-        if (this.crowdDisruptions[runId]) {
-            return this.crowdDisruptions[runId].average / 3 * 100 + '%';
+        if (this.crowdedness[runId]) {
+            return this.crowdedness[runId].average / 3 * 100 + '%';
         }
         else {
             return "0%";

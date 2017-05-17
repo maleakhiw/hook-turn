@@ -60,8 +60,8 @@ export class DepartureComponent {
   }
 
   calculateWidth(runId: any): string {
-    if (this.crowdDisruptions[runId]) {
-      return this.crowdDisruptions[runId].average/3*100 + '%';
+    if (this.crowdedness[runId]) {
+      return this.crowdedness[runId].average/3*100 + '%';
     } else {
       return "0%";
     }
