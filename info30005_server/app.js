@@ -25,6 +25,23 @@ var PTV = require('./ptvApi.js');
 var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 var tramData = require("./assets/json/tramstops.json");
 
+/* Google Auth Library */
+var CLIENT_ID = "46251385268-d4q4r8kb5n7r1c0533hpfkudok8bpth1.apps.googleusercontent.com";
+var GoogleAuth = require('google-auth-library');
+var auth = new GoogleAuth;
+var client = new auth.OAuth2(CLIENT_ID, '', '');
+// client.verifyIdToken(
+//     token,
+//     CLIENT_ID,
+//     // Or, if multiple clients access the backend:
+//     //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
+//     function(e, login) {
+//       var payload = login.getPayload();
+//       var userid = payload['sub'];
+//       // If request specified a G Suite domain:
+//       //var domain = payload['hd'];
+//     });
+
 /* ---------------------------- Mongoose schemas ---------------------------- */
 var mongoose = require('mongoose');
 
@@ -186,50 +203,50 @@ app.get('/reportdisruption', function(req,res) {
     });
 });
 
-// Find one disruption by id
-app.get('/reportdisruption/:id', function(req,res){
-    var disruptionInx = req.params.id;
-    Disruption.findById(disruptionInx,function(err,disruption){
-        if(!err){
-            res.send(disruption);
-        }else{
-            res.sendStatus(404);
-        }
-    });
-});
-
-// Find one disruption and update by id
-app.post('/reportdisruption/:id', function(req,res) {
-    var disruptionInx = req.params.id;
-    Disruption.findByIdAndUpdate(disruptionInx,
-      {
-        $push:
-        {
-          "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
-        }
-      },
-      {safe: true, upsert: true},
-      function(err,disruption){
-        if(!err){
-            ////////////
-            res.send(disruption);
-        }else{
-            res.sendStatus(404);
-        }
-    });
-});
-
-// Delete one disruption by id
-app.delete('/reportdisruption/:id', function(req,res){
-    var disruptionInx = req.params.id;
-    Disruption.findByIdAndRemove(disruptionInx,function(err,disruption){
-        if(!err){
-            res.send(disruption);
-        }else{
-            res.sendStatus(404);
-        }
-    });
-});
+// // Find one disruption by id
+// app.get('/reportdisruption/:id', function(req,res){
+//     var disruptionInx = req.params.id;
+//     Disruption.findById(disruptionInx,function(err,disruption){
+//         if(!err){
+//             res.send(disruption);
+//         }else{
+//             res.sendStatus(404);
+//         }
+//     });
+// });
+//
+// // Find one disruption and update by id
+// app.post('/reportdisruption/:id', function(req,res) {
+//     var disruptionInx = req.params.id;
+//     Disruption.findByIdAndUpdate(disruptionInx,
+//       {
+//         $push:
+//         {
+//           "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
+//         }
+//       },
+//       {safe: true, upsert: true},
+//       function(err,disruption){
+//         if(!err){
+//             ////////////
+//             res.send(disruption);
+//         }else{
+//             res.sendStatus(404);
+//         }
+//     });
+// });
+//
+// // Delete one disruption by id
+// app.delete('/reportdisruption/:id', function(req,res){
+//     var disruptionInx = req.params.id;
+//     Disruption.findByIdAndRemove(disruptionInx,function(err,disruption){
+//         if(!err){
+//             res.send(disruption);
+//         }else{
+//             res.sendStatus(404);
+//         }
+//     });
+// });
 
 /******************************SUPPORTING JSONS*******************************/
 // NexTram Picture Assets
