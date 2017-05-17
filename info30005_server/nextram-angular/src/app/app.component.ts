@@ -70,15 +70,15 @@ export class AppComponent implements OnInit {
   }
 
   public attachSignin(element: any) {
-    let that = this;
+    let that = this;  // TODO: move to arrow functions
     this.auth2.attachClickHandler(element, {},
       function (googleUser: any) {
 
         let profile = googleUser.getBasicProfile();
-        this.token = googleUser.getAuthResponse().id_token;
-        this.name = profile.getName();
+        that.token = googleUser.getAuthResponse().id_token;
+        that.name = profile.getName();
 
-        console.log(this.token, this.name);
+        console.log(that.token, that.name);
         // console.log('Token || ' + googleUser.getAuthResponse().id_token);
         // console.log('ID: ' + profile.getId());
         // console.log('Name: ' + profile.getName());

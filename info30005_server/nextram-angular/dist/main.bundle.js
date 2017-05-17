@@ -186,12 +186,12 @@ var AppComponent = (function () {
         });
     };
     AppComponent.prototype.attachSignin = function (element) {
-        var that = this;
+        var that = this; // TODO: move to arrow functions
         this.auth2.attachClickHandler(element, {}, function (googleUser) {
             var profile = googleUser.getBasicProfile();
-            this.token = googleUser.getAuthResponse().id_token;
-            this.name = profile.getName();
-            console.log(this.token, this.name);
+            that.token = googleUser.getAuthResponse().id_token;
+            that.name = profile.getName();
+            console.log(that.token, that.name);
             // console.log('Token || ' + googleUser.getAuthResponse().id_token);
             // console.log('ID: ' + profile.getId());
             // console.log('Name: ' + profile.getName());
