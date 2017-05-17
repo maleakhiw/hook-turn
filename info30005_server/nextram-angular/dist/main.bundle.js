@@ -159,11 +159,11 @@ var getRandomImageURL = function () {
     return jumbotronImages[randomNo];
 };
 var AppComponent = (function () {
-    function AppComponent(departuresService, tramService, http, _zone) {
+    function AppComponent(departuresService, tramService, http, zone) {
         this.departuresService = departuresService;
         this.tramService = tramService;
         this.http = http;
-        this._zone = _zone;
+        this.zone = zone;
         // data needed for POST methods
         this.disruptionData = {}; // for disruption. Holds *all* entered text (data binding)
         this.lastSubmitted = []; // list of reported departures
@@ -181,10 +181,13 @@ var AppComponent = (function () {
         });
     };
     AppComponent.prototype.onSignIn = function (googleUser) {
-        console.log('onSignIn');
-        this.userAuthToken = googleUser.getAuthResponse().id_token;
-        this.userDisplayName = googleUser.getBasicProfile().getName();
-        console.log(this.userAuthToken, this.userDisplayName);
+        var _this = this;
+        this.zone.run(function () {
+            console.log('onSignIn');
+            _this.userAuthToken = googleUser.getAuthResponse().id_token;
+            _this.userDisplayName = googleUser.getBasicProfile().getName();
+            console.log(_this.userAuthToken, _this.userDisplayName);
+        });
     };
     ;
     AppComponent.prototype.showAlert = function (text) {

@@ -64,10 +64,13 @@ export class AppComponent implements OnInit {
 }
 
 public onSignIn(googleUser: any) {
-  console.log('onSignIn');
-  this.userAuthToken = googleUser.getAuthResponse().id_token;
-  this.userDisplayName = googleUser.getBasicProfile().getName();
-  console.log(this.userAuthToken, this.userDisplayName);
+  this.zone.run(() => {
+    console.log('onSignIn');
+    this.userAuthToken = googleUser.getAuthResponse().id_token;
+    this.userDisplayName = googleUser.getBasicProfile().getName();
+    console.log(this.userAuthToken, this.userDisplayName);
+  })
+
 };
 
   showAlert(text: String) {
@@ -157,7 +160,7 @@ public onSignIn(googleUser: any) {
     }
   }
 
-  constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http, private _zone: NgZone) {}
+  constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http, private zone: NgZone) {}
 
   ngOnInit(): void {
     this.getDeparturesData();
