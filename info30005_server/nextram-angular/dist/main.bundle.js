@@ -191,6 +191,7 @@ var AppComponent = (function () {
             var profile = googleUser.getBasicProfile();
             this.token = googleUser.getAuthResponse().id_token;
             this.name = profile.getName();
+            console.log(this.token, this.name);
             // console.log('Token || ' + googleUser.getAuthResponse().id_token);
             // console.log('ID: ' + profile.getId());
             // console.log('Name: ' + profile.getName());
