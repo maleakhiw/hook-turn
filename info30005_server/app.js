@@ -109,6 +109,7 @@ app.get("/departures", cors(), function(req, res) {
             // Check validity (only process JSON files, does not want website request)
             if (response.headers['content-type'] == 'text/html') res.json({status: 'error'});
 
+            var runCrowdedness = {};
             // Get Crowdedness from database
             Crowdedness.find({runID: {$in: runIds}}, function(err, result) {
               console.log('Crowdedness data');
@@ -116,7 +117,6 @@ app.get("/departures", cors(), function(req, res) {
               console.log(result);
               // Iterate result and calculate the crowdedness for the requested stop id
               var total = 0;
-              var runCrowdedness = {};
               for (let i = 0; i < result.length; i++) {
                   // Compare based on run_id
                   // Create key if not exist in runCrowdedness object
@@ -149,13 +149,13 @@ app.get("/departures", cors(), function(req, res) {
               }
             });
 
+            var disruptions = {};
             // get all crowdsourced disruptions
             Disruption.find({runID: {$in: runIds}}, function(err, result) {
               console.log('Disruption data');
               console.log(err);
               console.log(result);
 
-              disruptions = {};
               for (let i=0; i<result.length; i++) {
                 if (!(result[i].runID in disruptions)) {  // key does not exist, create
                     disruptions[result[i].runID] = [result[i].disruption];
