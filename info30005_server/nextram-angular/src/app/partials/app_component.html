@@ -18,7 +18,7 @@
 <div class="container-fluid">
   <!-- <div *ngFor="let key of processedGroupedDepts | keys;"> -->
 
-  <div style="margin-top: 20px;">
+  <div style="margin-top: 20px;" *ngIf="showConnectionError || showSubmissionFailedError">
     <div class="alert alert-warning" *ngIf="showConnectionError">
       <strong>Unable to connect to Hook/Turns</strong> Please check your internet connection.
     </div>
