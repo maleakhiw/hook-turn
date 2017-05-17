@@ -319,14 +319,21 @@ app.get("/nextram", function(req, res) {
     if (req.query.search) {
         var stop_name = req.query.search;
         var stop_id;
+
+        var isFound = false;
         // Find appropriate stop id
         for (var i = 0; i < tramData["stops"].length; i++) {
             if (tramData["stops"][i]["stop_name"].includes(stop_name)) {
                 stop_id = tramData["stops"][i]["stop_id"];
+                isFound = true;
                 break;
             }
         }
         res.redirect("/nextram?stop_id=" + stop_id);
+
+        if (!isFound) {
+          res.redirect("/nextram");
+        }
     }
     else {
        res.sendfile("nextram-angular/dist/index.html")
