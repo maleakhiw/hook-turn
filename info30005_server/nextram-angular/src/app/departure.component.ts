@@ -7,6 +7,23 @@ import {Component, Input} from '@angular/core';
     <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>
   </div>
 
+  <div *ngIf="crowdDisruptions">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <h2 class="disruption_font"><span class="glyphicon glyphicon-info-sign clear_10px_right"></span>Information</h2><span class="disruption_table">CROWDSOURCED</span>
+      </div>
+    </div>
+
+    <div *ngFor="let disruption of crowdDisruptions">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <p>{{disruption}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <p class="expected">Expected Crowd Level</p>
   <div *ngIf="!inCrowdedness(departure.run_id)"><p>Data not available yet.</p></div>
   <div class="progress">
