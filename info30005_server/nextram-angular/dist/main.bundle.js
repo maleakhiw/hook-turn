@@ -183,7 +183,10 @@ var AppComponent = (function () {
         };
     }
     AppComponent.prototype.ngAfterViewInit = function () {
-        gapi.signin2.render('g-signin-btn', { 'onSuccess': this.onGoogleLoginSuccess });
+        gapi.signin2.render('g-signin-btn', {
+            'onSuccess': this.onGoogleLoginSuccess,
+            'theme': 'light'
+        });
     };
     AppComponent.prototype.showAlert = function (text) {
         this.showAlertBool = true;
