@@ -167,7 +167,8 @@ app.get("/departures", cors(), function(req, res) {
 
             });
 
-            let crowdData = {crowdedness: runCrowdedness, disruptions: disruptions}
+            var crowdData = {crowdedness: runCrowdedness, disruptions: disruptions}
+            console.log('crowdData', crowdData);
 
             // Send back the result in json format
             if (body) {
