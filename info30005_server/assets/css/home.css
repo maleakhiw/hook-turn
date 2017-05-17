@@ -10,6 +10,7 @@
 					0 8px 13px rgba(0, 0, 0, 0.1),
 						0 13px 18px rgba(0, 0,0, 0.1);
 	padding: 0;
+	margin-bottom:0;
 }
 
 .jumbotron h1 {
@@ -20,16 +21,14 @@
 	text-align:center;
 }
 
-.jumbotron h2 {
-	font-size:1.5em;
-	font-family:"Lato";
+/* Sections*/
+.section {
+	padding-top:80px;
+	padding-bottom:80px;
 }
 
-/* Sections*/
-
-.section {
-	margin-top:80px;
-	margin-bottom:80px;
+.container-fluid.section {
+	background:#FBFBFB;
 }
 
 body > div:nth-child(3) > div > div:nth-child(1) > form > div > input {
@@ -47,34 +46,90 @@ body > div:nth-child(3) > div > div:nth-child(1) > form > div > input {
 	margin-bottom:0;
 }
 
-.section h2 {
-	font-size: 32px;
-	text-transform: uppercase;
-	margin-bottom:30px;
-}
-
 .section p {
 	margin-bottom:30px;
 }
 
-.section h3 {
+h2 {
+	font-size: 40px;
+	text-transform:none;
 	margin-bottom: 30px;
-}
-
-.section img {
-	max-width: 100%;
+	font-weight:normal !important;
 }
 
 .img-responsive {
-	max-height: 350px;
+	max-height: 400px;
 	width: auto;
 	height: auto;
+	margin:auto;
 }
 
 @media screen and (max-width: 750px) {
 	.img-responsive {
 		height:auto;
 	}
+}
+
+/* Search form */
+input[type="text"] {
+	height: 40px;
+}
+
+button {
+	height: 40px;
+}
+
+.try {
+	margin-top:5px;
+}
+
+.example {
+	color: #449D44;
+}
+
+/* Section 1 */
+.fa {
+	font-size:4em !important;
+	color: #F39C12;
+}
+
+.desc {
+	margin-left:20px;
+	margin-right:20px;
+	color: grey;
+}
+
+/* Section 3 */
+
+.section-3 {
+	padding-top:50px;
+}
+
+.section-3 p.img-desc {
+	text-align:justify;
+}
+
+.section-3 h2 {
+	margin-bottom:70px;
+}
+
+
+@media screen and (min-width: 768px) {
+	.img-desc {
+    	padding-top: 15%;
+	}
+
+	.section-3 .row {
+		margin-bottom: 50px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.img-desc {
+    	padding-top: 20px !important;
+    	padding-bottom:40px;
+	}
+
 }
 
 /* Autocomplete popup */

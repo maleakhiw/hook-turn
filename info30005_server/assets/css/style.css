@@ -1,8 +1,9 @@
-/*#dank_footer {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-}*/
+/* Login */
+#navbar > ul.nav.navbar-nav.navbar-right > li > div > div {
+	background:none !important;
+	color: black;
+	box-shadow: none;
+}
 
 .logo {
 	padding-top: 10px;
