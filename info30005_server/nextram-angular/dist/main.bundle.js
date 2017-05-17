@@ -88,7 +88,7 @@ __decorate([
 DepartureComponent = __decorate([
     core_1.Component({
         selector: 'departure',
-        template: "\n  <div class=\"upcoming-tram\">\n    <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdDisruptions[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdDisruptions[departure.run_id]?.class}}\n    </div>\n  </div>\n  "
+        template: "\n  <div class=\"upcoming-tram\">\n    <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdedness[departure.run_id]?.class}}\n    </div>\n  </div>\n  "
     })
 ], DepartureComponent);
 exports.DepartureComponent = DepartureComponent;
@@ -517,7 +517,7 @@ var SmallDepartureComponent = (function (_super) {
 SmallDepartureComponent = __decorate([
     core_1.Component({
         selector: 'smalldeparture',
-        template: "\n  <div class=\"upcoming-tram\">\n    <h3>{{ minsToNow(departure.estimated_departure_utc) }}</h3>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowding[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowding[departure.run_id]?.class}}\n    </div>\n  </div>\n  "
+        template: "\n  <div class=\"upcoming-tram\">\n    <h3>{{ minsToNow(departure.estimated_departure_utc) }}</h3>\n  </div>\n\n  <div class=\"progress\">\n    <div aria-valuemax=\"60\" aria-valuemin=\"0\" aria-valuenow=\"40\" class=\"{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}\"\n        role=\"progressbar\" [ngStyle]=\"{width: calculateWidth(departure.run_id)}\">\n      {{crowdedness[departure.run_id]?.class}}\n    </div>\n  </div>\n  "
     })
 ], SmallDepartureComponent);
 exports.SmallDepartureComponent = SmallDepartureComponent;

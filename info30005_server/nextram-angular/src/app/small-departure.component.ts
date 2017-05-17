@@ -9,9 +9,9 @@ import {DepartureComponent} from './departure.component';
   </div>
 
   <div class="progress">
-    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowding[departure.run_id]?.class.toLowerCase()}}"
+    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}"
         role="progressbar" [ngStyle]="{width: calculateWidth(departure.run_id)}">
-      {{crowding[departure.run_id]?.class}}
+      {{crowdedness[departure.run_id]?.class}}
     </div>
   </div>
   `
