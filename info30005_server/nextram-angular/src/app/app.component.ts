@@ -63,15 +63,15 @@ export class AppComponent implements OnInit {
     });
 }
 
-public onSignIn(googleUser: any) {
-  this.zone.run(() => {
-    console.log('onSignIn');
-    this.userAuthToken = googleUser.getAuthResponse().id_token;
-    this.userDisplayName = googleUser.getBasicProfile().getName();
-    console.log(this.userAuthToken, this.userDisplayName);
-  })
-
-};
+  onSignIn = (googleUser: any) => {
+    this.zone.run(() => {
+      console.log('onSignIn');
+      this.userAuthToken = googleUser.getAuthResponse().id_token;
+      this.userDisplayName = googleUser.getBasicProfile().getName();
+      console.log(this.userAuthToken, this.userDisplayName);
+    })
+    
+  };
 
   showAlert(text: String) {
     this.showAlertBool = true;

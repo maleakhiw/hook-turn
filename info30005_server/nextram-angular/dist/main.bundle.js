@@ -160,6 +160,7 @@ var getRandomImageURL = function () {
 };
 var AppComponent = (function () {
     function AppComponent(departuresService, tramService, http, zone) {
+        var _this = this;
         this.departuresService = departuresService;
         this.tramService = tramService;
         this.http = http;
@@ -173,6 +174,14 @@ var AppComponent = (function () {
         this.showConnectionError = false;
         this.showSubmissionFailedError = false;
         this.showAlertBool = false; // misc. alerts
+        this.onSignIn = function (googleUser) {
+            _this.zone.run(function () {
+                console.log('onSignIn');
+                _this.userAuthToken = googleUser.getAuthResponse().id_token;
+                _this.userDisplayName = googleUser.getBasicProfile().getName();
+                console.log(_this.userAuthToken, _this.userDisplayName);
+            });
+        };
     }
     AppComponent.prototype.ngAfterViewInit = function () {
         gapi.signin2.render('g-signin-btn', {
@@ -180,16 +189,6 @@ var AppComponent = (function () {
             'onsuccess': this.onSignIn
         });
     };
-    AppComponent.prototype.onSignIn = function (googleUser) {
-        var _this = this;
-        this.zone.run(function () {
-            console.log('onSignIn');
-            _this.userAuthToken = googleUser.getAuthResponse().id_token;
-            _this.userDisplayName = googleUser.getBasicProfile().getName();
-            console.log(_this.userAuthToken, _this.userDisplayName);
-        });
-    };
-    ;
     AppComponent.prototype.showAlert = function (text) {
         this.showAlertBool = true;
         this.showAlertText = text;
