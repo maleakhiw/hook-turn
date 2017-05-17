@@ -29,7 +29,10 @@ export class AppComponent implements OnInit {
   routes: any[];
   directions: any[];
   processedGroupedDepts: any;
-  crowdSourcedDisruptions: any;
+
+  // crowdsourced data
+  crowdedness: any;
+  crowdDisruptions: any;
 
   // Data needed for POST methods
   data: any = {}; // for crowding. Keys: stop_id, run_id, crowdedness
@@ -73,8 +76,8 @@ export class AppComponent implements OnInit {
   // Method used for styling the percentage
   calculateWidth(run_id: any) {
     // if user has already submit information
-    if (this.crowdSourcedDisruptions[run_id]) {
-      var width = this.crowdSourcedDisruptions[run_id].average / 3 * 100;
+    if (this.crowdedness[run_id]) {
+      var width = this.crowdedness[run_id].average / 3 * 100;
       console.log(width + "%");
       return (width + "%");
     }
@@ -89,6 +92,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getDeparturesData();
 
+    /* poll our server every minute */
     IntervalObservable.create(60 * 1000) // ms, 1 minute
         .subscribe(x => this.getDeparturesData());
   }
@@ -98,8 +102,10 @@ export class AppComponent implements OnInit {
     this.departuresData = departuresData;
 
     // Get crowdsourced data
-    this.crowdSourcedDisruptions = departuresData.crowdSourcedDisruptions;
-    console.log(this.crowdSourcedDisruptions);
+    this.crowdedness = departuresData.crowdSourcedDisruptions.crowdedness;
+    console.log(this.crowdedness);
+    this.crowdDisruptions = departuresData.crowdSourcedDisruptions.disruptions;
+    console.log(this.crowdDisruptions);
 
     /* get stop name and no for jumbotron, load to attribs */
     for (var key in departuresData.ptvData.stops) { // assume only 1 stop

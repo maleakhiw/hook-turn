@@ -186,8 +186,8 @@ var AppComponent = (function () {
     // Method used for styling the percentage
     AppComponent.prototype.calculateWidth = function (run_id) {
         // if user has already submit information
-        if (this.crowdSourcedDisruptions[run_id]) {
-            var width = this.crowdSourcedDisruptions[run_id].average / 3 * 100;
+        if (this.crowdedness[run_id]) {
+            var width = this.crowdedness[run_id].average / 3 * 100;
             console.log(width + "%");
             return (width + "%");
         }
@@ -199,6 +199,7 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getDeparturesData();
+        /* poll our server every minute */
         IntervalObservable_1.IntervalObservable.create(60 * 1000) // ms, 1 minute
             .subscribe(function (x) { return _this.getDeparturesData(); });
     };
@@ -206,8 +207,10 @@ var AppComponent = (function () {
         console.log(departuresData);
         this.departuresData = departuresData;
         // Get crowdsourced data
-        this.crowdSourcedDisruptions = departuresData.crowdSourcedDisruptions;
-        console.log(this.crowdSourcedDisruptions);
+        this.crowdedness = departuresData.crowdSourcedDisruptions.crowdedness;
+        console.log(this.crowdedness);
+        this.crowdDisruptions = departuresData.crowdSourcedDisruptions.disruptions;
+        console.log(this.crowdDisruptions);
         /* get stop name and no for jumbotron, load to attribs */
         for (var key in departuresData.ptvData.stops) {
             this.stopData = departuresData.ptvData.stops[key];
