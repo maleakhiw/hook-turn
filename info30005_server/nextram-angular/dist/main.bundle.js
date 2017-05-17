@@ -252,8 +252,8 @@ var AppComponent = (function () {
                 if (group) {
                     // iterate over all entries in the group, find if we can find the same run_id there
                     var isNotFound = true;
-                    for (var i_2 = 0; i_2 < group.length; i_2++) {
-                        if (group[i_2].run_id == this.lastSubmitted[i_2].run_id) {
+                    for (var j = 0; j < group.length; j++) {
+                        if (group[j].run_id == this.lastSubmitted[i_1].run_id) {
                             isNotFound = false;
                         }
                     }
@@ -270,8 +270,8 @@ var AppComponent = (function () {
         /* sort groupedDepts */
         // add actual route numbers
         for (var key_1 in departuresData.groupedDepts) {
-            for (var i_3 = 0; i_3 < departuresData.groupedDepts[key_1].length; i_3++) {
-                departuresData.groupedDepts[key_1][i_3].route_no = departuresData.ptvData.routes[departuresData.groupedDepts[key_1][i_3].route_id].route_number;
+            for (var i_2 = 0; i_2 < departuresData.groupedDepts[key_1].length; i_2++) {
+                departuresData.groupedDepts[key_1][i_2].route_no = departuresData.ptvData.routes[departuresData.groupedDepts[key_1][i_2].route_id].route_number;
             }
         }
         console.log(departuresData.groupedDepts);
@@ -282,18 +282,18 @@ var AppComponent = (function () {
         departuresData.groupedDepts = ordered;
         /* processed data */
         var processed = {};
-        for (var key in departuresData.groupedDepts) {
-            for (var i = 0; i < departuresData.groupedDepts[key].length; i++) {
-                if (departuresData.groupedDepts[key][i].estimated_departure_utc) {
+        for (var key_2 in departuresData.groupedDepts) {
+            for (var i_3 = 0; i_3 < departuresData.groupedDepts[key_2].length; i_3++) {
+                if (departuresData.groupedDepts[key_2][i_3].estimated_departure_utc) {
                     /* parse departure time */
-                    var departure = departuresData.groupedDepts[key][i];
-                    departure.parsedEstDeptTime = new Date(departuresData.groupedDepts[key][i].estimated_departure_utc);
+                    var departure = departuresData.groupedDepts[key_2][i_3];
+                    departure.parsedEstDeptTime = new Date(departuresData.groupedDepts[key_2][i_3].estimated_departure_utc);
                     /* add to new processed JSON */
-                    if (key in processed) {
-                        processed[key].push(departure);
+                    if (key_2 in processed) {
+                        processed[key_2].push(departure);
                     }
                     else {
-                        processed[key] = [departure];
+                        processed[key_2] = [departure];
                     }
                 }
             }

@@ -149,8 +149,8 @@ export class AppComponent implements OnInit {
         if (group) {  // if a group exists
           // iterate over all entries in the group, find if we can find the same run_id there
           var isNotFound = true;
-          for (let i=0; i<group.length; i++) {
-            if (group[i].run_id == this.lastSubmitted[i].run_id) {
+          for (let j=0; j<group.length; j++) {
+            if (group[j].run_id == this.lastSubmitted[i].run_id) {
               isNotFound = false;
             }
           }
@@ -187,8 +187,8 @@ export class AppComponent implements OnInit {
     /* processed data */
     var processed = {};
 
-    for (var key in departuresData.groupedDepts) {  // key: route_id + '-' + direction_id
-      for (var i=0; i<departuresData.groupedDepts[key].length; i++) {
+    for (let key in departuresData.groupedDepts) {  // key: route_id + '-' + direction_id
+      for (let i=0; i<departuresData.groupedDepts[key].length; i++) {
         if (departuresData.groupedDepts[key][i].estimated_departure_utc) {  // if estimated_departure_utc is null, not upcoming tram
           /* parse departure time */
           var departure = departuresData.groupedDepts[key][i];
