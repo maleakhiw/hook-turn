@@ -49,6 +49,16 @@ export class AppComponent implements OnInit {
     return false;
   }
 
+  containsObjectByRunId(obj: any, list: any) {
+    console.log(obj, list);
+    for (let i=0; i<list.length; i++) {
+      if (list[i].run_id === obj.run_id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   // Method used for crowdedness post
   submitCrowdedness(departure: any, crowdedness: number) {
     console.log('onInputData, logging:', departure, crowdedness);
