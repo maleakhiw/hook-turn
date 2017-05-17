@@ -7,6 +7,15 @@ import {Component, Input} from '@angular/core';
     <h1>{{ minsToNow(departure.estimated_departure_utc) }}</h1>
   </div>
 
+  <p class="expected">Expected Crowd Level</p>
+  <div *ngIf="!inCrowdedness(departure.run_id)"><p>Data not available yet.</p></div>
+  <div class="progress">
+    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}"
+        role="progressbar" [ngStyle]="{width: calculateWidth(departure.run_id)}">
+      {{crowdedness[departure.run_id]?.class}}
+    </div>
+  </div>
+
   <div *ngIf="crowdDisruptions">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
@@ -22,15 +31,6 @@ import {Component, Input} from '@angular/core';
       </div>
     </div>
 
-  </div>
-
-  <p class="expected">Expected Crowd Level</p>
-  <div *ngIf="!inCrowdedness(departure.run_id)"><p>Data not available yet.</p></div>
-  <div class="progress">
-    <div aria-valuemax="60" aria-valuemin="0" aria-valuenow="40" class="{{'progress-bar progress-bar-' + crowdedness[departure.run_id]?.class.toLowerCase()}}"
-        role="progressbar" [ngStyle]="{width: calculateWidth(departure.run_id)}">
-      {{crowdedness[departure.run_id]?.class}}
-    </div>
   </div>
   `
 })
