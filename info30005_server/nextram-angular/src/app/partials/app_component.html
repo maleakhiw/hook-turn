@@ -86,16 +86,16 @@
                         <div class="col-xs-10 col-xs-offset-1">
                           <!-- Button crowdedness -->
                           <button (click)="onInputData(column[0], 0)"
-                                  (click)="onSubmitCrowdedness()"
+                                  (click)="submitCrowdedness()"
                                   class="btn btn-success btn-lg clear_5px_top" type="submit" name="crowdedness" value="0">Empty</button>
                           <button (click)="onInputData(column[0], 1)"
-                                  (click)="onSubmitCrowdedness()"
+                                  (click)="submitCrowdedness()"
                                   class="btn btn-success btn-lg clear_5px_top" name="crowdedness" value="1" type="submit">Decent</button>
                           <button (click)="onInputData(column[0], 2)"
-                                  (click)="onSubmitCrowdedness()"
+                                  (click)="submitCrowdedness()"
                                   name="crowdedness" value="2" class="btn btn-warning btn-lg clear_5px_top" type="submit">Full</button>
                           <button (click)="onInputData(column[0], 3)"
-                                  (click)="onSubmitCrowdedness()"
+                                  (click)="submitCrowdedness()"
                                   class="btn btn-danger btn-lg clear_5px_top" type="submit" name="crowdedness" value="3">Overcrowded</button>
                         </div>
                       </div>
@@ -116,7 +116,7 @@
                           <div class="input-group">
                             <textarea [(ngModel)]="disruptionData[column[0].run_id]" class="form-control" id="disruption" placeholder="Enter here" rows="2"></textarea>
                             <!-- TODO: fix fixed string -->
-                            <span (click)="onSubmitDisruption(column[0], disruptionData[column[0].run_id])" class="input-group-addon btn btn-primary">Submit</span>
+                            <span (click)="submitDisruption(column[0], disruptionData[column[0].run_id])" class="input-group-addon btn btn-primary">Submit</span>
                           </div>
                         </div>
                       </div>
