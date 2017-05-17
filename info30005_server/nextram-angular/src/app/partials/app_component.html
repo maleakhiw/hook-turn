@@ -30,7 +30,7 @@
           <div *ngIf="i==0">
             <departure
                 [crowdDisruptions]="crowdDisruptions"
-                [crowding]="crowding"
+                [crowdedness]="crowdedness"
                 [departure]="column[0]"
                 [routes]="routes"
                 [directions]="directions">
@@ -65,7 +65,7 @@
                           <div *ngIf="i>0">
                             <smalldeparture
                                 [crowdDisruptions]="crowdDisruptions"
-                                [crowding]="crowding"
+                                [crowdedness]="crowdedness"
                                 [departure]="departure"
                                 [routes]="routes"
                                 [directions]="directions">
@@ -79,7 +79,7 @@
                   <div class="tab-pane fade in" id="{{'reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}">
                     <div class="well" *ngIf="column[0].run_id != lastSubmitted?.run_id || !lastSubmitted"> <!-- if not last submitted -->
                       <div class="row">
-                        <h5>Rate the crowding level of the tram below:</h5>
+                        <h5>Rate the crowdedness level of the tram below:</h5>
                       </div>
 
                       <div class="row">
