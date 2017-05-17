@@ -176,8 +176,8 @@ var AppComponent = (function () {
         this.showAlertBool = false; // misc. alerts
         this.onGoogleLoginSuccess = function (loggedInUser) {
             _this._zone.run(function () {
-                console.log(loggedInUser);
-                console.log(loggedInUser.getAuthResponse());
+                // console.log(loggedInUser);
+                // console.log(loggedInUser.getAuthResponse());
                 // this.userAuthToken = loggedInUser.getAuthResponse().id_token;
                 // this.userDisplayName = loggedInUser.getBasicProfile().getName();
             });
