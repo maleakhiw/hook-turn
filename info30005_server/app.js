@@ -332,7 +332,8 @@ app.get("/nextram", function(req, res) {
         res.redirect("/nextram?stop_id=" + stop_id);
 
         if (!isFound) {
-          res.redirect("/nextram");
+          console.log('not found');
+          res.redirect('/search');
         }
     }
     else {
