@@ -22,6 +22,7 @@ var getRandomImageURL = function(): string {
   styles: ['.jumbotron { background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("' + getRandomImageURL() + '"); }']
 })
 export class AppComponent implements OnInit {
+  // data from GongAPI (our API)
   departuresData: DeparturesData;
   stopData: Stop;
   stopName: string;
@@ -34,17 +35,24 @@ export class AppComponent implements OnInit {
   crowdedness: any;
   crowdDisruptions: any;
 
-  // Data needed for POST methods
+  // data needed for POST methods
   disruptionData: any = {}; // for disruption. Holds *all* entered text (data binding)
   lastSubmitted: any = []; // list of reported departures
 
   lastSubmitted_crowdedness: any = [];
   lastSubmitted_disruption: any = [];
 
-  // show alerts
+  // alerts - visibility and content
   showConnectionError: boolean = false;
   showSubmissionFailedError: boolean = false;
+  showAlertBool: boolean = false; // misc. alerts
+  showAlertText: String;
+  // TODO: use an array for alerts
 
+  showAlert(text: String) {
+    this.showAlertBool = true;
+    this.showAlertText = text;
+  }
 
   containsObject(obj: any, list: any) {
     for (let i=0; i<list.length; i++) {
@@ -64,7 +72,7 @@ export class AppComponent implements OnInit {
     return false;
   }
 
-  // Method used for crowdedness post
+  // POST user-submitted crowdedness data
   submitCrowdedness(departure: any, crowdedness: number) {
     console.log('onInputData, logging:', departure, crowdedness);
 
@@ -81,17 +89,16 @@ export class AppComponent implements OnInit {
                       this.lastSubmitted.push(departure);
                       this.lastSubmitted_crowdedness.push(departure);
                     }
-                    this.getDeparturesData(); // refresh data
+
                   } ,
                   (error) => {
                     console.log(error);
                     this.showSubmissionFailedError = true;
                   });
-
-
-
   }
 
+
+  // POST user-submitted disruption/inconvenience data
   submitDisruption(departure: any, disruption: any) {
     console.log('submitDisruption, logging:', departure, disruption);
 
@@ -118,16 +125,13 @@ export class AppComponent implements OnInit {
 
   }
 
-  // Method used for styling the percentage
+  // Method used for calculating the width of the progressbar (representing tram crowdedness)
   calculateWidth(run_id: any) {
-    // if user has already submit information
-    if (this.crowdedness[run_id]) {
+    if (this.crowdedness[run_id]) {   // if information for this run exists
       var width = this.crowdedness[run_id].average / 3 * 100;
-      console.log(width + "%");
       return (width + "%");
     }
     else {
-      console.log("20%");
       return "0%";
     }
   }
@@ -142,6 +146,7 @@ export class AppComponent implements OnInit {
         .subscribe(x => this.getDeparturesData());
   }
 
+  // callback for when data is loaded from GongAPI (our API) - does pre-processing, grouping, etc.
   updateDeparturesData(departuresData: any): void {
     console.log(departuresData);
     this.departuresData = departuresData;
@@ -232,6 +237,7 @@ export class AppComponent implements OnInit {
       }
     }
 
+    /* group departures in groups of 2 (for Bootstrap) */
     var i = 0;
     var tmp = [];
     var groupedBy2Departures = [];
@@ -245,15 +251,14 @@ export class AppComponent implements OnInit {
     }
 
     this.processedGroupedDepts = groupedBy2Departures;
-    // console.log(groupedBy2Departures);
 
     this.routes = departuresData.ptvData.routes;
-
     this.directions = departuresData.ptvData.directions;
   }
 
 
-  getDeparturesData(): void { // TODO: change to Observables using RxJS
+  // calls the DeparturesService for new data
+  getDeparturesData(): void {
     // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
     class Params {
       stop_id: any;

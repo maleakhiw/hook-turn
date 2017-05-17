@@ -18,13 +18,17 @@
 <div class="container-fluid">
   <!-- <div *ngFor="let key of processedGroupedDepts | keys;"> -->
 
-  <div style="margin-top: 20px;" *ngIf="showConnectionError || showSubmissionFailedError">
+  <div style="margin-top: 20px;" *ngIf="showConnectionError || showSubmissionFailedError || showAlertBool">
     <div class="alert alert-warning" *ngIf="showConnectionError">
       <strong>Unable to connect to Hook/Turns</strong> Please check your internet connection.
     </div>
 
     <div class="alert alert-danger" *ngIf="showSubmissionFailedError">
       <strong>Submission failed!</strong> Please check your submission and wait a few moments before trying again.
+    </div>
+
+    <div class="alert alert-danger" *ngIf="showAlertBool">
+      {{ showAlertText }}
     </div>
   </div>
 

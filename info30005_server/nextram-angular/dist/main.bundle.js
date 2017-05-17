@@ -163,15 +163,21 @@ var AppComponent = (function () {
         this.departuresService = departuresService;
         this.tramService = tramService;
         this.http = http;
-        // Data needed for POST methods
+        // data needed for POST methods
         this.disruptionData = {}; // for disruption. Holds *all* entered text (data binding)
         this.lastSubmitted = []; // list of reported departures
         this.lastSubmitted_crowdedness = [];
         this.lastSubmitted_disruption = [];
-        // show alerts
+        // alerts - visibility and content
         this.showConnectionError = false;
         this.showSubmissionFailedError = false;
+        this.showAlertBool = false; // misc. alerts
     }
+    // TODO: use an array for alerts
+    AppComponent.prototype.showAlert = function (text) {
+        this.showAlertBool = true;
+        this.showAlertText = text;
+    };
     AppComponent.prototype.containsObject = function (obj, list) {
         for (var i = 0; i < list.length; i++) {
             if (list[i] === obj) {
@@ -188,7 +194,7 @@ var AppComponent = (function () {
         }
         return false;
     };
-    // Method used for crowdedness post
+    // POST user-submitted crowdedness data
     AppComponent.prototype.submitCrowdedness = function (departure, crowdedness) {
         var _this = this;
         console.log('onInputData, logging:', departure, crowdedness);
@@ -204,12 +210,12 @@ var AppComponent = (function () {
                 _this.lastSubmitted.push(departure);
                 _this.lastSubmitted_crowdedness.push(departure);
             }
-            _this.getDeparturesData(); // refresh data
         }, function (error) {
             console.log(error);
             _this.showSubmissionFailedError = true;
         });
     };
+    // POST user-submitted disruption/inconvenience data
     AppComponent.prototype.submitDisruption = function (departure, disruption) {
         var _this = this;
         console.log('submitDisruption, logging:', departure, disruption);
@@ -231,16 +237,13 @@ var AppComponent = (function () {
             _this.showSubmissionFailedError = true;
         });
     };
-    // Method used for styling the percentage
+    // Method used for calculating the width of the progressbar (representing tram crowdedness)
     AppComponent.prototype.calculateWidth = function (run_id) {
-        // if user has already submit information
         if (this.crowdedness[run_id]) {
             var width = this.crowdedness[run_id].average / 3 * 100;
-            console.log(width + "%");
             return (width + "%");
         }
         else {
-            console.log("20%");
             return "0%";
         }
     };
@@ -251,6 +254,7 @@ var AppComponent = (function () {
         IntervalObservable_1.IntervalObservable.create(60 * 1000) // ms, 1 minute
             .subscribe(function (x) { return _this.getDeparturesData(); });
     };
+    // callback for when data is loaded from GongAPI (our API) - does pre-processing, grouping, etc.
     AppComponent.prototype.updateDeparturesData = function (departuresData) {
         console.log(departuresData);
         this.departuresData = departuresData;
@@ -328,6 +332,7 @@ var AppComponent = (function () {
                 }
             }
         }
+        /* group departures in groups of 2 (for Bootstrap) */
         var i = 0;
         var tmp = [];
         var groupedBy2Departures = [];
@@ -340,10 +345,10 @@ var AppComponent = (function () {
             i++;
         }
         this.processedGroupedDepts = groupedBy2Departures;
-        // console.log(groupedBy2Departures);
         this.routes = departuresData.ptvData.routes;
         this.directions = departuresData.ptvData.directions;
     };
+    // calls the DeparturesService for new data
     AppComponent.prototype.getDeparturesData = function () {
         var _this = this;
         // http://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
@@ -616,7 +621,7 @@ var _a;
 /***/ 353:
 /***/ (function(module, exports) {
 
-module.exports = "<navbar></navbar>\n<!-- Jumbotron for stopname -->\n<div class=\"jumbotron\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-2\"></div>\n      <div class=\"col-md-8\">\n        <h3>NEXTRAM</h3>\n        <h1>{{ stopName }}</h1>\n        <h2 *ngIf=\"stopNo\">Stop {{ stopNo }}</h2>\n        <p>Not here? <button class=\"btn\" onclick=\"location.href='../search'\">Change</button>\n      </div>\n      <div class=\"col-md-2\"></div>\n    </div>\n  </div>\n</div><!-- /jumbotron -->\n\n<div class=\"container-fluid\">\n  <!-- <div *ngFor=\"let key of processedGroupedDepts | keys;\"> -->\n\n  <div style=\"margin-top: 20px;\" *ngIf=\"showConnectionError || showSubmissionFailedError\">\n    <div class=\"alert alert-warning\" *ngIf=\"showConnectionError\">\n      <strong>Unable to connect to Hook/Turns</strong> Please check your internet connection.\n    </div>\n\n    <div class=\"alert alert-danger\" *ngIf=\"showSubmissionFailedError\">\n      <strong>Submission failed!</strong> Please check your submission and wait a few moments before trying again.\n    </div>\n  </div>\n\n    <div *ngFor=\"let row of processedGroupedDepts\" class=\"row match-my-cols\">\n      <div class=\"col-sm-6 nextram_box full text-center\"\n          attr.class=\"{{'col-sm-6 nextram_box text-center ' + crowdedness[column[0].run_id]?.class.toLowerCase()}}\"\n          *ngFor=\"let column of row\"><div class=\"box padding-15px\">\n        <span class=\"{{ 'route_number_table route_number_' + routes[column[0].route_id].route_number }}\">{{ routes[column[0].route_id].route_number }}</span>\n        {{ 'to ' + directions[column[0].direction_id].direction_name }}\n\n        <h1></h1>\n\n        <div *ngFor=\"let departure of column; let i=index\">\n          <div *ngIf=\"i==0\">\n            <departure\n                [crowdDisruptions]=\"crowdDisruptions[departure.run_id]\"\n                [crowdedness]=\"crowdedness\"\n                [departure]=\"column[0]\"\n                [routes]=\"routes\"\n                [directions]=\"directions\">\n            </departure>\n          </div>\n        </div>\n\n        <div class=\"row\">\n          <div class=\"panel-group\" id=\"{{ 'accordion' + column[0].route_id + '-' + column[0].direction_id }}\">\n            <div class=\"panel panel-default\">\n              <div class=\"panel-heading\">\n                <h4 class=\"panel-title\"><a class=\"accordion-toggle collapsed\"\n                    data-toggle=\"collapse\"\n                    attr.data-parent=\"{{ '#accordion' + column[0].route_id + '-' + column[0].direction_id }}\"\n                    href=\"{{ '#collapse' + column[0].route_id + '-' + column[0].direction_id }}\">\n                  Next departures and reporting</a>\n                </h4>\n              </div>\n\n              <div id=\"{{ 'collapse' + column[0].route_id + '-' + column[0].direction_id }}\" class=\"panel-collapse collapse\">\n                <ul class=\"nav nav-pills center-pills\">\n                  <li class=\"active\"><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#moreDetails' + column[0].route_id + '-' + column[0].direction_id }}\">Next departures</a></li>\n                  <li><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}\">Report Crowd</a></li>\n                  <li><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#reportDisruption' + column[0].route_id + '-' + column[0].direction_id }}\">Report Disruption</a></li>\n                </ul>\n\n                <div class=\"tab-content\">\n                  <div class=\"tab-pane fade in active\" id=\"{{'moreDetails' + column[0].route_id + '-' + column[0].direction_id }}\">\n                      <div class=\"well\">\n                        <div *ngFor=\"let departure of column; let i=index\">\n\n                          <div *ngIf=\"i>0\">\n                            <smalldeparture\n                                [crowdDisruptions]=\"crowdDisruptions[departure.run_id]\"\n                                [crowdedness]=\"crowdedness\"\n                                [departure]=\"departure\"\n                                [routes]=\"routes\"\n                                [directions]=\"directions\">\n                            </smalldeparture>\n                          </div>\n\n                        </div>\n                      </div><!-- end bunch -->\n                    </div>\n\n                  <div class=\"tab-pane fade in\" id=\"{{'reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}\">\n                    <div class=\"well\" *ngIf=\"!containsObjectByRunId(column[0], lastSubmitted_crowdedness)\"> <!-- if not last submitted -->\n                      <div class=\"row\">\n                        <h5>Rate the crowdedness level of the tram below:</h5>\n                      </div>\n\n                      <div class=\"row\">\n                        <div class=\"col-xs-10 col-xs-offset-1\">\n                          <!-- Button crowdedness -->\n                          <button (click)=\"submitCrowdedness(column[0], 0)\"\n                                  class=\"btn btn-success btn-lg clear_5px_top\" type=\"submit\" name=\"crowdedness\" value=\"0\">Empty</button>\n                          <button (click)=\"submitCrowdedness(column[0], 1)\"\n                                  class=\"btn btn-success btn-lg clear_5px_top\" name=\"crowdedness\" value=\"1\" type=\"submit\">Decent</button>\n                          <button (click)=\"submitCrowdedness(column[0], 2)\"\n                                  name=\"crowdedness\" value=\"2\" class=\"btn btn-warning btn-lg clear_5px_top\" type=\"submit\">Full</button>\n                          <button (click)=\"submitCrowdedness(column[0], 3)\"\n                                  class=\"btn btn-danger btn-lg clear_5px_top\" type=\"submit\" name=\"crowdedness\" value=\"3\">Overcrowded</button>\n                        </div>\n                      </div>\n                    </div>\n                    <div class=\"well\" *ngIf=\"containsObjectByRunId(column[0], lastSubmitted_crowdedness)\"> <!-- if not last submitted -->\n                      <p>Thank you for submitting!</p>\n                    </div>\n                  </div>\n\n                  <div class=\"tab-pane fade in\" id=\"{{'reportDisruption' + column[0].route_id + '-' + column[0].direction_id }}\">\n                    <div class=\"well\" *ngIf=\"!containsObjectByRunId(column[0], lastSubmitted_disruption)\">\n                      <div class=\"row\">\n                        <h5>Describe any disruptions or inconveniences below:</h5>\n                      </div>\n\n                      <div class=\"row\">\n                        <div class=\"col-xs-10 col-xs-offset-1\">\n                          <div class=\"input-group\">\n                            <textarea [(ngModel)]=\"disruptionData[column[0].run_id]\" class=\"form-control\" id=\"disruption\" placeholder=\"Enter here\" rows=\"2\"></textarea>\n                            <!-- TODO: fix fixed string -->\n                            <span (click)=\"submitDisruption(column[0], disruptionData[column[0].run_id])\" class=\"input-group-addon btn btn-primary\">Submit</span>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n\n                    <div class=\"well\" *ngIf=\"containsObjectByRunId(column[0], lastSubmitted_disruption)\"> <!-- if not last submitted -->\n                      <p>Thank you for submitting!</p>\n                    </div>\n\n\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n\n\n\n\n      </div></div><!-- End of col -->\n\n    </div>\n  <!-- </div> -->\n</div>\n\n\n<footer>\n  <p>COPYRIGHT HOOKTURNS 2017</p>\n</footer>\n\n\n<!-- {{ departuresData?.status }}  http://stackoverflow.com/a/34738113: wait for Promise -->\n"
+module.exports = "<navbar></navbar>\n<!-- Jumbotron for stopname -->\n<div class=\"jumbotron\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-2\"></div>\n      <div class=\"col-md-8\">\n        <h3>NEXTRAM</h3>\n        <h1>{{ stopName }}</h1>\n        <h2 *ngIf=\"stopNo\">Stop {{ stopNo }}</h2>\n        <p>Not here? <button class=\"btn\" onclick=\"location.href='../search'\">Change</button>\n      </div>\n      <div class=\"col-md-2\"></div>\n    </div>\n  </div>\n</div><!-- /jumbotron -->\n\n<div class=\"container-fluid\">\n  <!-- <div *ngFor=\"let key of processedGroupedDepts | keys;\"> -->\n\n  <div style=\"margin-top: 20px;\" *ngIf=\"showConnectionError || showSubmissionFailedError || showAlertBool\">\n    <div class=\"alert alert-warning\" *ngIf=\"showConnectionError\">\n      <strong>Unable to connect to Hook/Turns</strong> Please check your internet connection.\n    </div>\n\n    <div class=\"alert alert-danger\" *ngIf=\"showSubmissionFailedError\">\n      <strong>Submission failed!</strong> Please check your submission and wait a few moments before trying again.\n    </div>\n\n    <div class=\"alert alert-danger\" *ngIf=\"showAlertBool\">\n      {{ showAlertText }}\n    </div>\n  </div>\n\n    <div *ngFor=\"let row of processedGroupedDepts\" class=\"row match-my-cols\">\n      <div class=\"col-sm-6 nextram_box full text-center\"\n          attr.class=\"{{'col-sm-6 nextram_box text-center ' + crowdedness[column[0].run_id]?.class.toLowerCase()}}\"\n          *ngFor=\"let column of row\"><div class=\"box padding-15px\">\n        <span class=\"{{ 'route_number_table route_number_' + routes[column[0].route_id].route_number }}\">{{ routes[column[0].route_id].route_number }}</span>\n        {{ 'to ' + directions[column[0].direction_id].direction_name }}\n\n        <h1></h1>\n\n        <div *ngFor=\"let departure of column; let i=index\">\n          <div *ngIf=\"i==0\">\n            <departure\n                [crowdDisruptions]=\"crowdDisruptions[departure.run_id]\"\n                [crowdedness]=\"crowdedness\"\n                [departure]=\"column[0]\"\n                [routes]=\"routes\"\n                [directions]=\"directions\">\n            </departure>\n          </div>\n        </div>\n\n        <div class=\"row\">\n          <div class=\"panel-group\" id=\"{{ 'accordion' + column[0].route_id + '-' + column[0].direction_id }}\">\n            <div class=\"panel panel-default\">\n              <div class=\"panel-heading\">\n                <h4 class=\"panel-title\"><a class=\"accordion-toggle collapsed\"\n                    data-toggle=\"collapse\"\n                    attr.data-parent=\"{{ '#accordion' + column[0].route_id + '-' + column[0].direction_id }}\"\n                    href=\"{{ '#collapse' + column[0].route_id + '-' + column[0].direction_id }}\">\n                  Next departures and reporting</a>\n                </h4>\n              </div>\n\n              <div id=\"{{ 'collapse' + column[0].route_id + '-' + column[0].direction_id }}\" class=\"panel-collapse collapse\">\n                <ul class=\"nav nav-pills center-pills\">\n                  <li class=\"active\"><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#moreDetails' + column[0].route_id + '-' + column[0].direction_id }}\">Next departures</a></li>\n                  <li><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}\">Report Crowd</a></li>\n                  <li><a data-toggle=\"tab\" class=\"pill-tabs\" href=\"{{ '#reportDisruption' + column[0].route_id + '-' + column[0].direction_id }}\">Report Disruption</a></li>\n                </ul>\n\n                <div class=\"tab-content\">\n                  <div class=\"tab-pane fade in active\" id=\"{{'moreDetails' + column[0].route_id + '-' + column[0].direction_id }}\">\n                      <div class=\"well\">\n                        <div *ngFor=\"let departure of column; let i=index\">\n\n                          <div *ngIf=\"i>0\">\n                            <smalldeparture\n                                [crowdDisruptions]=\"crowdDisruptions[departure.run_id]\"\n                                [crowdedness]=\"crowdedness\"\n                                [departure]=\"departure\"\n                                [routes]=\"routes\"\n                                [directions]=\"directions\">\n                            </smalldeparture>\n                          </div>\n\n                        </div>\n                      </div><!-- end bunch -->\n                    </div>\n\n                  <div class=\"tab-pane fade in\" id=\"{{'reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}\">\n                    <div class=\"well\" *ngIf=\"!containsObjectByRunId(column[0], lastSubmitted_crowdedness)\"> <!-- if not last submitted -->\n                      <div class=\"row\">\n                        <h5>Rate the crowdedness level of the tram below:</h5>\n                      </div>\n\n                      <div class=\"row\">\n                        <div class=\"col-xs-10 col-xs-offset-1\">\n                          <!-- Button crowdedness -->\n                          <button (click)=\"submitCrowdedness(column[0], 0)\"\n                                  class=\"btn btn-success btn-lg clear_5px_top\" type=\"submit\" name=\"crowdedness\" value=\"0\">Empty</button>\n                          <button (click)=\"submitCrowdedness(column[0], 1)\"\n                                  class=\"btn btn-success btn-lg clear_5px_top\" name=\"crowdedness\" value=\"1\" type=\"submit\">Decent</button>\n                          <button (click)=\"submitCrowdedness(column[0], 2)\"\n                                  name=\"crowdedness\" value=\"2\" class=\"btn btn-warning btn-lg clear_5px_top\" type=\"submit\">Full</button>\n                          <button (click)=\"submitCrowdedness(column[0], 3)\"\n                                  class=\"btn btn-danger btn-lg clear_5px_top\" type=\"submit\" name=\"crowdedness\" value=\"3\">Overcrowded</button>\n                        </div>\n                      </div>\n                    </div>\n                    <div class=\"well\" *ngIf=\"containsObjectByRunId(column[0], lastSubmitted_crowdedness)\"> <!-- if not last submitted -->\n                      <p>Thank you for submitting!</p>\n                    </div>\n                  </div>\n\n                  <div class=\"tab-pane fade in\" id=\"{{'reportDisruption' + column[0].route_id + '-' + column[0].direction_id }}\">\n                    <div class=\"well\" *ngIf=\"!containsObjectByRunId(column[0], lastSubmitted_disruption)\">\n                      <div class=\"row\">\n                        <h5>Describe any disruptions or inconveniences below:</h5>\n                      </div>\n\n                      <div class=\"row\">\n                        <div class=\"col-xs-10 col-xs-offset-1\">\n                          <div class=\"input-group\">\n                            <textarea [(ngModel)]=\"disruptionData[column[0].run_id]\" class=\"form-control\" id=\"disruption\" placeholder=\"Enter here\" rows=\"2\"></textarea>\n                            <!-- TODO: fix fixed string -->\n                            <span (click)=\"submitDisruption(column[0], disruptionData[column[0].run_id])\" class=\"input-group-addon btn btn-primary\">Submit</span>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n\n                    <div class=\"well\" *ngIf=\"containsObjectByRunId(column[0], lastSubmitted_disruption)\"> <!-- if not last submitted -->\n                      <p>Thank you for submitting!</p>\n                    </div>\n\n\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n\n\n\n\n      </div></div><!-- End of col -->\n\n    </div>\n  <!-- </div> -->\n</div>\n\n\n<footer>\n  <p>COPYRIGHT HOOKTURNS 2017</p>\n</footer>\n\n\n<!-- {{ departuresData?.status }}  http://stackoverflow.com/a/34738113: wait for Promise -->\n"
 
 /***/ }),
 

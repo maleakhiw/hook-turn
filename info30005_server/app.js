@@ -393,6 +393,20 @@ app.post('/reportdisruption', function(req, res) {
   });
 });
 
+// route to handle sign in. We'll use the userid
+app.post('/tokensignin', function(req, res) {
+  if (req.query.idtoken) {
+    client.verifyIdToken(
+      req.query.idtoken,
+      CLIENT_ID,
+      function(error, login) {
+        var payload = login.getPayload();
+        console.log(payload);
+        var userid = payload['sub'];
+      }
+    )
+  }
+})
 
 /**********************************LISTEN*************************************/
 // 404 Page Not Found
