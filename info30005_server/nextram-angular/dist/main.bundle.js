@@ -197,7 +197,7 @@ var AppComponent = (function () {
             run_id: departure.run_id,
             crowdedness: crowdedness
         };
-        this.tramService.storeDisruption(data)
+        this.tramService.storeCrowdedness(data)
             .subscribe(function (response) {
             console.log(response);
             if (!_this.containsObject(departure, _this.lastSubmitted)) {
@@ -596,7 +596,7 @@ var TramService = (function () {
         this.http = http;
     }
     // Method that will be used to store tram data
-    TramService.prototype.storeTrams = function (data) {
+    TramService.prototype.storeCrowdedness = function (data) {
         return this.http.post("/nextramdb", data);
     };
     TramService.prototype.storeDisruption = function (data) {

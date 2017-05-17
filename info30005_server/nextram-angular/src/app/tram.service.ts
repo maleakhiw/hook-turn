@@ -8,7 +8,7 @@ export class TramService {
 	constructor(private http: Http) {}
 
 	// Method that will be used to store tram data
-	storeTrams(data: any) {
+	storeCrowdedness(data: any) {
 		return this.http.post("/nextramdb", data);
 	}
 

@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
       crowdedness: crowdedness
     };
 
-    this.tramService.storeDisruption(data)
+    this.tramService.storeCrowdedness(data)
       .subscribe((response) => {
                     console.log(response)
                     if (!this.containsObject(departure, this.lastSubmitted)) {
@@ -86,6 +86,7 @@ export class AppComponent implements OnInit {
                     console.log(error);
                     this.showSubmissionFailedError = true;
                   });
+
 
     this.getDeparturesData(); // refresh data
   }
