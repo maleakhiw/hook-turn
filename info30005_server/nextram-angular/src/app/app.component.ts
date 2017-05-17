@@ -51,6 +51,11 @@ export class AppComponent implements OnInit {
   showAlertText: String;
   // TODO: use an array for alerts
 
+  // google sign in
+  token: String;
+  name: String;
+
+  // from http://stackoverflow.com/questions/38846232/how-to-implement-signin-with-google-in-angularjs-2-using-typescript
   public auth2: any;
   public googleInit() {
     let that = this;
@@ -70,11 +75,13 @@ export class AppComponent implements OnInit {
       function (googleUser: any) {
 
         let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+        this.token = googleUser.getAuthResponse().id_token;
+        this.name = profile.getName();
+        // console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        // console.log('ID: ' + profile.getId());
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail());
         //YOUR CODE HERE
 
 
@@ -90,6 +97,11 @@ export class AppComponent implements OnInit {
   showAlert(text: String) {
     this.showAlertBool = true;
     this.showAlertText = text;
+  }
+
+  clearAlert() {
+    this.showAlertBool = false;
+    this.showAlertText = '';
   }
 
   containsObject(obj: any, list: any) {
@@ -113,52 +125,61 @@ export class AppComponent implements OnInit {
   // POST user-submitted crowdedness data
   submitCrowdedness(departure: any, crowdedness: number) {
     console.log('onInputData, logging:', departure, crowdedness);
+    if (this.token) {
+      var data = {
+        stop_id: departure.stop_id,
+        run_id: departure.run_id,
+        crowdedness: crowdedness
+      };
 
-    var data = {
-      stop_id: departure.stop_id,
-      run_id: departure.run_id,
-      crowdedness: crowdedness
-    };
+      this.tramService.storeCrowdedness(data)
+        .subscribe((response) => {
+                      console.log(response)
+                      if (!this.containsObject(departure, this.lastSubmitted)) {
+                        this.lastSubmitted.push(departure);
+                        this.lastSubmitted_crowdedness.push(departure);
+                      }
 
-    this.tramService.storeCrowdedness(data)
-      .subscribe((response) => {
-                    console.log(response)
-                    if (!this.containsObject(departure, this.lastSubmitted)) {
-                      this.lastSubmitted.push(departure);
-                      this.lastSubmitted_crowdedness.push(departure);
-                    }
+                    } ,
+                    (error) => {
+                      console.log(error);
+                      this.showSubmissionFailedError = true;
+                    });
+    }
+    else {
+      this.showAlert('Please sign in first.');
+    }
 
-                  } ,
-                  (error) => {
-                    console.log(error);
-                    this.showSubmissionFailedError = true;
-                  });
   }
 
 
   // POST user-submitted disruption/inconvenience data
   submitDisruption(departure: any, disruption: any) {
     console.log('submitDisruption, logging:', departure, disruption);
+    if (this.token) {
+      var data = {
+        runID: departure.run_id,
+        stopID: departure.stop_id,
+        disruption: disruption
+      }
 
-    var data = {
-      runID: departure.run_id,
-      stopID: departure.stop_id,
-      disruption: disruption
-    }
-
-    this.tramService.storeDisruption(data)
+      this.tramService.storeDisruption(data)
       .subscribe((response) => {
-                    console.log(response)
-                    if (!this.containsObject(departure, this.lastSubmitted)) {
-                      this.lastSubmitted.push(departure);
-                      this.lastSubmitted_disruption.push(departure);
-                    }
-                    this.getDeparturesData();
-                  } ,
-                  (error) => {
-                    console.log(error);
-                    this.showSubmissionFailedError = true;
-                  });
+        console.log(response)
+        if (!this.containsObject(departure, this.lastSubmitted)) {
+          this.lastSubmitted.push(departure);
+          this.lastSubmitted_disruption.push(departure);
+        }
+        this.getDeparturesData();
+      } ,
+      (error) => {
+        console.log(error);
+        this.showSubmissionFailedError = true;
+      });
+    }
+    else {
+      this.showAlert('Please sign in first.');
+    }
 
 
   }

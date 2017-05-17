@@ -189,11 +189,13 @@ var AppComponent = (function () {
         var that = this;
         this.auth2.attachClickHandler(element, {}, function (googleUser) {
             var profile = googleUser.getBasicProfile();
-            console.log('Token || ' + googleUser.getAuthResponse().id_token);
-            console.log('ID: ' + profile.getId());
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail());
+            this.token = googleUser.getAuthResponse().id_token;
+            this.name = profile.getName();
+            // console.log('Token || ' + googleUser.getAuthResponse().id_token);
+            // console.log('ID: ' + profile.getId());
+            // console.log('Name: ' + profile.getName());
+            // console.log('Image URL: ' + profile.getImageUrl());
+            // console.log('Email: ' + profile.getEmail());
             //YOUR CODE HERE
         }, function (error) {
             alert(JSON.stringify(error, undefined, 2));
@@ -205,6 +207,10 @@ var AppComponent = (function () {
     AppComponent.prototype.showAlert = function (text) {
         this.showAlertBool = true;
         this.showAlertText = text;
+    };
+    AppComponent.prototype.clearAlert = function () {
+        this.showAlertBool = false;
+        this.showAlertText = '';
     };
     AppComponent.prototype.containsObject = function (obj, list) {
         for (var i = 0; i < list.length; i++) {
@@ -226,44 +232,54 @@ var AppComponent = (function () {
     AppComponent.prototype.submitCrowdedness = function (departure, crowdedness) {
         var _this = this;
         console.log('onInputData, logging:', departure, crowdedness);
-        var data = {
-            stop_id: departure.stop_id,
-            run_id: departure.run_id,
-            crowdedness: crowdedness
-        };
-        this.tramService.storeCrowdedness(data)
-            .subscribe(function (response) {
-            console.log(response);
-            if (!_this.containsObject(departure, _this.lastSubmitted)) {
-                _this.lastSubmitted.push(departure);
-                _this.lastSubmitted_crowdedness.push(departure);
-            }
-        }, function (error) {
-            console.log(error);
-            _this.showSubmissionFailedError = true;
-        });
+        if (this.token) {
+            var data = {
+                stop_id: departure.stop_id,
+                run_id: departure.run_id,
+                crowdedness: crowdedness
+            };
+            this.tramService.storeCrowdedness(data)
+                .subscribe(function (response) {
+                console.log(response);
+                if (!_this.containsObject(departure, _this.lastSubmitted)) {
+                    _this.lastSubmitted.push(departure);
+                    _this.lastSubmitted_crowdedness.push(departure);
+                }
+            }, function (error) {
+                console.log(error);
+                _this.showSubmissionFailedError = true;
+            });
+        }
+        else {
+            this.showAlert('Please sign in first.');
+        }
     };
     // POST user-submitted disruption/inconvenience data
     AppComponent.prototype.submitDisruption = function (departure, disruption) {
         var _this = this;
         console.log('submitDisruption, logging:', departure, disruption);
-        var data = {
-            runID: departure.run_id,
-            stopID: departure.stop_id,
-            disruption: disruption
-        };
-        this.tramService.storeDisruption(data)
-            .subscribe(function (response) {
-            console.log(response);
-            if (!_this.containsObject(departure, _this.lastSubmitted)) {
-                _this.lastSubmitted.push(departure);
-                _this.lastSubmitted_disruption.push(departure);
-            }
-            _this.getDeparturesData();
-        }, function (error) {
-            console.log(error);
-            _this.showSubmissionFailedError = true;
-        });
+        if (this.token) {
+            var data = {
+                runID: departure.run_id,
+                stopID: departure.stop_id,
+                disruption: disruption
+            };
+            this.tramService.storeDisruption(data)
+                .subscribe(function (response) {
+                console.log(response);
+                if (!_this.containsObject(departure, _this.lastSubmitted)) {
+                    _this.lastSubmitted.push(departure);
+                    _this.lastSubmitted_disruption.push(departure);
+                }
+                _this.getDeparturesData();
+            }, function (error) {
+                console.log(error);
+                _this.showSubmissionFailedError = true;
+            });
+        }
+        else {
+            this.showAlert('Please sign in first.');
+        }
     };
     // Method used for calculating the width of the progressbar (representing tram crowdedness)
     AppComponent.prototype.calculateWidth = function (run_id) {
