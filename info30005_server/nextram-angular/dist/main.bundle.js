@@ -184,9 +184,15 @@ var AppComponent = (function () {
             });
             that.attachSignin(document.getElementById('g-signin-btn'));
         });
+        var googleUser = gapi.auth2.getAuthInstance().currentUser.listen(function (googleUser) {
+            var profile = googleUser.getBasicProfile();
+            that.token = googleUser.getAuthResponse().id_token;
+            that.name = profile.getName();
+            console.log(that.token, that.name);
+        });
     };
     AppComponent.prototype.attachSignin = function (element) {
-        var that = this; // TODO: move to arrow functions
+        var that = this;
         this.auth2.attachClickHandler(element, {}, function (googleUser) {
             var profile = googleUser.getBasicProfile();
             that.token = googleUser.getAuthResponse().id_token;
@@ -234,10 +240,12 @@ var AppComponent = (function () {
         var _this = this;
         console.log('onInputData, logging:', departure, crowdedness);
         if (this.token) {
+            this.clearAlert();
             var data = {
                 stop_id: departure.stop_id,
                 run_id: departure.run_id,
-                crowdedness: crowdedness
+                crowdedness: crowdedness,
+                token: this.token
             };
             this.tramService.storeCrowdedness(data)
                 .subscribe(function (response) {
@@ -260,10 +268,12 @@ var AppComponent = (function () {
         var _this = this;
         console.log('submitDisruption, logging:', departure, disruption);
         if (this.token) {
+            this.clearAlert();
             var data = {
                 runID: departure.run_id,
                 stopID: departure.stop_id,
-                disruption: disruption
+                disruption: disruption,
+                token: this.token
             };
             this.tramService.storeDisruption(data)
                 .subscribe(function (response) {
