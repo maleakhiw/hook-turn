@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 // import { GongService } from './gong.service';
 import { TramService } from './tram.service';
 import { DeparturesService } from './departures.service'
@@ -14,6 +14,8 @@ var getRandomImageURL = function(): string {
     var randomNo = Math.floor(Math.random()*jumbotronImages.length);
     return jumbotronImages[randomNo];
 }
+
+declare const gapi: any;  // for google login
 
 @Component({
   selector: 'my-app',
@@ -48,6 +50,26 @@ export class AppComponent implements OnInit {
   showAlertBool: boolean = false; // misc. alerts
   showAlertText: String;
   // TODO: use an array for alerts
+
+  // Google login
+  userAuthToken: String;
+  userDisplayName: String;
+
+  ngAfterViewInit() {
+    gapi.signin2.render(
+      'g-signin-btn',
+      {
+        'onSuccess': this.onGoogleLoginSuccess
+      }
+    )
+  }
+
+  onGoogleLoginSuccess = (loggedInUser: any) => {
+    this._zone.run(() => {
+      this.userAuthToken = loggedInUser.getAuthResponse().id_token;
+      this.userDisplayName = loggedInUser.getBasicProfile().getName();
+   });
+  }
 
   showAlert(text: String) {
     this.showAlertBool = true;
@@ -136,7 +158,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http) {}
+  constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http, private _zone: NgZone) {}
 
   ngOnInit(): void {
     this.getDeparturesData();
