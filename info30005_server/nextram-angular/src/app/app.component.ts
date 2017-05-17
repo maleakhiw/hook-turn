@@ -67,15 +67,14 @@ export class AppComponent implements OnInit {
         scope: 'profile email'
       });
       that.attachSignin(document.getElementById('g-signin-btn'));
-    });
-    var googleUser = that.auth2.getAuthInstance().currentUser.listen((googleUser: any) => {
-      let profile = googleUser.getBasicProfile();
-      that.token = googleUser.getAuthResponse().id_token;
-      that.name = profile.getName();
+      var googleUser = that.auth2.getAuthInstance().currentUser.listen((googleUser: any) => {
+        let profile = googleUser.getBasicProfile();
+        that.token = googleUser.getAuthResponse().id_token;
+        that.name = profile.getName();
 
-      console.log(that.token, that.name);
+        console.log(that.token, that.name);
+      });
     });
-
 
   }
 

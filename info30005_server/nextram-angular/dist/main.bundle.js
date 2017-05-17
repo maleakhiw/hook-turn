@@ -183,12 +183,12 @@ var AppComponent = (function () {
                 scope: 'profile email'
             });
             that.attachSignin(document.getElementById('g-signin-btn'));
-        });
-        var googleUser = that.auth2.getAuthInstance().currentUser.listen(function (googleUser) {
-            var profile = googleUser.getBasicProfile();
-            that.token = googleUser.getAuthResponse().id_token;
-            that.name = profile.getName();
-            console.log(that.token, that.name);
+            var googleUser = that.auth2.getAuthInstance().currentUser.listen(function (googleUser) {
+                var profile = googleUser.getBasicProfile();
+                that.token = googleUser.getAuthResponse().id_token;
+                that.name = profile.getName();
+                console.log(that.token, that.name);
+            });
         });
     };
     AppComponent.prototype.attachSignin = function (element) {
