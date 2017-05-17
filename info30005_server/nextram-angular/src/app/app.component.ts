@@ -128,10 +128,12 @@ export class AppComponent implements OnInit {
   submitCrowdedness(departure: any, crowdedness: number) {
     console.log('onInputData, logging:', departure, crowdedness);
     if (this.token) {
+      this.clearAlert();
       var data = {
         stop_id: departure.stop_id,
         run_id: departure.run_id,
-        crowdedness: crowdedness
+        crowdedness: crowdedness,
+        token: this.token
       };
 
       this.tramService.storeCrowdedness(data)
@@ -159,10 +161,12 @@ export class AppComponent implements OnInit {
   submitDisruption(departure: any, disruption: any) {
     console.log('submitDisruption, logging:', departure, disruption);
     if (this.token) {
+      this.clearAlert();
       var data = {
         runID: departure.run_id,
         stopID: departure.stop_id,
-        disruption: disruption
+        disruption: disruption,
+        token: this.token
       }
 
       this.tramService.storeDisruption(data)
