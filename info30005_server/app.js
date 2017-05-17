@@ -293,6 +293,7 @@ app.post("/nextramdb", function(req, res) {
 
           // create a User if he/she does not exist in our DB yet
           User.find({'userID': userid}, function(err, results) {
+            console.log('User.find');
             if (err) console.log(err);
             if (results == []) {
               User.create({
@@ -348,6 +349,7 @@ app.post('/reportdisruption', function(req, res) {
 
         // create a User if he/she does not exist in our DB yet
         User.find({'userID': userid}, function(err, results) {
+          console.log('User.find');
           if (err) console.log(err);
           if (results == []) {
             User.create({
