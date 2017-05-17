@@ -295,6 +295,7 @@ app.post("/nextramdb", function(req, res) {
           User.find({'userID': userid}, function(err, results) {
             console.log('User.find');
             if (err) console.log(err);
+            console.log(results);
             if (results == []) {
               User.create({
                 userID: userid,
@@ -351,6 +352,7 @@ app.post('/reportdisruption', function(req, res) {
         User.find({'userID': userid}, function(err, results) {
           console.log('User.find');
           if (err) console.log(err);
+          console.log(results);
           if (results == []) {
             User.create({
               userID: userid,
