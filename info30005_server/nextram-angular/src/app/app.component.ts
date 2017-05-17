@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 // import { GongService } from './gong.service';
 import { TramService } from './tram.service';
 import { DeparturesService } from './departures.service'
@@ -14,6 +14,8 @@ var getRandomImageURL = function(): string {
     var randomNo = Math.floor(Math.random()*jumbotronImages.length);
     return jumbotronImages[randomNo];
 }
+
+declare const gapi: any;
 
 @Component({
   selector: 'my-app',
@@ -49,7 +51,41 @@ export class AppComponent implements OnInit {
   showAlertText: String;
   // TODO: use an array for alerts
 
+  public auth2: any;
+  public googleInit() {
+    let that = this;
+    gapi.load('auth2', function () {
+      that.auth2 = gapi.auth2.init({
+        client_id: "46251385268-d4q4r8kb5n7r1c0533hpfkudok8bpth1.apps.googleusercontent.com",
+        cookiepolicy: 'single_host_origin',
+        scope: 'profile email'
+      });
+      that.attachSignin(document.getElementById('g-signin-btn'));
+    });
+  }
 
+  public attachSignin(element: any) {
+    let that = this;
+    this.auth2.attachClickHandler(element, {},
+      function (googleUser: any) {
+
+        let profile = googleUser.getBasicProfile();
+        console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        //YOUR CODE HERE
+
+
+      }, function (error: any) {
+        alert(JSON.stringify(error, undefined, 2));
+      });
+  }
+
+  ngAfterViewInit(){
+      this.googleInit();
+  }
 
   showAlert(text: String) {
     this.showAlertBool = true;
