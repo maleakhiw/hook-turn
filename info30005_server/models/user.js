@@ -2,11 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-  username: String,
-  password: String
-});
+  userID: String,
+  email: String,
+  firstName: String,
+  lastName: String
+})
 
-var User = mongoose.model('User', userSchema);
+var User = mongoose.model('users', userSchema);
 
-// make this available to our users in our Node applications
 module.exports = User;

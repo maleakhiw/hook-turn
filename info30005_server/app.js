@@ -45,21 +45,9 @@ var client = new auth.OAuth2(CLIENT_ID, '', '');
 /* ---------------------------- Mongoose schemas ---------------------------- */
 var mongoose = require('mongoose');
 
-// var Schema = mongoose.Schema;
-//
-// var crowdednessSchema = new Schema({
-//   runID: String,
-//   stopID: String,
-//   crowdednessLevel: String,
-//   dirtyLevel: String,
-//   speedingLevel: String
-// });
-//
-// var Crowdedness = mongoose.model("crowdedness", crowdednessSchema);
-// var Disruption = mongoose.model('Disruption');
-
 var Crowdedness = Database.Crowdedness;
 var Disruption = Database.Disruption;
+var User = Database.User;
 
 /***********************************PTV ROUTES********************************/
 
@@ -208,89 +196,6 @@ app.get("/departures", cors(), function(req, res) {
        ptv.departures(stopID, callback); // sample stopID: 2504
     }
 });
-/***********************************DISRUPTION********************************/
-
-// // Create new disruption
-// app.post('/reportdisruption', function(req, res) {
-//   var disruption = new Disruption({
-//     "status": req.body.status,
-//     "runID": req.body.runID,
-//     "stopID": req.body.stopID,
-//     "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
-//   });
-//
-//   disruption.save(function(err,newDisruption ){
-//       if(!err){
-//           res.send(newDisruption);
-//       }else{
-//           res.sendStatus(400);
-//       }
-//   });
-// });
-
-// // Find all disruptions
-// app.get('/reportdisruption', function(req,res) {
-//     Disruption.find(function(err,disruptions){
-//         if(!err){
-//             res.send(disruptions);
-//         }else{
-//             res.sendStatus(404);
-//         }
-//     });
-// });
-//
-// // Find one disruption by id
-// app.get('/reportdisruption/:id', function(req,res){
-//     var disruptionInx = req.params.id;
-//     Disruption.findById(disruptionInx,function(err,disruption){
-//         if(!err){
-//             res.send(disruption);
-//         }else{
-//             res.sendStatus(404);
-//         }
-//     });
-// });
-//
-// // Find one disruption and update by id
-// app.post('/reportdisruption/:id', function(req,res) {
-//     var disruptionInx = req.params.id;
-//     Disruption.findByIdAndUpdate(disruptionInx,
-//       {
-//         $push:
-//         {
-//           "crowdSourcedDisruptions": req.body.crowdSourcedDisruptions
-//         }
-//       },
-//       {safe: true, upsert: true},
-//       function(err,disruption){
-//         if(!err){
-//             ////////////
-//             res.send(disruption);
-//         }else{
-//             res.sendStatus(404);
-//         }
-//     });
-// });
-//
-// // Delete one disruption by id
-// app.delete('/reportdisruption/:id', function(req,res){
-//     var disruptionInx = req.params.id;
-//     Disruption.findByIdAndRemove(disruptionInx,function(err,disruption){
-//         if(!err){
-//             res.send(disruption);
-//         }else{
-//             res.sendStatus(404);
-//         }
-//     });
-// });
-
-/******************************SUPPORTING JSONS*******************************/
-// NexTram Picture Assets
-// app.get("/"){
-
-// }
-
-
 
 /***********************************ROUTES************************************/
 // Home
@@ -344,17 +249,18 @@ app.get("/nextram", function(req, res) {
     }
 });
 
-// Route Guide
-app.get("/route-guide", function(req, res) {
-  var info = require('../PTV/tram_routes/96.json');
-  var route96_stop = info.stops;
-  res.render("index", {
-    pageId: "route_guide",
-    route96Data: route96_stop
-  });
-});
+// // Route Guide
+// app.get("/route-guide", function(req, res) {
+//   var info = require('../PTV/tram_routes/96.json');
+//   var route96_stop = info.stops;
+//   res.render("index", {
+//     pageId: "route_guide",
+//     route96Data: route96_stop
+//   });
+// });
 
 /*********************************POST****************************************/
+
 
 // Information gather from nextram page
 app.post("/nextramdb", function(req, res) {
@@ -374,7 +280,7 @@ app.post("/nextramdb", function(req, res) {
             "crowdednessLevel": req.body.crowdedness,
             "userID": userid
           };
-          Database.Crowdedness.create(userInput, function(err, object) {
+          Crowdedness.create(userInput, function(err, object) {
               if (err) {
                   console.log("Error");
                   res.json({status: 'fail', reason: 'Database error occurred.'});
@@ -383,6 +289,19 @@ app.post("/nextramdb", function(req, res) {
                   console.log("Insertion success" + object);
                   res.json({status: 'success'});
               }
+          });
+
+          // create a User if he/she does not exist in our DB yet
+          User.find({'userID': userid}, function(err, results) {
+            if (err) console.log(err);
+            if (results == []) {
+              User.create({
+                userID: userid,
+                email: payload['email'],
+                firstName: payload['given_name'],
+                lastName: payload['family_name']
+              })
+            }
           });
         }
         else {  // invalid token
@@ -422,6 +341,19 @@ app.post('/reportdisruption', function(req, res) {
               console.log("Error");
               res.json({status: 'fail', reason: 'Database error occurred.'});
             }
+        });
+
+        // create a User if he/she does not exist in our DB yet
+        User.find({'userID': userid}, function(err, results) {
+          if (err) console.log(err);
+          if (results == []) {
+            User.create({
+              userID: userid,
+              email: payload['email'],
+              firstName: payload['given_name'],
+              lastName: payload['family_name']
+            })
+          }
         });
       }
       else {  // invalid token

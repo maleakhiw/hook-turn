@@ -18,5 +18,4 @@ var disruptionSchema = new Schema({
 
 var Disruption = mongoose.model('Disruption', disruptionSchema);
 
-// make this available { type: Date, default: Date.now }to our users in our Node applications
 module.exports = Disruption;
