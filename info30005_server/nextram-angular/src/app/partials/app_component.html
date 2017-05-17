@@ -16,6 +16,8 @@
 </div><!-- /jumbotron -->
 
 <div class="container-fluid">
+
+  {{lastSubmitted.length}}
   <!-- <div *ngFor="let key of processedGroupedDepts | keys;"> -->
     <div *ngFor="let row of processedGroupedDepts" class="row match-my-cols">
       <div class="col-sm-6 nextram_box full text-center"
@@ -77,7 +79,7 @@
                     </div>
 
                   <div class="tab-pane fade in" id="{{'reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}">
-                    <div class="well" *ngIf="column[0].run_id != lastSubmitted?.run_id || !lastSubmitted"> <!-- if not last submitted -->
+                    <div class="well" *ngIf="!containsObject(column[0], lastSubmitted)"> <!-- if not last submitted -->
                       <div class="row">
                         <h5>Rate the crowdedness level of the tram below:</h5>
                       </div>
