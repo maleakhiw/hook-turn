@@ -79,7 +79,7 @@
                     </div>
 
                   <div class="tab-pane fade in" id="{{'reportCrowd' + column[0].route_id + '-' + column[0].direction_id }}">
-                    <div class="well" *ngIf="!containsObjectByRunId(column[0], lastSubmitted)"> <!-- if not last submitted -->
+                    <div class="well" *ngIf="!containsObjectByRunId(column[0], lastSubmitted_crowdedness)"> <!-- if not last submitted -->
                       <div class="row">
                         <h5>Rate the crowdedness level of the tram below:</h5>
                       </div>
@@ -98,13 +98,13 @@
                         </div>
                       </div>
                     </div>
-                    <div class="well" *ngIf="containsObjectByRunId(column[0], lastSubmitted)"> <!-- if not last submitted -->
+                    <div class="well" *ngIf="containsObjectByRunId(column[0], lastSubmitted_crowdedness)"> <!-- if not last submitted -->
                       <p>Thank you for submitting!</p>
                     </div>
                   </div>
 
                   <div class="tab-pane fade in" id="{{'reportDisruption' + column[0].route_id + '-' + column[0].direction_id }}">
-                    <div class="well" *ngIf="!containsObjectByRunId(column[0], lastSubmitted)">
+                    <div class="well" *ngIf="!containsObjectByRunId(column[0], lastSubmitted_disruption)">
                       <div class="row">
                         <h5>Describe any disruptions or inconveniences below:</h5>
                       </div>
@@ -121,7 +121,7 @@
 
                     </div>
 
-                    <div class="well" *ngIf="containsObjectByRunId(column[0], lastSubmitted)"> <!-- if not last submitted -->
+                    <div class="well" *ngIf="containsObjectByRunId(column[0], lastSubmitted_disruption)"> <!-- if not last submitted -->
                       <p>Thank you for submitting!</p>
                     </div>
 

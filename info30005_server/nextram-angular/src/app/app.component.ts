@@ -36,11 +36,13 @@ export class AppComponent implements OnInit {
 
   // Data needed for POST methods
   disruptionData: any = {}; // for disruption. Holds *all* entered text (data binding)
-  lastSubmitted: any = []; // departure
+  lastSubmitted: any = []; // list of reported departures
+
+  lastSubmitted_crowdedness: any = [];
+  lastSubmitted_disruption: any = [];
 
 
   containsObject(obj: any, list: any) {
-    console.log(obj, list);
     for (let i=0; i<list.length; i++) {
       if (list[i] === obj) {
         return true;
@@ -50,7 +52,6 @@ export class AppComponent implements OnInit {
   }
 
   containsObjectByRunId(obj: any, list: any) {
-    console.log(obj, list);
     for (let i=0; i<list.length; i++) {
       if (list[i].run_id === obj.run_id) {
         return true;
@@ -77,6 +78,7 @@ export class AppComponent implements OnInit {
     // add to lastSubmitted array if it's not there yet
     if (!this.containsObject(departure, this.lastSubmitted)) {
       this.lastSubmitted.push(departure);
+      this.lastSubmitted_crowdedness.push(departure);
     }
 
     this.getDeparturesData(); // refresh data
@@ -98,6 +100,7 @@ export class AppComponent implements OnInit {
     // add to lastSubmitted array if it's not there yet
     if (!this.containsObject(departure, this.lastSubmitted)) {
       this.lastSubmitted.push(departure);
+      this.lastSubmitted_disruption.push(departure);
     }
 
     this.getDeparturesData();
