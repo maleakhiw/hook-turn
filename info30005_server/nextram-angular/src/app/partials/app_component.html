@@ -16,9 +16,16 @@
 </div><!-- /jumbotron -->
 
 <div class="container-fluid">
-
-  {{lastSubmitted.length}}
   <!-- <div *ngFor="let key of processedGroupedDepts | keys;"> -->
+
+    <div class="alert alert-warning" *ngIf="showConnectionError">
+      <strong>Unable to connect to Hook/Turns</strong> Please check your internet connection.
+    </div>
+
+    <div class="alert alert-danger" *ngIf="showSubmissionFailedError">
+      <strong>Submission failed!</strong> Please check your submission and wait a few moments before trying again.
+    </div>
+
     <div *ngFor="let row of processedGroupedDepts" class="row match-my-cols">
       <div class="col-sm-6 nextram_box full text-center"
           attr.class="{{'col-sm-6 nextram_box text-center ' + crowdedness[column[0].run_id]?.class.toLowerCase()}}"

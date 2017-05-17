@@ -41,6 +41,10 @@ export class AppComponent implements OnInit {
   lastSubmitted_crowdedness: any = [];
   lastSubmitted_disruption: any = [];
 
+  // show alerts
+  showConnectionError: boolean = false;
+  showSubmissionFailedError: boolean = false;
+
 
   containsObject(obj: any, list: any) {
     for (let i=0; i<list.length; i++) {
@@ -72,7 +76,10 @@ export class AppComponent implements OnInit {
 
     this.tramService.storeTrams(data).
           subscribe((response) => console.log(response),
-                    (error) => console.log(error));
+                    (error) => {
+                      console.log(error);
+                      this.showSubmissionFailedError = true;
+                    });
 
 
     // add to lastSubmitted array if it's not there yet
@@ -95,7 +102,10 @@ export class AppComponent implements OnInit {
 
     this.tramService.storeDisruption(data)
       .subscribe((response) => console.log(response),
-                  (error) => console.log(error));
+                  (error) => {
+                    console.log(error);
+                    this.showSubmissionFailedError = true;
+                  });
 
     // add to lastSubmitted array if it's not there yet
     if (!this.containsObject(departure, this.lastSubmitted)) {
@@ -133,6 +143,7 @@ export class AppComponent implements OnInit {
   updateDeparturesData(departuresData: any): void {
     console.log(departuresData);
     this.departuresData = departuresData;
+    this.showConnectionError = false;
 
     // Get crowdsourced data
     this.crowdedness = departuresData.crowdSourcedDisruptions.crowdedness;
@@ -251,7 +262,8 @@ export class AppComponent implements OnInit {
     // TODO: Angular2 routing, validation
 
     this.departuresService.getDeparturesData(queryDict.stop_id)
-      .then(departuresData => this.updateDeparturesData(departuresData));  // when the Promise is resolved, add to local departuresData
+      .then(departuresData => this.updateDeparturesData(departuresData))  // when the Promise is resolved, add to local departuresData
+      .catch((reason) => this.showConnectionError = true);
   }
 
 }
