@@ -296,7 +296,7 @@ app.post("/nextramdb", function(req, res) {
             console.log('User.find');
             if (err) console.log(err);
             console.log(results);
-            if (results == []) {
+            if (results.length == 0) {
               User.create({
                 userID: userid,
                 email: payload['email'],
@@ -353,7 +353,7 @@ app.post('/reportdisruption', function(req, res) {
           console.log('User.find');
           if (err) console.log(err);
           console.log(results);
-          if (results == []) {
+          if (results.length == 0) {
             User.create({
               userID: userid,
               email: payload['email'],
