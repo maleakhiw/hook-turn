@@ -19,7 +19,7 @@
   <!-- <div *ngFor="let key of processedGroupedDepts | keys;"> -->
     <div *ngFor="let row of processedGroupedDepts" class="row match-my-cols">
       <div class="col-sm-6 nextram_box full text-center"
-          attr.class="{{'col-sm-6 nextram_box text-center ' + crowdSourcedDisruptions[column[0].run_id]?.class.toLowerCase()}}"
+          attr.class="{{'col-sm-6 nextram_box text-center ' + crowdedness[column[0].run_id]?.class.toLowerCase()}}"
           *ngFor="let column of row"><div class="box padding-15px">
         <span class="{{ 'route_number_table route_number_' + routes[column[0].route_id].route_number }}">{{ routes[column[0].route_id].route_number }}</span>
         {{ 'to ' + directions[column[0].direction_id].direction_name }}
