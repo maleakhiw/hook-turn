@@ -409,7 +409,7 @@ app.post('/reportdisruption', function(req, res) {
           "status": req.body.status,
           "runID": req.body.runID,
           "stopID": req.body.stopID,
-          "disruption": req.body.disruption
+          "disruption": req.body.disruption,
           "userID": userid
         });
 
