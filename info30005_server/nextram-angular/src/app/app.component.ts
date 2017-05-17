@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { GongService } from './gong.service';
 import { TramService } from './tram.service';
 import { DeparturesService } from './departures.service'
@@ -14,8 +14,6 @@ var getRandomImageURL = function(): string {
     var randomNo = Math.floor(Math.random()*jumbotronImages.length);
     return jumbotronImages[randomNo];
 }
-
-declare const gapi: any;  // for google login
 
 @Component({
   selector: 'my-app',
@@ -51,27 +49,7 @@ export class AppComponent implements OnInit {
   showAlertText: String;
   // TODO: use an array for alerts
 
-  // Google login
-  userAuthToken: String;
-  userDisplayName: String;
-  auth2: any;
 
-  ngAfterViewInit() {
-    gapi.signin2.render('g-signin-btn', {
-        'theme': 'light',
-        'onsuccess': this.onSignIn
-    });
-}
-
-  onSignIn = (googleUser: any) => {
-    this.zone.run(() => {
-      console.log('onSignIn');
-      this.userAuthToken = googleUser.getAuthResponse().id_token;
-      this.userDisplayName = googleUser.getBasicProfile().getName();
-      console.log(this.userAuthToken, this.userDisplayName);
-    })
-    
-  };
 
   showAlert(text: String) {
     this.showAlertBool = true;
