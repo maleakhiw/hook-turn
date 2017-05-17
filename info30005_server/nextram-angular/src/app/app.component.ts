@@ -67,7 +67,8 @@ export class AppComponent implements OnInit {
         scope: 'profile email'
       });
       that.attachSignin(document.getElementById('g-signin-btn'));
-      var googleUser = that.auth2.getAuthInstance().currentUser.listen((googleUser: any) => {
+
+      var googleUser = gapi.auth2.getAuthInstance().currentUser.listen((googleUser: any) => {
         let profile = googleUser.getBasicProfile();
         that.token = googleUser.getAuthResponse().id_token;
         that.name = profile.getName();
