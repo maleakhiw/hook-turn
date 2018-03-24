@@ -91,4 +91,5 @@ def departures(message):
         send.message_reply(message.chat_id, hook_turns.get_departures(' '.join(message.get_arguments()[1:])), message.message_id)
 
 if __name__ == '__main__':
+    print('Running bot.')
     bot.run()
