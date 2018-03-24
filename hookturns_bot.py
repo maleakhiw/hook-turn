@@ -26,7 +26,7 @@ class HookTurns:
             # get the stop_id
             stop_id = self.tram_stops[best_match]['stop_id']
             results = json.loads(requests.get(self.url, params=dict(stopid=stop_id)).text)
-            pprint(results)
+            # pprint(results)
             departures = results['ptvData']['departures']
             stops = results['ptvData']['stops']
             routes = results['ptvData']['routes']
