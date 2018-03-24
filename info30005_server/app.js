@@ -245,7 +245,7 @@ app.get("/nextram", function(req, res) {
 
     }
     else {
-       res.sendfile("nextram-angular/dist/index.html")
+       res.sendFile("nextram-angular/dist/index.html")
     }
 });
 
