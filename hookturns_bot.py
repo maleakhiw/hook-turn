@@ -10,7 +10,7 @@ bot = Telegram_Bot(token)
 send = bot.sender
 
 class HookTurns:
-    url = "http://hookturns.info/departures"
+    url = "http://hookturns.krusli.me/departures"
     def __init__(self):
         with open('tramstops.json') as tramstops_file:
             stops = json.load(tramstops_file)['stops']
@@ -26,7 +26,7 @@ class HookTurns:
             # get the stop_id
             stop_id = self.tram_stops[best_match]['stop_id']
             results = json.loads(requests.get(self.url, params=dict(stopid=stop_id)).text)
-            pprint(results)
+            # pprint(results)
             departures = results['ptvData']['departures']
             stops = results['ptvData']['stops']
             routes = results['ptvData']['routes']
@@ -91,4 +91,5 @@ def departures(message):
         send.message_reply(message.chat_id, hook_turns.get_departures(' '.join(message.get_arguments()[1:])), message.message_id)
 
 if __name__ == '__main__':
+    print('Running bot.')
     bot.run()
