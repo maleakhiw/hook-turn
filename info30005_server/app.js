@@ -26,7 +26,7 @@ var ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07');
 var tramData = require("./assets/json/tramstops.json");
 
 /* Google Auth Library */
-var CLIENT_ID = "46251385268-d4q4r8kb5n7r1c0533hpfkudok8bpth1.apps.googleusercontent.com";
+var CLIENT_ID = "90710147687-8fbuvdh5836egvpujoud8dbtmojqj9d9.apps.googleusercontent.com";
 var GoogleAuth = require('google-auth-library');
 var auth = new GoogleAuth;
 var client = new auth.OAuth2(CLIENT_ID, '', '');
