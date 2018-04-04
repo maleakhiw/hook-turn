@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
     let that = this;
     gapi.load('auth2', function () {
       that.auth2 = gapi.auth2.init({
-        client_id: "46251385268-d4q4r8kb5n7r1c0533hpfkudok8bpth1.apps.googleusercontent.com",
+        client_id: "90710147687-8fbuvdh5836egvpujoud8dbtmojqj9d9.apps.googleusercontent.com",
         cookiepolicy: 'single_host_origin',
         scope: 'profile email'
       });
