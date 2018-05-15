@@ -204,9 +204,9 @@ app.get("/", function(req, res) {
 });
 
 // About
-app.get("/about", function(req, res) {
-    res.render("index", {pageId: "about"});
-});
+// app.get("/about", function(req, res) {
+//     res.render("index", {pageId: "about"});
+// });
 
 // How It Works
 app.get("/how-it-works", function(req, res) {
