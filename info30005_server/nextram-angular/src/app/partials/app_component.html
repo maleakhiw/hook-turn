@@ -20,15 +20,15 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a href="#" data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>  -->
         <!-- <li><a href="#" data-toggle="modal" data-target="#Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>  -->
-        <!-- <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="light" style="margin-top: 5px;"></div></li> -->
-        <li><div id="g-signin-btn" class="g-signin2" data-theme="light" style="margin-top: 5px;"></div></li>
+        <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="light" style="margin-top: 5px;"></div></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <!-- Jumbotron for stopname -->
-<div class="jumbotron">
+<!-- <div class="jumbotron" style="{ background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('getRandomImageURL()') }"> -->
+<div class="jumbotron", [ngStyle]="{ 'background-image': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + getRandomImageURL() + ')' }">
   <div class="container">
     <div class="row">
       <div class="col-md-2"></div>

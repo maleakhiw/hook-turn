@@ -11,7 +11,6 @@ export class DeparturesService {
   constructor(private http: Http) {}
 
   getDeparturesUrl(stopId: string): string {
-    console.log(this.apiUrl + '?stopid=' +  stopId);
     return this.apiUrl + '?stopid=' +  stopId;
   }
 

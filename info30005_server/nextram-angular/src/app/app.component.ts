@@ -7,20 +7,12 @@ import { Http, Response } from "@angular/http";
 
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 
-// TODO export to JSON
-var jumbotronImages = ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
-var getRandomImageURL = function(): string {
-    var randomNo = Math.floor(Math.random()*jumbotronImages.length);
-    return jumbotronImages[randomNo];
-}
-
 declare const gapi: any;
 
 @Component({
   selector: 'my-app',
   templateUrl: './partials/app_component.html',
-  providers: [ DeparturesService, TramService ],
-  styles: ['.jumbotron { background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("' + getRandomImageURL() + '"); }']
+  providers: [ DeparturesService, TramService ]
 })
 export class AppComponent implements OnInit {
   // data from GongAPI (our API)
@@ -49,12 +41,15 @@ export class AppComponent implements OnInit {
   showConnectionError: boolean = false;
   showSubmissionFailedError: boolean = false;
   showAlertBool: boolean = false; // misc. alerts
-  showAlertText: String;
+  showAlertText: string;
 
+  /* jumbotron images */
+  jumbotronImages: ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
+  // randomImageUrl: string;
 
   /* Google sign-in */
-  token: String;
-  name: String;
+  token: string;
+  name: string;
 
   // from http://stackoverflow.com/questions/38846232/how-to-implement-signin-with-google-in-angularjs-2-using-typescript
   // TODO: move to arrow functions
@@ -93,10 +88,16 @@ export class AppComponent implements OnInit {
       });
   }
 
+  public getRandomImageURL() {
+      var randomNo = Math.floor(Math.random()*this.jumbotronImages.length);
+      return this.jumbotronImages[randomNo];
+  }
+
   constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http, private zone: NgZone) {}
 
   ngOnInit(): void {
     this.getDeparturesData();
+    // this.randomImageUrl = this.getRandomImageURL();
 
     /* poll our server every minute */
     IntervalObservable.create(60 * 1000) // ms, 1 minute
@@ -108,7 +109,7 @@ export class AppComponent implements OnInit {
   }
 
   /* Alerts */
-  showAlert(text: String) {
+  showAlert(text: string) {
     this.showAlertBool = true;
     this.showAlertText = text;
   }

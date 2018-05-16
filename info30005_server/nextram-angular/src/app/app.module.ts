@@ -6,7 +6,6 @@ import { FormsModule }   from '@angular/forms';
 import { AppComponent }  from './app.component';
 import { DepartureComponent } from './departure.component';
 import { SmallDepartureComponent } from './small-departure.component';
-import { NavbarComponent } from './navbar.component';
 
 import { KeysPipe } from './keys.pipe';
 
@@ -14,7 +13,7 @@ import { KeysPipe } from './keys.pipe';
   imports:      [ BrowserModule, HttpModule, FormsModule ],
   declarations: [ AppComponent,
                   DepartureComponent, SmallDepartureComponent,
-                  NavbarComponent, KeysPipe ],
+                  KeysPipe ],
   bootstrap:    [ AppComponent ],
 })
 export class AppModule { }
