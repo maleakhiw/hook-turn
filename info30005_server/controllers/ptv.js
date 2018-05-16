@@ -24,7 +24,6 @@ module.exports = class PTV {
     var add = '/v3/departures/route_type/1/stop/' + stopID;
     add += '?max_results=3&include_cancelled=false&expand=all&devid=' + this.dev_id;
     var url = this.urlBuilder(add);
-    console.log(url);
     request(url, callback);
   }
 }

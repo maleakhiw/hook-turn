@@ -1,6 +1,12 @@
 const path = require("path"); // TODO check if needed
 const client = require('./googleAuth'); // Google Auth client
 const tramData = require("../assets/json/tramstops.json");
+const Database = require('../models/db');
+
+// models
+const Crowdedness = Database.Crowdedness;
+const Disruption  = Database.Disruption;
+const User        = Database.User;
 
 // TODO MOVE CLIENT_ID TO ENV
 const CLIENT_ID = "322407653477-6ntij30l1ttq9jgt82cmmljc5d515tmg.apps.googleusercontent.com";
@@ -48,9 +54,10 @@ let getPage = (req, res) => {
 }
 
 let reportCrowdedness = (req, res) => {
-  verifyToken.then(login => {
-    var payload = login.getPayload();
-    var userid = payload.sub;
+  var payload, userid;
+  verifyToken(req.body.token).then(login => {
+    payload = login.getPayload();
+    userid = payload.sub;
     if (!userid) {
       // TODO status: 'error' instead of 'fail'
       res.status(400).json({status: 'fail', reason: 'Invalid Google login token.'});
@@ -92,9 +99,10 @@ let reportCrowdedness = (req, res) => {
 }
 
 let reportDisruption = (req, res) => {
-  verifyToken.then(login => {
-    var payload = login.getPayload();
-    var userid = payload['sub'];
+  var payload, userid;
+  verifyToken(req.body.token).then(login => {
+    payload = login.getPayload();
+    userid = payload['sub'];
     if (!userid) {
       // TODO status: 'error' instead of 'fail'
       res.status(400).json({status: 'fail', reason: 'Invalid Google login token.'});
@@ -112,6 +120,8 @@ let reportDisruption = (req, res) => {
     return disruption.save();
   })
   .then(newDisruption => {
+    res.json({status: 'success'})
+    
     return User.findOne({userID: userid})
   })
   .then(user => {

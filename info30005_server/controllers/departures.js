@@ -82,10 +82,10 @@ module.exports = (req, res) => {
 
        return Disruption.find({runID: {$in: runIds}})
      })
-     .then(disruptions => {
-       disruptions.map(disruption => {
+     .then(result => {
+       result.map(entry => {
          if (!(entry.runID in disruptions)) {  // key does not exist, create
-             disruptions[entry.runID] = [entry.disruption];
+           disruptions[entry.runID] = [entry.disruption];
          }
          else {
            disruptions[entry.runID].push(entry.disruption);  // add to existing array

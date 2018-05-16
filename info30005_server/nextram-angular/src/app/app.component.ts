@@ -54,8 +54,8 @@ export class AppComponent implements OnInit {
     let that = this;
     gapi.load('auth2', function () {
       that.auth2 = gapi.auth2.init({
-        client_id: "90710147687-8fbuvdh5836egvpujoud8dbtmojqj9d9.apps.googleusercontent.com",
-        cookiepolicy: 'single_host_origin',
+        client_id: "322407653477-6ntij30l1ttq9jgt82cmmljc5d515tmg.apps.googleusercontent.com",
+        // cookiepolicy: 'single_host_origin',
         scope: 'profile email'
       });
       that.attachSignin(document.getElementById('g-signin-btn'));
@@ -191,7 +191,7 @@ export class AppComponent implements OnInit {
         this.showAlert('Please enter a description for the disruption or inconvenience.');
       }
       if (disruption.length < 10) {
-        this.showAlert('Please describe the disruption or inconvenience.');
+        this.showAlert('Please describe the disruption or inconvenience in detail.');
         return;
       }
 
@@ -210,7 +210,7 @@ export class AppComponent implements OnInit {
           this.lastSubmitted_disruption.push(departure);
         }
         this.getDeparturesData();
-      } ,
+      },
       (error) => {
         console.log(error);
         this.showSubmissionFailedError = true;
