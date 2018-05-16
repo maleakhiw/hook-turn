@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 /* static files */
 app.use(express.static("assets"));
-app.use('/nextramlive', express.static("nextram-angular/dist"));
+app.use('/nextramlive', express.static("nextram-angular/dist/nextram-angular"));
 app.use(router);
 
 let port = 3000;  // TODO env.port

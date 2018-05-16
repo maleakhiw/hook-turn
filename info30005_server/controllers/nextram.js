@@ -1,8 +1,9 @@
 const path = require("path"); // TODO check if needed
 const client = require('./googleAuth'); // Google Auth client
+const tramData = require("../assets/json/tramstops.json");
 
 // TODO MOVE CLIENT_ID TO ENV
-const CLIENT_ID = "90710147687-8fbuvdh5836egvpujoud8dbtmojqj9d9.apps.googleusercontent.com";
+const CLIENT_ID = "322407653477-6ntij30l1ttq9jgt82cmmljc5d515tmg.apps.googleusercontent.com";
 
 const verifyToken = (token) => {
   return new Promise((resolve, reject) => {
@@ -41,7 +42,8 @@ let getPage = (req, res) => {
   }
   else {
     // no query
-    res.sendFile(path.join(__dirname, "/../nextram-angular/dist/index.html"))
+    // TODO redirect to search?
+    res.sendFile(path.join(__dirname, "/../nextram-angular/dist/nextram-angular/index.html"))
   }
 }
 

@@ -4,17 +4,30 @@ const express = require('express');
 const controllers = require('../controllers/controllers');
 const router = express.Router();
 
+router.post('/tokensignin', (req, res) => {
+  console.log('tokensignin')
+  console.log(req.body)
+
+  if (!req.body.idtoken) {
+    res.status(400).json({status: 'error'});
+    return;
+  }
+
+  client.verifyIdToken(
+    req.body.idtoken, CLIENT_ID,
+    (error, login) => {
+      // TODO winston.log
+      var payload = login.getPayload();
+      var userID = payload.sub;
+      // TODO do something with the payload
+      res.send();
+    }
+  );
+
+})
+
 router.get('/departures', cors(), controllers.departures);
-
-// route to handle sign in. We'll use the userid
-// TODO check if this is ncessary
-// router.post('/tokensignin', controllers.auth);
-
-// report crowdedness
-// TODO rename route from nextramdb to /crowdedness
-router.post("/nextramdb", controllers.nextram.reportCrowdedness);
-
-// TODO rename to /disruption
-router.post('/reportdisruption', controllers.nextram.reportDisruption);
+router.post('/crowdednesses', controllers.nextram.reportCrowdedness);
+router.post('/disruptions', controllers.nextram.reportDisruption);
 
 module.exports = router;

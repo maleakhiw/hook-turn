@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { DeparturesData } from './departures';
 
 import 'rxjs/add/operator/toPromise';
 
-import { DeparturesData } from './departures';
-
 @Injectable()
 export class DeparturesService {
-  // apiUrl = 'http://hookturns.info/departures';
-  apiUrl = 'http://104.199.124.40/departures'
+  apiUrl = 'http://localhost:3000/api/departures'
 
   constructor(private http: Http) {}
 
@@ -18,8 +16,6 @@ export class DeparturesService {
   }
 
   getDeparturesData(stopId: any): Promise<DeparturesData> {
-    // console.log(DEPARTURESDATA);
-    // return Promise.resolve(DEPARTURESDATA);
     return this.http.get(this.getDeparturesUrl(stopId))
       .toPromise()
       .then(response => response.json() as DeparturesData)

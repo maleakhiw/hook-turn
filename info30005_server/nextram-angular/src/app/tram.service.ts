@@ -7,13 +7,12 @@ export class TramService {
 
 	constructor(private http: Http) {}
 
-	// Method that will be used to store tram data
 	storeCrowdedness(data: any) {
-		return this.http.post("/nextramdb", data);
+		return this.http.post("http://localhost:3000/api/crowdednesses", data);
 	}
 
 	storeDisruption(data: any) {
-		return this.http.post('/reportdisruption', data);
+		return this.http.post('http://localhost:3000/api/disruptions', data);
 	}
 
 }

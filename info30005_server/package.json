@@ -10,6 +10,7 @@
   "author": "HookTurns",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "~1.17.1",
     "concurrently": "^3.4.0",
     "cors": "^2.8.3",
@@ -21,5 +22,8 @@
     "request": "^2.81.0",
     "requests": "~0.1.7",
     "typescript": "^2.3.2"
+  },
+  "devDependencies": {
+    "@angular/cli": "^6.0.1"
   }
 }

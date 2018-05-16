@@ -7,9 +7,8 @@ import { Http, Response } from "@angular/http";
 
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 
-
+// TODO export to JSON
 var jumbotronImages = ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
-
 var getRandomImageURL = function(): string {
     var randomNo = Math.floor(Math.random()*jumbotronImages.length);
     return jumbotronImages[randomNo];
@@ -89,12 +88,6 @@ export class AppComponent implements OnInit {
         that.token = googleUser.getAuthResponse().id_token;
         that.name = profile.getName();
 
-        // console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        // console.log('ID: ' + profile.getId());
-        // console.log('Name: ' + profile.getName());
-        // console.log('Image URL: ' + profile.getImageUrl());
-        // console.log('Email: ' + profile.getEmail());
-
       }, function (error: any) {
         console.log(error);
       });
@@ -158,7 +151,6 @@ export class AppComponent implements OnInit {
   /* POST */
   // POST user-submitted crowdedness data
   submitCrowdedness(departure: any, crowdedness: number) {
-    console.log('onInputData, logging:', departure, crowdedness);
     if (this.token) {
       this.clearAlert();
       var data = {
@@ -170,7 +162,6 @@ export class AppComponent implements OnInit {
 
       this.tramService.storeCrowdedness(data)
         .subscribe((response) => {
-                      console.log(response)
                       if (!this.containsObject(departure, this.lastSubmitted)) {
                         this.lastSubmitted.push(departure);
                         this.lastSubmitted_crowdedness.push(departure);
@@ -192,7 +183,6 @@ export class AppComponent implements OnInit {
 
   // POST user-submitted disruption/inconvenience data
   submitDisruption(departure: any, disruption: any) {
-    console.log('submitDisruption, logging:', departure, disruption);
     if (this.token) {
       if (!disruption) {
         this.showAlert('Please enter a description for the disruption or inconvenience.');
@@ -212,7 +202,6 @@ export class AppComponent implements OnInit {
 
       this.tramService.storeDisruption(data)
       .subscribe((response) => {
-        console.log(response)
         if (!this.containsObject(departure, this.lastSubmitted)) {
           this.lastSubmitted.push(departure);
           this.lastSubmitted_disruption.push(departure);
@@ -231,7 +220,6 @@ export class AppComponent implements OnInit {
 
   // callback for when data is loaded from GongAPI (our API) - does pre-processing, grouping, etc.
   updateDeparturesData(departuresData: any): void {
-    console.log(departuresData);
     this.departuresData = departuresData;
     this.showConnectionError = false;
     this.disruptions = departuresData.ptvData.disruptions;
@@ -288,8 +276,6 @@ export class AppComponent implements OnInit {
         departuresData.groupedDepts[key][i].route_no = departuresData.ptvData.routes[departuresData.groupedDepts[key][i].route_id].route_number;
       }
     }
-
-    console.log(departuresData.groupedDepts);
 
     var ordered = {};
     Object.keys(departuresData.groupedDepts).sort(function(a, b) {
