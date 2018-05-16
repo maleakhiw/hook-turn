@@ -49,7 +49,7 @@ module.exports = (req, res) => {
      }
 
      var runIds = body.departures.map(entry => entry.run_id);
-     Crowdedness.find({runID: {$in: runIds}}).exec()
+     Crowdedness.find({runID: {$in: runIds}, timeExpiry: {$gte: Date.now()}}).exec()
      .then(crowdedness => {
        crowdedness.map(entry => {
          if (!(entry.runID in runCrowdedness)) {
@@ -80,7 +80,7 @@ module.exports = (req, res) => {
          }
        }
 
-       return Disruption.find({runID: {$in: runIds}})
+       return Disruption.find({runID: {$in: runIds}, timeExpiry: {$gte: Date.now()}})
      })
      .then(result => {
        result.map(entry => {
