@@ -8,7 +8,6 @@ var crowdednessSchema = new Schema({
   timeReported: {type: Date, default: Date.now() },
   userID: String
 });
-
 var Crowdedness = mongoose.model("crowdedness", crowdednessSchema);
 
 module.exports = Crowdedness;
