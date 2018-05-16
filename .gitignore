@@ -1,2 +1,4 @@
 __pycache__
 node_modules
+bot_data.json
+.DS_Store
