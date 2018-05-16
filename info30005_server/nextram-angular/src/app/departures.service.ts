@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class DeparturesService {
-  apiUrl = 'http://localhost:3000/api/departures'
+  apiUrl = 'http://hook-turns.herokuapp.com/api/departures'
 
   constructor(private http: Http) {}
 

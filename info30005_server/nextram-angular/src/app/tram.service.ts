@@ -8,11 +8,11 @@ export class TramService {
 	constructor(private http: Http) {}
 
 	storeCrowdedness(data: any) {
-		return this.http.post("http://localhost:3000/api/crowdednesses", data);
+		return this.http.post("http://hook-turns.herokuapp.com/api/crowdednesses", data);
 	}
 
 	storeDisruption(data: any) {
-		return this.http.post('http://localhost:3000/api/disruptions', data);
+		return this.http.post('http://hook-turns.herokuapp.com/api/disruptions', data);
 	}
 
 }
