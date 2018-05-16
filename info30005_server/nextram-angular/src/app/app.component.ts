@@ -43,10 +43,6 @@ export class AppComponent implements OnInit {
   showAlertBool: boolean = false; // misc. alerts
   showAlertText: string;
 
-  /* jumbotron images */
-  jumbotronImages: ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
-  // randomImageUrl: string;
-
   /* Google sign-in */
   token: string;
   name: string;
@@ -88,16 +84,22 @@ export class AppComponent implements OnInit {
       });
   }
 
+  last: any;
   public getRandomImageURL() {
-      var randomNo = Math.floor(Math.random()*this.jumbotronImages.length);
-      return this.jumbotronImages[randomNo];
+    var jumbotronImages = ['http://i.imgur.com/52bc7MI.jpg', 'http://i.imgur.com/sqOw10k.jpg', 'http://i.imgur.com/4KYxeCV.jpg', 'http://i.imgur.com/8zk1Odl.jpg', 'http://i.imgur.com/QUAlma0.jpg', 'http://i.imgur.com/Dflx2c0.jpg', 'http://i.imgur.com/oZxFHmC.jpg', 'http://i.imgur.com/I6yatSR.jpg', 'http://i.imgur.com/1n2udYH.jpg', 'http://i.imgur.com/SmZqStQ.jpg', 'http://i.imgur.com/qhUgfXJ.jpg', 'http://i.imgur.com/mIMKH0x.jpg', 'http://i.imgur.com/jDGsOEm.jpg', 'http://i.imgur.com/RVzgIkR.jpg', 'http://i.imgur.com/BILgjuf.jpg', 'http://i.imgur.com/0Rarcvi.jpg', 'http://i.imgur.com/7oCRYB3.jpg', 'http://i.imgur.com/vfUlNwL.jpg', 'http://i.imgur.com/K4czJdd.jpg', 'http://i.imgur.com/n9ormd8.jpg', 'http://i.imgur.com/R0OWtPD.jpg'];
+
+    if (!this.last) {
+      var randomNo = Math.floor(Math.random()*jumbotronImages.length);
+      this.last = jumbotronImages[randomNo];
+    }
+
+    return this.last;
   }
 
   constructor(private departuresService: DeparturesService, private tramService: TramService, private http: Http, private zone: NgZone) {}
 
   ngOnInit(): void {
     this.getDeparturesData();
-    // this.randomImageUrl = this.getRandomImageURL();
 
     /* poll our server every minute */
     IntervalObservable.create(60 * 1000) // ms, 1 minute
