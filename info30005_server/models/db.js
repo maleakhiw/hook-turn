@@ -12,11 +12,12 @@ module.exports.Disruption = Disruption;
 mongoose.Promise = bluebird;
 
 // TODO use mongoLab/personal MongoDB server
-mongoose.connect('mongodb://localhost/hookturns', (err) => {
-  // TODO use Winston for logging
-  if (!err) {
-    console.log('Connected to mongo');
-  } else {
-    console.log('Failed to connect to mongo');
+mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + '@ds123500.mlab.com:23500/hookturns',
+  (err) => {
+    // TODO use Winston for logging
+    if (!err) {
+      console.log('Connected to mongo');
+    } else {
+      console.log('Failed to connect to mongo');
   }
 });

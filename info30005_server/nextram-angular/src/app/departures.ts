@@ -23,7 +23,7 @@ export class Stop {
 export class DeparturesData {
     status: string;
     stopID: string;
-    ptvData: any;
+    ptvData: any; // TODO needed for bot, but redundant info
     groupedDepts: any;
     crowdSourcedDisruptions: any[];
     routeGuide?: any;

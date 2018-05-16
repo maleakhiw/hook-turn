@@ -8,12 +8,12 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-/* static files */
+// static files
 app.use(express.static("assets"));
 app.use('/nextramlive', express.static("nextram-angular/dist/nextram-angular"));
 app.use(router);
 
-let port = 3000;  // TODO env.port
+let port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log('H/T> Listening on port ' + port + '.')
 });

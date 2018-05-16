@@ -6,7 +6,7 @@ const Crowdedness = Database.Crowdedness;
 const Disruption = Database.Disruption;
 const User = Database.User;
 
-const ptv = new PTV(1000824, 'c269558f-5915-11e6-a0ce-06f54b901f07'); // TODO move to env_var
+const ptv = new PTV(1000824, process.env.PTV_KEY); // TODO move to env_var
 
 /* groups the departures by a combination of route and direction ID */
 function groupByRouteDirectionID(ptvData) {
