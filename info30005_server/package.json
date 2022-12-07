@@ -11,11 +11,11 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "body-parser": "~1.17.1",
+    "body-parser": "~1.20.1",
     "concurrently": "^3.4.0",
     "cors": "^2.8.3",
     "ejs": "~2.5.6",
-    "express": "~4.15.2",
+    "express": "~4.15.5",
     "google-auth-library": "^0.10.0",
     "mongoose": "~4.9.5",
     "nodemon": "^1.11.0",
